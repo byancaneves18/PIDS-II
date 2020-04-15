@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="PIDSEquanime/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/barcodes-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/font-asian-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/forms-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/hyph-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/io-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/kernel-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/layout-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/pdfa-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/pdftest-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/sign-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/slf4j-api-1.7.9.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/slf4j-simple-1.7.9.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/styled-xml-parser-7.1.3.jar"/>
+	<classpathentry kind="lib" path="PIDSEquanime/WebContent/svg-7.1.3.jar"/>
+	<classpathentry kind="output" path="PIDSEquanime/build/classes"/>
+</classpath>

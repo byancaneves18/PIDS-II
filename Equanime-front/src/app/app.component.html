@@ -1,0 +1,29 @@
+<body>
+    <mat-toolbar style="background-color: #343a40;" class="example-toolbar">
+        <div class="row" style="width: 100%;">
+            <div class="col-sm-6">
+                <button style="border: 0px; padding: 0px; height: 24px;" mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon style="background-color: #343a40; color: white;">menu</mat-icon>
+                </button>
+                <img src="../../../assets/img/LogoEquânime.png" style="width: 100px; height: 30px;">
+            </div>
+            <div class="col-sm-6" style="text-align: right; color: white;">
+                <span>Joilsola</span>
+            </div>
+        </div>
+
+    </mat-toolbar>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode="side" [(opened)]="opened" style="width: 200px; background-color: #343a40;">
+            <a href="/montar" class="btn" style="text-align: center;width: 100%;color: white;">Montar Horario</a>
+            <a href="/disciplina" class="btn" style="text-align: center;width: 100%;color: white;">Disciplina</a>
+            <a href="/usuario" class="btn" style="text-align: center;width: 100%;color: white;">Usuário</a>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</body>
+
+<!-- (click)="snav.toggle()" -->

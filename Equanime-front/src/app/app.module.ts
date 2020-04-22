@@ -15,6 +15,9 @@ import { UsuarioComponent } from './page/usuario/usuario.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {TableModule} from 'primeng/table';
 
+import {DisciplinaModule} from './disciplina/disciplina.module';
+
+
 
 
 
@@ -22,7 +25,8 @@ import {TableModule} from 'primeng/table';
   declarations: [
     AppComponent,
     LoginComponent,
-    UsuarioComponent
+    UsuarioComponent,
+
     
   ],
   imports: [
@@ -36,7 +40,8 @@ import {TableModule} from 'primeng/table';
     MatIconModule,
     MatSidenavModule,
     MatPaginatorModule,
-    TableModule
+    TableModule,
+    DisciplinaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

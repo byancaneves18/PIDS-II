@@ -60,7 +60,7 @@ public class DaoDisciplina {
 		pst.setInt(1, id_disciplina);
 		
 		ResultSet rs = pst.executeQuery();
-		
+		rs.next();
 		return new ModeloDisciplina(rs.getInt("id_disciplina"),rs.getInt("id_periodo"),rs.getString("nome"));
 	
 	}

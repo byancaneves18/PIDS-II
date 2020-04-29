@@ -1,11 +1,11 @@
 <head></head>
 <body>
  
-  <form class="navbar-form navbar-left"  #formCriarDisciplina="ngForm" (ngSubmit)="Cadastrar()">
+  <form class="navbar-form navbar-left"  #formEditarDisciplina="ngForm" (ngSubmit)="Salvar()">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">Nome:</span>
         <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1"  name="NOME" id="NOME"  [(ngModel)] = "NOME">
-      </div>
+      </div> 
     <br><br>
       <select class="form-control" name="PERIODO" [(ngModel)] = "PERIODO_ID" >
         <option *ngFor="let periodo of PERIODO" [value]="periodo.id_periodo">{{periodo.periodo_semestre}}</option>
@@ -13,8 +13,8 @@
       <br><br>
       <div class="btn-group" role="group" aria-label="...">
         <button type="button" class="btn btn-default" (click)="Cancelar()" >Cancelar </button>
-        <button type="submit" class="btn btn-primary"  >Cadastrar</button>
-      </div>
+        <button type="submit" class="btn btn-primary"  >Salvar</button>
+      </div>  
       <br><br>
     </form>
 </body>

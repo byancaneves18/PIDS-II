@@ -42,12 +42,35 @@ export class ServerComunicationService {
 
   }
 
+  public getDisciplinabyid(id : string){
+
+    return this.http.post<Disciplina>(this.url+"/disciplinaById",id);
+
+  }
+
   public getPeriodobyid(id : string){
 
     return this.http.post<Periodo>(this.url+"/periodoById",id);
 
   }
   
+  public novaDisciplina(body : Disciplina){
+
+    return this.http.post(this.url+"/novaDisciplina",body);
+
+  }
+
+  public atualizarDisciplina(body : Disciplina){
+
+    return this.http.post(this.url+"/atualizarDisciplina",body);
+
+  }
+
+  public excluirDisciplinaById(id : number){
+
+    return this.http.post(this.url+"/excluirDisciplinaById",id);
+
+  }
 
 
 }

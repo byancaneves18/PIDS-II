@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.Disciplina"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoDisciplina"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoPeriodo"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.controllers.ManterDisciplina"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloPeriodo"/>
+    <fullyQualifiedTypeName name="com.Business.EquanimePIDS.modelo.ModeloDisciplina"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloDisciplina"/>
+</qualifiedTypeNameHistroy>

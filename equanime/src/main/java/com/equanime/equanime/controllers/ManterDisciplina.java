@@ -37,9 +37,9 @@ public class ManterDisciplina {
 	}
 	
 	
-	public void criar(int id_periodo, String nome) throws SQLException {
+	public void criar(ModeloDisciplina disciplina) throws SQLException {
 		
-		ModeloDisciplina novaDisciplina = new ModeloDisciplina( id_periodo, nome);
+		ModeloDisciplina novaDisciplina = new ModeloDisciplina( disciplina.getId_periodo(),disciplina.getNome());
 		
 		dao.criar(novaDisciplina);
 		
@@ -58,9 +58,9 @@ public class ManterDisciplina {
 		dao.excluir(id_disciplina);
 	}
 	
-	public void editar(int id_disciplina, int id_periodo, String nome) throws SQLException {
+	public void editar(ModeloDisciplina disciplina) throws SQLException {
 		
-		dao.editar(new ModeloDisciplina(id_disciplina, id_periodo, nome));
+		dao.editar(new ModeloDisciplina(disciplina.getId_disciplina(), disciplina.getId_periodo(), disciplina.getNome()));
 	}
 	
 	public ModeloPeriodo BuscarPeriodoPorId(String id) throws SQLException {

@@ -27,6 +27,12 @@ public class ModeloDisciplina {
 		
 	}
 	
+	
+	public ModeloDisciplina() {
+
+		
+	}
+	
 	public int getId_disciplina() {
 		return id_disciplina;
 	}

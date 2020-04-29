@@ -59,7 +59,6 @@ public class ApiDisciplinas {
 	@PostMapping(path = "periodoById")
 	public ModeloPeriodo getPeriodoById(@RequestBody String id){
 		
-		System.out.println("Get recebido");
 		try {
 			return manterDisciplina.BuscarPeriodoPorId(id);
 		} catch (SQLException e) {
@@ -68,5 +67,51 @@ public class ApiDisciplinas {
 		}
 	}
 	
+	
+	@PostMapping(path = "novaDisciplina")
+	public void novaDisciplina(@RequestBody ModeloDisciplina disciplina){
+		
+		try {
+			//return manterDisciplina.BuscarPeriodoPorId(id);
+			manterDisciplina.criar(disciplina);
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			//return new ModeloPeriodo(0, "erro");
+		}
+	}
+	
+	@PostMapping(path = "atualizarDisciplina")
+	public void atualizarDisciplina(@RequestBody ModeloDisciplina disciplina){
+		System.out.println("Solicitação de alteração recebida");
+		try {
+			//return manterDisciplina.BuscarPeriodoPorId(id);
+			manterDisciplina.editar(disciplina);
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			//return new ModeloPeriodo(0, "erro");
+		}
+	}
+	
+	
+	@PostMapping(path = "disciplinaById")
+	public ModeloDisciplina getDisciplinaById(@RequestBody String id){
+		
+		try {
+			return manterDisciplina.exibir(Integer.parseInt(id));
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			return new ModeloDisciplina();
+		}
+	}
+	
+	@PostMapping(path = "excluirDisciplinaById")
+	public void excluirDisciplinaById(@RequestBody int id){
+		
+		try {
+			 manterDisciplina.excluir(id);
+		} catch (SQLException e) {
+			e.printStackTrace();	
+		}
+	}
 	
 }

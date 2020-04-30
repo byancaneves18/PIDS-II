@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,86 +34,50 @@ public class ApiDisciplinas {
 	
 	
 	@GetMapping(path = "periodos")
-	public List<ModeloPeriodo> getPeriodos(){
-		try {
+	public List<ModeloPeriodo> getPeriodos() throws SQLException{
 			return manterDisciplina.listarPeriodos();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			List<ModeloPeriodo> listaDePeriodos = new ArrayList<>();
-			listaDePeriodos.add(new ModeloPeriodo(0, "erro"));
-			return listaDePeriodos;
-		}
+
 	}
 	
 	@GetMapping(path = "disciplinas")
-	public List<ModeloDisciplina> getDisciplinas(){
+	public List<ModeloDisciplina> getDisciplinas() throws SQLException{
 		
-		try {
 			return manterDisciplina.listar();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			List<ModeloDisciplina> listaDeDisciplinas = new ArrayList<>();
-			listaDeDisciplinas.add(new ModeloDisciplina(0,0, "erro"));
-			return listaDeDisciplinas;
-		}
 	}
 	
 	@PostMapping(path = "periodoById")
-	public ModeloPeriodo getPeriodoById(@RequestBody String id){
-		
-		try {
+	public ModeloPeriodo getPeriodoById(@RequestBody String id) throws SQLException{
+
 			return manterDisciplina.BuscarPeriodoPorId(id);
-		} catch (SQLException e) {
-			e.printStackTrace();	
-			return new ModeloPeriodo(0, "erro");
-		}
+
 	}
 	
 	
 	@PostMapping(path = "novaDisciplina")
-	public void novaDisciplina(@RequestBody ModeloDisciplina disciplina){
+	public void novaDisciplina(@RequestBody ModeloDisciplina disciplina) throws ValidationException, SQLException{
 		
-		try {
-			//return manterDisciplina.BuscarPeriodoPorId(id);
 			manterDisciplina.criar(disciplina);
-		} catch (SQLException e) {
-			e.printStackTrace();	
-			//return new ModeloPeriodo(0, "erro");
-		}
 	}
 	
 	@PostMapping(path = "atualizarDisciplina")
-	public void atualizarDisciplina(@RequestBody ModeloDisciplina disciplina){
-		System.out.println("Solicitação de alteração recebida");
-		try {
-			//return manterDisciplina.BuscarPeriodoPorId(id);
+	public void atualizarDisciplina(@RequestBody ModeloDisciplina disciplina) throws ValidationException, SQLException{
+
 			manterDisciplina.editar(disciplina);
-		} catch (SQLException e) {
-			e.printStackTrace();	
-			//return new ModeloPeriodo(0, "erro");
-		}
 	}
 	
 	
 	@PostMapping(path = "disciplinaById")
-	public ModeloDisciplina getDisciplinaById(@RequestBody String id){
+	public ModeloDisciplina getDisciplinaById(@RequestBody String id) throws NumberFormatException, SQLException{
 		
-		try {
 			return manterDisciplina.exibir(Integer.parseInt(id));
-		} catch (SQLException e) {
-			e.printStackTrace();	
-			return new ModeloDisciplina();
-		}
+
 	}
 	
 	@PostMapping(path = "excluirDisciplinaById")
-	public void excluirDisciplinaById(@RequestBody int id){
-		
-		try {
+	public void excluirDisciplinaById(@RequestBody int id) throws SQLException{
+
 			 manterDisciplina.excluir(id);
-		} catch (SQLException e) {
-			e.printStackTrace();	
-		}
+
 	}
 	
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerComunicationService } from '../server-comunication.service';
 import { Disciplina, Periodo } from '../listar/listarDisciplinas.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar',
@@ -11,12 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class EditarComponent implements OnInit {
 
   PERIODO: Periodo[] = [];
-
+ 
   ID : String;
   NOME: string;
   PERIODO_ID: string;
 
-  constructor(private back:ServerComunicationService, private route: ActivatedRoute) { }
+  constructor(private back:ServerComunicationService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
 
@@ -55,9 +55,12 @@ export class EditarComponent implements OnInit {
 
     }
    // this.back.novaDisciplina(novaDisciplina).subscribe();
-   this.back.atualizarDisciplina(novaDisciplina).subscribe();
+   this.back.atualizarDisciplina(novaDisciplina).subscribe(sucesso =>{ this.router.navigate(['/disciplinas'])}, fracasso =>{});
   }
 
-  Cancelar(){}
+  Cancelar(){
+
+    this.router.navigate(['/disciplinas']);
+  }
 
 }

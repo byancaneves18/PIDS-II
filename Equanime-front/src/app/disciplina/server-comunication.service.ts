@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {Periodo} from './listar/listarDisciplinas.component';
 import {Disciplina} from './listar/listarDisciplinas.component';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,9 +56,12 @@ export class ServerComunicationService {
 
   }
   
-  public novaDisciplina(body : Disciplina){
+  public novaDisciplina (body : Disciplina): Observable<Post> {
 
-    return this.http.post(this.url+"/novaDisciplina",body);
+    return this.http.post<Post>(this.url+"/novaDisciplina",body);
+
+
+  
 
   }
 
@@ -73,4 +78,12 @@ export class ServerComunicationService {
   }
 
 
+}
+
+class Post {
+  constructor(
+      public id: string,
+      public title: string,
+      public body: string
+  ) { }
 }

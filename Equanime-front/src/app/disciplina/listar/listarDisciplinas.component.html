@@ -1,7 +1,7 @@
 <div style="text-align: center;">
     <br>
     <h1>Disciplinas</h1>
-    <p-table [columns]="colunas" [value]="tela" [paginator]="true" [rows]="7">
+    <p-table [columns]="cols" [value]="tela" [paginator]="true" [rows]="7">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th style="width: 150px;"> Ações</th>
@@ -13,10 +13,9 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-i="rowIndex">
             <tr>
                 <td>
-                    <a href="/disciplinas/editar/{{tela[i].id_disciplina}}">
-                        <button class="btn">
+                        <button class="btn" (click)="EditarDisciplina([tela[i].id_disciplina])">
                             <span class="material-icons" style="color: #007BFF">edit</span>
-                        </button></a>
+                        </button>
                     <button class="btn ">
                         <span class="material-icons" style="color: #DC3545" (click)="confirm(tela[i].nomeDisciplina,tela[i].id_disciplina)" >delete</span>
                   </button>
@@ -27,10 +26,10 @@
             </tr>
         </ng-template>
     </p-table> 
-<br><br>
 </div>
+<br><br>
 <div class="container-fluid" > 
-    <a href="/disciplinas/nova"><button  type="button" class="btn btn-default navbar-btn"  style="background-color: #007BFF; color: aliceblue ;">Nova</button></a>
+    <button (click)="NovaDisciplina()"  type="button" class="btn btn-default navbar-btn"  style="background-color: #007BFF; color: aliceblue ;">Nova</button>
 </div>
 <div>
 

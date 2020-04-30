@@ -17,6 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {TableModule} from 'primeng/table';
 
 import {DisciplinaModule} from './disciplina/disciplina.module';
+import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
 
 
 
@@ -27,6 +28,7 @@ import {DisciplinaModule} from './disciplina/disciplina.module';
     AppComponent,
     LoginComponent,
     UsuarioComponent,
+    ListarRedirectComponent,
     
   ],
   imports: [

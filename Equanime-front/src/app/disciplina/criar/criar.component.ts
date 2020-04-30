@@ -3,6 +3,7 @@ import { ServerComunicationService } from '../server-comunication.service';
 import {Periodo} from '../listar/listarDisciplinas.component';
 import {Disciplina} from '../listar/listarDisciplinas.component';
 import { DisciplinaModule } from '../disciplina.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar',
@@ -16,7 +17,7 @@ export class CriarComponent implements OnInit {
   result : any;
   PERIODO_ID: string;
 
-  constructor(private back:ServerComunicationService) { }
+  constructor(private back:ServerComunicationService,private router: Router) { }
 
   ngOnInit() {
 
@@ -40,10 +41,17 @@ export class CriarComponent implements OnInit {
       nome: this.NOME
 
     }
-    this.back.novaDisciplina(novaDisciplina).subscribe();
+
+    this.back.novaDisciplina(novaDisciplina).subscribe(sucesso =>{ this.router.navigate(['/disciplinas'])}, fracasso =>{});
+
   }
 
-  Cancelar(){}
+
+  Cancelar(){
+
+    this.router.navigate(['/disciplinas']);
+
+  }
 
 
 }

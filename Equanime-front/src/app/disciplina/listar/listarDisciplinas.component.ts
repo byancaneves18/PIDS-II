@@ -3,7 +3,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ServerComunicationService } from '../server-comunication.service';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
-
+import { Router } from '@angular/router';
+ 
 @Component({
   selector: 'app-listarDisciplinas',
   templateUrl: './listarDisciplinas.component.html',
@@ -15,15 +16,15 @@ export class ListarComponent implements OnInit {
   disciplinas: Disciplina[];
   
 
-  tela: TelaTabela[] =[] ;
+  tela: TelaTabela[] =[];
   
 
 
-  colunas: any[];
-   primeira = 0;
-   linhas = 10;
+  cols: any[];
+   firt = 0;
+   rows = 10;
 
-  constructor(private server : ServerComunicationService,private confirmationService: ConfirmationService) { 
+  constructor(private server : ServerComunicationService,private confirmationService: ConfirmationService,private router: Router) { 
 
 
 
@@ -32,7 +33,14 @@ export class ListarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.colunas = [
+    this.ListarDisciplinas();
+
+  }
+
+
+  ListarDisciplinas(){
+    
+    this.cols = [
       { field: 'nomeDisciplina', header: 'Nome' },
       { field: 'nomePeriodo', header: 'Periodo' },
     ];
@@ -60,26 +68,37 @@ export class ListarComponent implements OnInit {
     
     });
 
+
+  }
+
+  NovaDisciplina(){
+
+    this.router.navigate(['/disciplinas/nova']);
+
+  }
+
+  EditarDisciplina(id:any ){
+    this.router.navigate(['/disciplinas/editar/'+id]);
   }
 
   next() {
-    this.primeira = this.primeira + this.linhas;
+    this.firt = this.firt + this.rows;
   }
 
   prev() {
-      this.primeira = this.primeira - this.linhas;
+      this.firt = this.firt - this.rows;
   }
 
   reset() {
-      this.primeira = 0;
+      this.firt = 0;
   }
 
   isLastPage(): boolean {
-      return this.primeira === (this.disciplinas.length - this.linhas);
+      return this.firt === (this.tela.length - this.rows);
   }
 
   isFirstPage(): boolean {
-      return this.primeira === 0;
+      return this.firt === 0;
   }
 
   confirm(nome :string, id_disciplina : number) {
@@ -90,6 +109,7 @@ export class ListarComponent implements OnInit {
         accept: () => {
             console.log("accept");
           this.server.excluirDisciplinaById(id_disciplina).subscribe();
+          this.router.navigate(['/disciplinas/redirect']);
         }
     });
 }

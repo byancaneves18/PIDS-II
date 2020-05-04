@@ -1,0 +1,26 @@
+<head></head>
+<body>
+ 
+  <form class="form-control"   #formEditarDisciplina="ngForm" (ngSubmit)="Salvar()">
+      <div class="form-group">
+        <div>
+          <label for="NOME">Nome</label>
+          <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1"  name="NOME" id="NOME"  [(ngModel)] = "NOME" required #nome="ngModel">
+          <br *ngIf="nome.valid||!nome.touched">
+          <div *ngIf="!nome.valid&&nome.touched" style="color:red">Insira um nome válido</div>
+        </div>
+        <div>
+            <label for="PERIODO">Periodo</label>
+            <select class="form-control" name="PERIODO" [(ngModel)] = "PERIODO_ID" required #periodo="ngModel">
+              <option *ngFor="let periodo of PERIODO" [value]="periodo.id_periodo">{{periodo.periodo_semestre}}</option>
+            </select>
+            <br *ngIf="periodo.valid||!periodo.touched">
+            <div *ngIf="!periodo.valid&&periodo.touched" style="color:red">Selecione um período</div>
+        </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" (click)="Cancelar()" >Cancelar </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!formEditarDisciplina.valid">Salvar</button>
+      </div>  
+    </form> 
+</body>

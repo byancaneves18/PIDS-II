@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.equanime.equanime.models.Disciplina"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoDisciplina"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoPeriodo"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.controllers.ManterDisciplina"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloPeriodo"/>
-    <fullyQualifiedTypeName name="com.Business.EquanimePIDS.modelo.ModeloDisciplina"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloDisciplina"/>
-    <fullyQualifiedTypeName name="org.apache.tomcat.util.buf.StringUtils"/>
-    <fullyQualifiedTypeName name="org.apache.tomcat.util.codec.binary.StringUtils"/>
-    <fullyQualifiedTypeName name="org.springframework.util.StringUtils"/>
-    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="javax.validation.ValidationException"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.models.Disciplina"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoDisciplina"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.persistencia.DaoPeriodo"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.controllers.ManterDisciplina"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloPeriodo"/>
+<fullyQualifiedTypeName name="com.Business.EquanimePIDS.modelo.ModeloDisciplina"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloDisciplina"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.buf.StringUtils"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.codec.binary.StringUtils"/>
+<fullyQualifiedTypeName name="org.springframework.util.StringUtils"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="javax.validation.ValidationException"/>
 </qualifiedTypeNameHistroy>

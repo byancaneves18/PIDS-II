@@ -81,6 +81,25 @@ public class DaoDisciplina {
 		
 		return listaDeDisciplinas;		
 	}
+	
+	
+	public List<ModeloDisciplina> listarPorPeriodo(int id_periodo) throws SQLException {
+		
+		String sql = "select * from "+TabelaNome+" where id_periodo = "+id_periodo;
+		PreparedStatement pst = ConexaoPostgres.getInstance().getPreparedStatement(sql);
+		
+		ResultSet rs =  pst.executeQuery();
+		 
+		List<ModeloDisciplina> listaDeDisciplinas = new ArrayList<>();
+		
+		 while (rs.next()) {
+			 ModeloDisciplina disciplina = new ModeloDisciplina(rs.getInt("id_disciplina"),rs.getInt("id_periodo"),rs.getString("nome"));
+			 listaDeDisciplinas.add(disciplina);
+		 }
+		
+		return listaDeDisciplinas;	
+		
+	}
 
 	public static String getTabelaNome() {
 		return TabelaNome;

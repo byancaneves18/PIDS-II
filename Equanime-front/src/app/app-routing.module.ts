@@ -6,12 +6,13 @@ import {ListarComponent} from './disciplina/listar/listarDisciplinas.component'
 import { CriarComponent } from './disciplina/criar/criar.component';
 import { EditarComponent } from './disciplina/editar/editar.component';
 import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
+import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 
  
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'montar', component: LoginComponent },
+  { path: 'montar', component: MontarHorarioComponent },
   { path: 'usuario', component:UsuarioComponent},
   { path: 'disciplinas', component: ListarComponent},
   {path: 'disciplinas/nova', component: CriarComponent},

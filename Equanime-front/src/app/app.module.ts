@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,10 @@ import {TableModule} from 'primeng/table';
 
 import {DisciplinaModule} from './disciplina/disciplina.module';
 import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
+import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 
@@ -29,6 +33,7 @@ import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-red
     LoginComponent,
     UsuarioComponent,
     ListarRedirectComponent,
+    MontarHorarioComponent,
     
   ],
   imports: [
@@ -43,9 +48,15 @@ import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-red
     MatSidenavModule,
     MatPaginatorModule,
     TableModule,
-    DisciplinaModule
+    DisciplinaModule,
+    MatDialogModule,
+    FormsModule,
+    MatSelectModule,
+    HttpClientModule,
+    ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

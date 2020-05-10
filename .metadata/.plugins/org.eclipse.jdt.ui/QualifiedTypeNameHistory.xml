@@ -14,4 +14,6 @@
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="javax.validation.ValidationException"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.repository.GradeRepository"/>
+<fullyQualifiedTypeName name="com.equanime.equanime.models.GradeRepository"/>
 </qualifiedTypeNameHistroy>

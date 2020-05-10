@@ -1,0 +1,587 @@
+<!--  -->
+
+<div style="text-align: center;">
+    <br>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab>
+            <!-- Periodo 1 -->
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 1</button>
+            </ng-template> 
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select [(value)]="selectedDia" (ngModelChange)="teste();">
+                  <mat-option *ngFor="let dia of dias" value="dia" >
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option> 
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione disciplina</mat-label>
+                 <mat-select>
+                  <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.id">
+                    {{disciplina.nome}}
+                  </mat-option>
+                </mat-select> 
+            </mat-form-field>
+            <br>
+            <br>
+            <button class="btn btn-success"  (click)="teste();"> Adicionar aula </button>
+        </mat-tab>
+
+        <!-- Perido 2 -->
+
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();">Período 2</button>
+            </ng-template>
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+        
+        <!-- Perido 3 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 3</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+        
+        
+        <!-- Perido 4 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 4</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+        
+        <!-- Perido 5 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 5</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+
+        <!-- Perido 6 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 6</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+
+        <!-- Perido 7 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 7</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </mat-tab>
+
+        <!-- Perido 8 -->
+        <mat-tab>
+            <ng-template mat-tab-label style="width: 100%;">
+                <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 8</button>
+            </ng-template> <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>Hora</strong></div>
+                <div class="col-sm-2"><strong>Segunda</strong></div>
+                <div class="col-sm-2"><strong>Terça</strong></div>
+                <div class="col-sm-2"><strong>Quarta</strong></div>
+                <div class="col-sm-2"><strong>Quinta</strong></div>
+                <div class="col-sm-2"><strong>Sexta</strong></div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>14:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[0].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[4].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[8].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[12].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[16].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>16:40</strong></div>
+                <div class="col-sm-2">{{matrizHorario[1].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[5].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[9].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[13].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[17].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>19:00</strong></div>
+                <div class="col-sm-2">{{matrizHorario[2].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[6].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[10].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[14].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[18].juncao}}</div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2"><strong>20:50</strong></div>
+                <div class="col-sm-2">{{matrizHorario[3].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[7].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[11].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[15].juncao}}</div>
+                <div class="col-sm-2">{{matrizHorario[19].juncao}}</div>
+            </div>
+            <hr>            
+            <h1> Inserir aula</h1>
+            <mat-form-field>
+                <mat-label>Selecione um dia</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
+                    {{dia.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Selecione um horário</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
+                    {{hora.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+        </mat-tab>
+
+
+
+    </mat-tab-group>
+
+</div>

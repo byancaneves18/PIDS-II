@@ -11,10 +11,6 @@ export interface MontarHorarioElement {
   hora: number;
   periodo: number;
   juncao: string;
-  // name: string;
-  // position: number;
-  // weight: number;
-  // symbol: string;
 }
 
 @Component({
@@ -58,7 +54,10 @@ export class MontarHorarioComponent implements OnInit {
     {value: 'quinta', viewValue: 'Quinta-feira'},
     {value: 'sexta', viewValue: 'Sexta-feira'}
   ];
-  selectedDia = this.dias[1]; 
+  selectedDia = this.dias[0]; 
+
+
+
   horas:any[]=[
     {value: 1450, viewValue: '14:50'},
     {value: 1640, viewValue: '16:40'},
@@ -77,9 +76,9 @@ export class MontarHorarioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getJuncao();
+    //this.getJuncao();
   }
-
+ 
 
   getJuncao(){
     this.serviceJuntar.getJuncao().subscribe(
@@ -110,12 +109,12 @@ export class MontarHorarioComponent implements OnInit {
     );
   }
   dia :string;
-
+  
   teste(){
     console.log("Testando clicwk");
     //this.dia 
     console.log("Dia: " + this.dia);
-
+    console.log("Hora: " + this.horas);
   }
 
   salvarAula(){

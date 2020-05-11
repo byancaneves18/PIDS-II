@@ -22,8 +22,7 @@ import { MontarHorarioComponent } from './montar-horario/montar-horario.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -53,7 +52,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     FormsModule,
     MatSelectModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
 
   ],
   providers: [HttpClient],

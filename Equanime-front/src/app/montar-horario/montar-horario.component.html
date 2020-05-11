@@ -57,8 +57,8 @@
 
             <mat-form-field>
                 <mat-label>Selecione um dia</mat-label>
-                <mat-select [(value)]="selectedDia" (ngModelChange)="teste();">
-                  <mat-option *ngFor="let dia of dias" value="dia" >
+                <mat-select [(ngModel)]="selectedDia">
+                  <mat-option *ngFor="let dia of dias" [value]="dia.value" >
                     {{dia.viewValue}}
                   </mat-option>
                 </mat-select>

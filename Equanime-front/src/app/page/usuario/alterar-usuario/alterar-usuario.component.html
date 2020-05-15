@@ -1,0 +1,62 @@
+<head></head>
+<body>
+  <div style="text-align: center">
+    <br>
+    <h1>Alterar Usuário</h1>
+  </div>
+
+  <section>
+    <div class="container">
+      <!--form method="post" #frm="ngForm" (ngSubmit)="criar(frm)"-->
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome">
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="text" id="email" name="email" class="form-control" placeholder="E-mail">
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="text" id="senha" name="senha" class="form-control" placeholder="Senha">
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="number" id="cpf" name="cpf" class="form-control" placeholder="Somente números">
+        </div>
+
+        <div class="form-group">
+          <label for="cargaHoraria">Carga Horária</label>
+          <input type="number" id="cargaHoraria" name="cargaHoraria" class="form-control" placeholder="00hs ">
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="number" id="telefone" name="telefone" class="form-control" placeholder="(XX)XXXXX-XXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" class="form-control" placeholder="Cidade">
+        </div>
+
+        <div class="form-group">
+          <label for="papel">Papel</label>
+          <select type="papel" id="Papel" name="papel" class="form-control" placeholder="Papel" >
+            <option value="professor">Professor</option>
+            <option value="representante">Representante Col.</option>
+            <option value="coordenador">Coordenador</option>
+          </select>
+        </div>
+        <div style="text-align: center;">
+          <a href="/usuario" type="submit" class="btn btn-success">Salvar</a>
+          <a style="margin: 0px 5px 0px 5px;"></a>
+          <a href="/usuario" type="submit" class="btn btn-danger">Cancelar</a>
+        </div>
+      </div>
+    <!-- </form>-->
+  </section>
+</body>

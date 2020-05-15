@@ -1,79 +1,42 @@
-<!-- <div style="text-align: center;">
-    <br>
-    <h1>Lista de usuarios</h1>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
-        
-        <ng-container matColumnDef="button">
-            <th mat-header-cell *matHeaderCellDef style="width: 150px;"> Ações </th>
-            <td mat-cell *matCellDef="let element">
-                <button class="btn">
-                  <span class="material-icons" style="color: #007BFF">edit</span>
-                </button>
-                <button class="btn ">
-                  <span class="material-icons" style="color: #DC3545">delete</span>
-                </button>
-            </td>
-        </ng-container>
-        
-        <ng-container matColumnDef="nome">
-            <th mat-header-cell *matHeaderCellDef> Nome </th>
-            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-        </ng-container>
-
-     
-        <ng-container matColumnDef="cpf">
-            <th mat-header-cell *matHeaderCellDef> CPF </th>
-            <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="cargaHoraria">
-            <th mat-header-cell *matHeaderCellDef> Carga Horaria </th>
-            <td mat-cell *matCellDef="let element"> {{element.cargaHoraria}} </td>
-        </ng-container>
-
-       
-        <ng-container matColumnDef="papel">
-            <th mat-header-cell *matHeaderCellDef> Papel </th>
-            <td mat-cell *matCellDef="let element"> {{element.papel}} </td>
-        </ng-container>
-
-      
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
-    </table>
-</div> -->
-
-
 <div style="text-align: center;">
     <br>
     <h1>Lista de usuarios</h1>
-    <p-table [columns]="cols" [value]="cars" [paginator]="true" [rows]="7">
+    <div style="text-align: right">
+        <a href="usuario/cadastrar" class="btn">
+        <span class="material-icons" style="color: rgb(243, 10, 10)">add</span>
+      </a>
+      <a href="/usuario" class="btn">
+        <span class="material-icons" style="color: rgb(17, 140, 255)">refresh</span>
+      </a>
+
+      <form method="post">
+        <input type="text" id="buscar" name="buscar" class="form-control" placeholder="Nome">
+        <span class="material-icons" style="color: rgb(30, 151, 6)" >search</span>
+      </form>
+     </div>
+    <p-table [columns]="cols" [value]="usuario" [paginator]="true" [rows]="20">
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th style="width: 150px;"> Ações</th>
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
+                <th style="width: 150px;"> Ações</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-                <td>
-                    <button class="btn">
-                    <span class="material-icons" style="color: #007BFF">edit</span>
-                  </button>
-                    <button class="btn ">
-                    <span class="material-icons" style="color: #DC3545">delete</span>
-                  </button>
-                </td>
                 <td *ngFor="let col of columns">
                     {{rowData[col.field]}}
+                </td>
+                <td>
+                  <a href="usuario/alterar" class="btn">
+                    <span class="material-icons" style="color: #007BFF" (click)= 'carregarUsuario(rowData)' >edit</span>
+                  </a>
+                  <button class="btn" >
+                    <a href="usuario">
+                      <span class="material-icons"  style="color: #DC3545" (click)= 'deletarUsuario(rowData)' >delete</span>
+                    </a>
+                  </button>
                 </td>
             </tr>
         </ng-template>

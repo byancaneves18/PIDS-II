@@ -20,7 +20,11 @@ public class Disciplina implements Serializable {
 	
 	@Column(name= "nome")
 	private String nome;	
-
+	
+	
+	@Column(name= "periodo")
+	private Integer periodo;
+	
 	public long getId() {
 		return id;
 	}
@@ -35,6 +39,13 @@ public class Disciplina implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Integer getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
 	}
 }
 

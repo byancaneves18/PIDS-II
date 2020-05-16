@@ -16,16 +16,38 @@ public class Disciplina implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	
 	@Column(name= "nome")
-	private String nome;	
+	private String nome;
+	
+	@Column(name="periodo")
+	private int periodo;
+	
+	@Column(name="idusuario")
+	private String idusuario;
 
-	public long getId() {
+	public int getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
+	}
+
+	public String getIdusuario() {
+		return idusuario;
+	}
+
+	public void setIdusuario(String idusuario) {
+		this.idusuario = idusuario;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

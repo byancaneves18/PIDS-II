@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
 import { GradeServiceService } from '../service/grade-service.service';
 import { JuntarServiceService } from '../service/juntar-service.service';
+import { ServerComunicationService } from '../disciplina/server-comunication.service';
 
 export interface MontarHorarioElement {
   dia:string;
@@ -55,7 +56,7 @@ export class MontarHorarioComponent implements OnInit {
     {value: 'sexta', viewValue: 'Sexta-feira'}
   ];
   selectedDia = this.dias[0]; 
-
+  
 
 
   horas:any[]=[
@@ -64,14 +65,14 @@ export class MontarHorarioComponent implements OnInit {
     {value: 1900, viewValue: '19:00'},
     {value: 2050, viewValue: '20:50'}
   ];
-  
+  selectedHora = this.horas[0];
   disciplinas:any[]=[
   ];
 
     first = 0;
 
     rows = 10;
-  constructor(public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) { 
+  constructor(private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) { 
     this.getGrade();
   }
 
@@ -84,7 +85,7 @@ export class MontarHorarioComponent implements OnInit {
     this.serviceJuntar.getJuncao().subscribe(
       (data: any[])=>{
         this.disciplinas = data;
-        console.log('Junsão: ', data);
+        console.log('disciplinas =', +JSON.stringify(data));
         console.log('VARIAVEL PREENCHIDA', this.disciplinas);
       },
       (error: any) => {
@@ -93,6 +94,8 @@ export class MontarHorarioComponent implements OnInit {
       } 
     );
   }
+
+
 
   getGrade(){
     //console.log("Entrou - Grade: ");
@@ -113,7 +116,7 @@ export class MontarHorarioComponent implements OnInit {
   teste(){
     console.log("Testando clicwk");
     //this.dia 
-    console.log("Dia: " + this.dia);
+    console.log("Dia: " + this.dias);
     console.log("Hora: " + this.horas);
   }
 

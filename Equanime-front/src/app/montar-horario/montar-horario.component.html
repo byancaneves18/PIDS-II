@@ -57,21 +57,26 @@
 
             <mat-form-field>
                 <mat-label>Selecione um dia</mat-label>
-                <mat-select [(ngModel)]="selectedDia">
-                  <mat-option *ngFor="let dia of dias" [value]="dia.value" >
-                    {{dia.viewValue}}
-                  </mat-option>
-                </mat-select>
+                <mat-select [(value)]="selectedDia">
+                    <mat-option value="segunda">Segunda-feira</mat-option>
+                    <mat-option value="terca">Terça-feira</mat-option>
+                    <mat-option value="quarta">Quarta-feira</mat-option>
+                    <mat-option value="quinta">Quinta-feira</mat-option>
+                    <mat-option value="sexta">Sexta-feira</mat-option>
+                  </mat-select>
             </mat-form-field>
+            <p>Você selecionou dia: {{selectedDia}}</p>
             <br>
             <mat-form-field>
                 <mat-label>Selecione um horário</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
-                    {{hora.viewValue}}
-                  </mat-option> 
-                </mat-select>
+                <mat-select [(value)]="selectedHora">
+                    <mat-option value="1450">14:50</mat-option>
+                    <mat-option value="1640">16:40</mat-option>
+                    <mat-option value="1900">19:00</mat-option>
+                    <mat-option value="2050">20:50</mat-option>
+                  </mat-select>
             </mat-form-field>
+            <p>Você selecionou o horario: {{selectedHora}}</p>
             <br>
             <mat-form-field>
                 <mat-label>Selecione disciplina</mat-label>
@@ -84,6 +89,7 @@
             <br>
             <br>
             <button class="btn btn-success"  (click)="teste();"> Adicionar aula </button>
+            
         </mat-tab>
 
         <!-- Perido 2 -->

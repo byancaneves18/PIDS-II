@@ -41,7 +41,7 @@ public class ApiDisciplinas {
 	
 	@GetMapping(path = "disciplinas")
 	public List<ModeloDisciplina> getDisciplinas() throws SQLException{
-		
+		System.out.println("Listar disciplinas solicitado");
 			return manterDisciplina.listar();
 	}
 	

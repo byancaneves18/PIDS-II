@@ -2208,36 +2208,21 @@ LOG:  database system was interrupted; last known up at 2020-05-18 11:17:44 BRT
 LOG:  startup process (PID 7860) was terminated by exception 0xC000013A
 HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
 LOG:  aborting startup due to startup process failure
-^CLOG:  database system was interrupted; last known up at 2020-05-18 11:17:44 BRT
-FATAL:  the database system is starting up
-FATAL:  the database system is starting up
-LOG:  database system was not properly shut down; automatic recovery in progress
-LOG:  invalid record length at 0/1947DD8: wanted 24, got 0
-LOG:  redo is not required
-LOG:  MultiXact member wraparound protections are now enabled
-LOG:  database system is ready to accept connections
-LOG:  autovacuum launcher started
-ERROR:  column "id" contains null values
-STATEMENT:  alter table if exists disciplina add column id int4 not null
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
-	
-ERROR:  column "id" contains null values
-STATEMENT:  alter table if exists disciplina add column id int4 not null
+^CFATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down
+FATAL:  could not open directory "pg_tblspc": No such file or directory
+LOG:  database system is shut down

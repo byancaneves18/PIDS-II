@@ -4,27 +4,27 @@ import { ServerComunicationService } from '../server-comunication.service';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { Router } from '@angular/router';
- 
+
 @Component({
   selector: 'app-listarDisciplinas',
   templateUrl: './listarDisciplinas.component.html',
-  styleUrls: ['./listarDisciplinas.component.scss']
+  styleUrls: ['./listarDisciplinas.component.css']
 })
 export class ListarComponent implements OnInit {
 
 
   disciplinas: Disciplina[];
-  
 
-  tela: TelaTabela[] =[];
-  
+
+  tela: TelaTabela[] = [];
+
 
 
   cols: any[];
    firt = 0;
    rows = 10;
 
-  constructor(private server : ServerComunicationService,private confirmationService: ConfirmationService,private router: Router) { 
+  constructor(private server: ServerComunicationService, private confirmationService: ConfirmationService, private router: Router) {
 
 
 
@@ -39,33 +39,33 @@ export class ListarComponent implements OnInit {
 
 
   ListarDisciplinas(){
-    
+
     this.cols = [
       { field: 'nomeDisciplina', header: 'Nome' },
       { field: 'nomePeriodo', header: 'Periodo' },
     ];
 
     this.server.getDisciplinasLista().subscribe((dados) =>{
-      
+
       this.disciplinas = dados ;
-      console.log("disciplinas ="+JSON.stringify(dados));
+      console.log('disciplinas =' + JSON.stringify(dados));
 
 
-      for (let disciplina  of this.disciplinas){
+      for (let disciplina  of this.disciplinas) {
 
-        let periodo : Periodo; 
+        let periodo: Periodo;
         this.server.getPeriodobyid(disciplina.id_periodo.toString()).subscribe((dado2) =>{
 
           periodo = dado2;
           console.log("periodo ="+JSON.stringify(periodo));
-          
+
           this.tela.push({id_disciplina: disciplina.id_disciplina , nomeDisciplina : disciplina.nome, nomePeriodo: periodo.periodo_semestre});
 
         });
 
 
       }
-    
+
     });
 
 
@@ -101,9 +101,9 @@ export class ListarComponent implements OnInit {
       return this.firt === 0;
   }
 
-  confirm(nome :string, id_disciplina : number) {
+  confirm(nome: string, id_disciplina: number) {
     this.confirmationService.confirm({
-        message: 'Tem certeza que deseja excluir '+nome+' ?',
+        message: 'Tem certeza que deseja excluir ' + nome + ' ?',
         acceptLabel: 'Sim',
         rejectLabel: 'Cancelar',
         accept: () => {

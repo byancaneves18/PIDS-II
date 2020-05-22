@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	
 	//private static final long serialVersionUID = -3009157732242241606L;
-	public Usuario (String nome, String senha, Long cpf, String email,Integer papel, String cargaHoraria, String cidade) {
+	/*public Usuario (String nome, String senha, Long cpf, String email,Integer papel, String cargaHoraria, String cidade) {
 		this.nome = nome;
 		this.senha = senha;
 		this.cpf = cpf;
@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 		this.papel = papel;
 		this.cargaHoraria = cargaHoraria;
 		this.cidade = cidade;
-	}
+	}*/
 	
 	@Id
 	@GeneratedValue
@@ -102,7 +102,6 @@ public class Usuario implements Serializable {
 	public String getCargaHoraria() {
 		return cargaHoraria;
 	}
-
 	
 	public void setCargaHoraria(String cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;

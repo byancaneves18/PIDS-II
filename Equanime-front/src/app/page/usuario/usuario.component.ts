@@ -1,6 +1,12 @@
+import { FormGroup } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 import { Usuarios } from 'src/app/modelo/usuario.modelo';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -12,10 +18,14 @@ export class UsuarioComponent implements OnInit {
   cols: any[];
   first = 0;
   rows = 10;
+  buscar: string;
+  ConfirmationService: any;
+  ;
 
-  constructor(private serviceUsuario: UsuarioServiceService) {
+  constructor(private serviceUsuario: UsuarioServiceService, private confirmationService: ConfirmationService) {
     this.getUsuarios();
   }
+
   ngOnInit() {
     this.cols = [
       { field: 'nome', header: 'Nome' },
@@ -28,12 +38,13 @@ export class UsuarioComponent implements OnInit {
       { field: 'telefone', header: 'Telefone' }
     ];
   }
+
   getUsuarios() {
     this.serviceUsuario.getUsuarios().subscribe((data: Usuarios[]) => {
       this.usuario = data;
     }, (error: any) => {
       this.erro = error;
-      console.log('ERRO: ', error);
+      console.log('ERRO: ', this.erro);
     });
   }
   next() {
@@ -45,6 +56,7 @@ export class UsuarioComponent implements OnInit {
   reset() {
     this.first = 0;
   }
+
   isLastPage(): boolean {
     return this.first === (this.usuario.length - this.rows);
   }
@@ -58,10 +70,25 @@ export class UsuarioComponent implements OnInit {
   }
 
   deletarUsuario(usuario: Usuarios) {
-    this.serviceUsuario.deletarUsuario(usuario).subscribe();
-  }
+    this.confirmationService.confirm({
+      message: 'Excluir ' + usuario.nome + '?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Cancelar',
+      accept: () => {
+        console.log('aksjk');
+        this.serviceUsuario.deletarUsuario(usuario).subscribe();
+        this.getUsuarios();
+      }
+      });
+   }
 
-  buscarUsuario(nome: String) {
-    this.serviceUsuario.buscarUsuario(nome).subscribe();
+  buscarUsuario() {
+    console.log(this.buscar);
+    this.serviceUsuario.buscarUsuario(this.buscar).subscribe((data: Usuarios[]) => {
+      this.usuario = data;
+    }, (error: any) => {
+      this.erro = error;
+      console.log('ERRO: ', this.erro);
+    });
   }
 }

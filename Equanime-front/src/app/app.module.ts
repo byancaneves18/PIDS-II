@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
+import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
+import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
 
 
 
@@ -31,9 +33,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppComponent,
     LoginComponent,
     UsuarioComponent,
+    CadastrarUsuarioComponent,
+    AlterarUsuarioComponent,
     ListarRedirectComponent,
     MontarHorarioComponent,
-    
+
   ],
   imports: [
     BrowserModule,

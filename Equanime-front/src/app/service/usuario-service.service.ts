@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,11 +30,10 @@ export class UsuarioServiceService {
   }
 
   deletarUsuario(usuario: Usuarios) {
-    this.getUsuarios();
     return this.http.post(this.URL_API + '/deletar', usuario);
   }
 
-  buscarUsuario(nome: String) {
+  buscarUsuario(nome: string) {
     return this.http.post(this.URL_API + '/buscar', nome);
   }
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-criar',
   templateUrl: './criar.component.html',
-  styleUrls: ['./criar.component.scss']
+  styleUrls: ['./criar.component.css']
 })
 export class CriarComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class CriarComponent implements OnInit {
    // this.PERIODO = this.result;
   //  console.log("Periodos ="+this.PERIODO[0].periodo_semestre);
   //  console.log("Periodos ="+this.result);
-   
+
 
   }
 

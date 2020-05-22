@@ -82,9 +82,23 @@ export class UsuarioComponent implements OnInit {
       });
    }
 
-  buscarUsuario() {
-    console.log(this.buscar);
-    this.serviceUsuario.buscarUsuario(this.buscar).subscribe((data: Usuarios[]) => {
+  /*confirm(nome: string, id_disciplina: number) {
+    this.confirmationService.confirm({
+        message: 'Tem certeza que deseja excluir '+nome+' ?',
+        acceptLabel: 'Sim',
+        rejectLabel: 'Cancelar',
+        accept: () => {
+            console.log("accept");
+          this.server.excluirDisciplinaById(id_disciplina).subscribe();
+          this.router.navigate(['/disciplinas/redirect']);
+        }
+    });
+  }*/
+
+
+  buscarUsuario(buscar) {
+    console.log(buscar);
+    this.serviceUsuario.buscarUsuario(buscar).subscribe((data: Usuarios[]) => {
       this.usuario = data;
     }, (error: any) => {
       this.erro = error;

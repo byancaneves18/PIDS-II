@@ -30,3 +30,121 @@ FATAL:  could not open directory "pg_logical/mappings": No such file or director
 LOG:  startup process (PID 10568) exited with exit code 1
 LOG:  aborting startup due to startup process failure
 LOG:  database system is shut down
+<<<<<<< Updated upstream
+=======
+LOG:  database system was interrupted; last known up at 2020-05-04 12:48:01 BRT
+FATAL:  the database system is starting up
+FATAL:  the database system is starting up
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/1947D68: wanted 24, got 0
+LOG:  redo is not required
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  server process (PID 2844) was terminated by exception 0xC000013A
+DETAIL:  Failed process was running: SELECT t.oid, t.xmin, t.*, relname, CASE WHEN relkind = 'r' THEN TRUE ELSE FALSE END AS parentistable,   nspname, des.description, l.lanname, p.prosrc, 
+	  COALESCE(substring(pg_get_triggerdef(t.oid), 'WHEN (.*) EXECUTE PROCEDURE'), substring(pg_get_triggerdef(t.oid), 'WHEN (.*)  \$trigger')) AS whenclause
+	  FROM pg_trigger t
+	  JOIN pg_class cl ON cl.oid=tgrelid
+	  JOIN pg_namespace na ON na.oid=relnamespace
+	  LEFT OUTER JOIN pg_description des ON (des.objoid=t.oid AND des.classoid='pg_trigger'::regclass)
+	  LEFT OUTER JOIN pg_proc p ON p.oid=t.tgfoid
+	  LEFT OUTER JOIN pg_language l ON l.oid=p.prolang
+	 WHERE NOT tgisinternal
+	  AND tgrelid = 33116::oid
+	 ORDER BY tgname
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  terminating any other active server processes
+LOG:  statistics collector process (PID 14360) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  all server processes terminated; reinitializing
+LOG:  database system was interrupted; last known up at 2020-05-18 11:17:44 BRT
+LOG:  startup process (PID 7860) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  aborting startup due to startup process failure
+^CLOG:  database system was interrupted; last known up at 2020-05-18 11:17:44 BRT
+FATAL:  the database system is starting up
+FATAL:  the database system is starting up
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/1947DD8: wanted 24, got 0
+LOG:  redo is not required
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  column "id" contains null values
+STATEMENT:  alter table if exists disciplina add column id int4 not null
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+ERROR:  column "id" contains null values
+STATEMENT:  alter table if exists disciplina add column id int4 not null
+LOG:  server process (PID 17180) was terminated by exception 0xC000013A
+DETAIL:  Failed process was running: SET application_name = 'PostgreSQL JDBC Driver'
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  terminating any other active server processes
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+LOG:  all server processes terminated; reinitializing
+LOG:  database system was interrupted; last known up at 2020-05-21 23:08:19 BRT
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/1970D18: wanted 24, got 0
+LOG:  redo is not required
+LOG:  startup process (PID 9952) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  aborting startup due to startup process failure
+LOG:  database system is shut down
+>>>>>>> Stashed changes

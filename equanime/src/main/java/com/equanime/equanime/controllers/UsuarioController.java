@@ -60,7 +60,7 @@ public class UsuarioController {
 			return e.getMessage();
 		}
 		return "Deletou";
-	} 
+	}
 	
 	@RequestMapping(value="/usuario/buscar" ,method = RequestMethod.POST)
 	@ResponseBody

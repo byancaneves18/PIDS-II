@@ -30,6 +30,7 @@ export class UsuarioServiceService {
   }
 
   deletarUsuario(usuario: Usuarios) {
+    this.getUsuarios();
     return this.http.post(this.URL_API + '/deletar', usuario);
   }
 

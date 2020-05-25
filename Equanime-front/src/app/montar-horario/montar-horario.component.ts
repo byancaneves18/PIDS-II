@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
 import { GradeServiceService } from '../service/grade-service.service';
 import { JuntarServiceService } from '../service/juntar-service.service';
-import { ServerComunicationService } from '../disciplina/server-comunication.service';
+import { ServerComunicationService } from '../disciplina/disciplinas-server-comunication.service';
 
 export interface MontarHorarioElement {
   dia:string;

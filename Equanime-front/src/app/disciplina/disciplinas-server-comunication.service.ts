@@ -10,10 +10,10 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ServerComunicationService {
 
-  url : string = 'http://localhost:8080/api';
+  url : string = 'http://localhost:8080/disciplinas';
 
   constructor(private http: HttpClient) { }
-
+ 
 
   public teste(){
 
@@ -40,7 +40,7 @@ export class ServerComunicationService {
 
   public getDisciplinasLista(){
 
-    return this.http.get<Disciplina[]>(this.url+"/disciplinas");
+    return this.http.get<Disciplina[]>(this.url+"/lista");
 
   }
 

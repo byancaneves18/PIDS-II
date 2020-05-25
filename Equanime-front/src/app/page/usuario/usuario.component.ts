@@ -19,11 +19,9 @@ export class UsuarioComponent implements OnInit {
   first = 0;
   rows = 10;
   buscar: string;
-<<<<<<< Updated upstream
   ConfirmationService: any;
-  ;
-=======
->>>>>>> Stashed changes
+  
+
 
   constructor(private serviceUsuario: UsuarioServiceService, private confirmationService: ConfirmationService) {
     this.getUsuarios();
@@ -73,7 +71,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   deletarUsuario(usuario: Usuarios) {
-<<<<<<< Updated upstream
     this.confirmationService.confirm({
       message: 'Excluir ' + usuario.nome + '?',
       acceptLabel: 'Sim',
@@ -85,11 +82,7 @@ export class UsuarioComponent implements OnInit {
       }
       });
    }
-=======
-    this.serviceUsuario.deletarUsuario(usuario).subscribe();
-    this.getUsuarios();
-  }
->>>>>>> Stashed changes
+
 
   /*confirm(nome: string, id_disciplina: number) {
     this.confirmationService.confirm({

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ServerComunicationService } from './server-comunication.service';
+import { ServerComunicationService } from './disciplinas-server-comunication.service';
 
 describe('ServerComunicationService', () => {
   let service: ServerComunicationService;

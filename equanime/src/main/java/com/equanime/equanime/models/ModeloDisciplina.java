@@ -1,10 +1,25 @@
 package com.equanime.equanime.models;
 
-public class ModeloDisciplina {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="disciplina")
+public class ModeloDisciplina implements Serializable {
 
 
+	@Id
+	@GeneratedValue
 	private int id_disciplina;
+	@Column(name= "id_periodo")
 	private int id_periodo;
+	@Column(name= "nome")
 	private String nome;
 	
 	

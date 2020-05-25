@@ -5,17 +5,20 @@ import java.util.List;
 
 import javax.validation.ValidationException;
 
-import org.springframework.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloPeriodo;
 import com.equanime.equanime.persistencia.DaoDisciplina;
 import com.equanime.equanime.persistencia.DaoPeriodo;
+import com.equanime.equanime.repository.DisciplinaRepository;
 
 
 
 public class ManterDisciplina {
 
+	@Autowired
+	private DisciplinaRepository repository;
 	private DaoDisciplina dao;
 	private DaoPeriodo daoPeriodo;
 	
@@ -40,6 +43,13 @@ public class ManterDisciplina {
 		}
 	}
 	
+	/*public Iterable<ModeloDisciplina> listar() throws SQLException {
+		
+		
+		return repository.findAll();
+		
+	}*/
+	
 	public List<ModeloDisciplina> listar() throws SQLException {
 		
 		try {
@@ -51,7 +61,6 @@ public class ManterDisciplina {
 		}
 		
 	}
-	
 	
 	public void criar(ModeloDisciplina disciplina) throws SQLException, ValidationException {
 		

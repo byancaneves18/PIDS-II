@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.equanime.equanime.controllers.ManterDisciplina;
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloPeriodo;
+import com.equanime.equanime.models.Usuario;
 
 
-@RequestMapping("/api")
+@RequestMapping("/disciplinas")
 @RestController
 public class ApiDisciplinas {
 
@@ -39,8 +40,9 @@ public class ApiDisciplinas {
 
 	}
 	
-	@GetMapping(path = "disciplinas")
-	public List<ModeloDisciplina> getDisciplinas() throws SQLException{
+	@GetMapping(path = "lista")
+	public Iterable<ModeloDisciplina> getDisciplinas() throws SQLException{
+		
 		System.out.println("Listar disciplinas solicitado");
 			return manterDisciplina.listar();
 	}

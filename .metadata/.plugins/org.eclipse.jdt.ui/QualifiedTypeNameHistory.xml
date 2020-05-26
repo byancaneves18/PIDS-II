@@ -17,11 +17,17 @@
     <fullyQualifiedTypeName name="com.equanime.equanime.models.GradeRepository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
     <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloDisciplina"/>
     <fullyQualifiedTypeName name="com.equanime.equanime.repository.DisciplinaRepository"/>
-    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloRelatorioPedidosAtendidos"/>
     <fullyQualifiedTypeName name="org.hibernate.tuple.entity.BytecodeEnhancementMetadataNonPojoImpl"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.node.BinaryNode"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.repository.ObservacaoProfessorRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloRelatorioPedidosAtendidos"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.repository.Pedido_aluno_Repository"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloObservacaoProfessor"/>
     <fullyQualifiedTypeName name="com.equanime.equanime.models.ModeloPedidoAluno"/>
+    <fullyQualifiedTypeName name="com.equanime.equanime.models.Usuario"/>
 </qualifiedTypeNameHistroy>

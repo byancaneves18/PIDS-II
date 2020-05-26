@@ -16,14 +16,14 @@ public class ModeloDisciplina implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private int id_disciplina;
+	private Long id_disciplina;
 	@Column(name= "id_periodo")
 	private int id_periodo;
 	@Column(name= "nome")
 	private String nome;
 	
 	
-	public ModeloDisciplina(int id_disciplina, int id_periodo, String nome) {
+	public ModeloDisciplina(Long id_disciplina, int id_periodo, String nome) {
 		
 		this.id_disciplina = id_disciplina;
 		this.id_periodo = id_periodo;
@@ -48,10 +48,10 @@ public class ModeloDisciplina implements Serializable {
 		
 	}
 	
-	public int getId_disciplina() {
+	public Long getId_disciplina() {
 		return id_disciplina;
 	}
-	public void setId_disciplina(int id_disciplina) {
+	public void setId_disciplina(Long id_disciplina) {
 		this.id_disciplina = id_disciplina;
 	}
 

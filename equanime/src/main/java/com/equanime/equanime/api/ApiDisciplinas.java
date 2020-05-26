@@ -1,8 +1,7 @@
 package com.equanime.equanime.api;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ValidationException;
 
@@ -16,26 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.equanime.equanime.controllers.ManterDisciplina;
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloPeriodo;
-import com.equanime.equanime.models.Usuario;
 
 
 @RequestMapping("/disciplinas")
 @RestController
 public class ApiDisciplinas {
 
-
+	@Autowired
 	ManterDisciplina manterDisciplina;
 	
 	
 	@Autowired
 	public ApiDisciplinas() {
 		
-		manterDisciplina = new ManterDisciplina();
+		//manterDisciplina = new ManterDisciplina();
 	}
 	
 	
 	@GetMapping(path = "periodos")
-	public List<ModeloPeriodo> getPeriodos() throws SQLException{
+	public Iterable<ModeloPeriodo> getPeriodos() throws SQLException{
 			return manterDisciplina.listarPeriodos();
 
 	}
@@ -44,11 +42,11 @@ public class ApiDisciplinas {
 	public Iterable<ModeloDisciplina> getDisciplinas() throws SQLException{
 		
 		System.out.println("Listar disciplinas solicitado");
-			return manterDisciplina.listar();
+			return manterDisciplina.listarDisciplinas();
 	}
 	
 	@PostMapping(path = "periodoById")
-	public ModeloPeriodo getPeriodoById(@RequestBody String id) throws SQLException{
+	public Optional<ModeloPeriodo> getPeriodoById(@RequestBody String id) throws SQLException{
 
 			return manterDisciplina.BuscarPeriodoPorId(id);
 
@@ -69,14 +67,14 @@ public class ApiDisciplinas {
 	
 	
 	@PostMapping(path = "disciplinaById")
-	public ModeloDisciplina getDisciplinaById(@RequestBody String id) throws NumberFormatException, SQLException{
+	public Optional<ModeloDisciplina> getDisciplinaById(@RequestBody String id) throws NumberFormatException, SQLException{
 		
-			return manterDisciplina.exibir(Integer.parseInt(id));
+			return manterDisciplina.buscarPorId(id);
 
 	}
 	
 	@PostMapping(path = "excluirDisciplinaById")
-	public void excluirDisciplinaById(@RequestBody int id) throws SQLException{
+	public void excluirDisciplinaById(@RequestBody String id) throws SQLException{
 
 			 manterDisciplina.excluir(id);
 

@@ -1,6 +1,7 @@
 package com.equanime.equanime.controllers;
 
 import java.io.Console;
+import java.util.Optional;
 
 import javax.validation.constraints.Null;
 
@@ -68,5 +69,9 @@ public class UsuarioController {
 		return repository.findByNome(nome);
 	} 
 	
+	public Optional<Usuario> buscarUsuarioPorId(Long id) {
+		
+		return repository.findById(id);
+	}
 	
 }

@@ -1,66 +1,47 @@
 package com.equanime.equanime.controllers;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloPeriodo;
-import com.equanime.equanime.persistencia.DaoDisciplina;
-import com.equanime.equanime.persistencia.DaoPeriodo;
 import com.equanime.equanime.repository.DisciplinaRepository;
+import com.equanime.equanime.repository.PeriodoRepository;
 
 
-
+@Controller
 public class ManterDisciplina {
 
 	@Autowired
 	private DisciplinaRepository repository;
-	private DaoDisciplina dao;
-	private DaoPeriodo daoPeriodo;
+	@Autowired
+	private PeriodoRepository repositoryPeriodo;
 	
 	public ManterDisciplina() {
 		
 		
-		dao = new DaoDisciplina();
-		daoPeriodo = new DaoPeriodo();
-		
 	}
 	
 	
 	
-	public List<ModeloPeriodo> listarPeriodos() throws SQLException{
+	public Iterable<ModeloPeriodo> listarPeriodos() throws SQLException{
 		
-		try {
-			return daoPeriodo.listar();
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SQLException("Erro ao buscar periodos disponiveis no banco de dados :"+e.getMessage());
-		}
+			return repositoryPeriodo.findAll();
+
 	}
 	
-	/*public Iterable<ModeloDisciplina> listar() throws SQLException {
+	public Iterable<ModeloDisciplina> listarDisciplinas() throws SQLException {
 		
 		
 		return repository.findAll();
 		
-	}*/
-	
-	public List<ModeloDisciplina> listar() throws SQLException {
-		
-		try {
-			return dao.listar();
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SQLException("Erro ao buscar lista de disciplinas no banco de dados :"+e.getMessage());
-		}
-		
 	}
+	
 	
 	public void criar(ModeloDisciplina disciplina) throws SQLException, ValidationException {
 		
@@ -77,39 +58,24 @@ public class ManterDisciplina {
 			System.out.println("Nome: "+disciplina.getNome());
 			ModeloDisciplina novaDisciplina = new ModeloDisciplina(disciplina.getId_periodo(),disciplina.getNome());
 			
-			try{
-				dao.criar(novaDisciplina);
-			}catch(SQLException e){
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				throw new SQLException("Erro ao introduzir dados no banco de dados :"+e.getMessage());
-			}
+			repository.save(novaDisciplina);
 			
 		}
 		
 	}
 	
 	
-	public ModeloDisciplina exibir(int id_disciplina) throws SQLException {
+	public Optional<ModeloDisciplina> buscarPorId(String id_disciplina) throws SQLException {
 		
-		try {
-			return dao.exibir(id_disciplina);
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SQLException("Erro ao buscar disciplina no banco de dados :"+e.getMessage());
-		}
+		Long id = Long.parseLong(id_disciplina);
+		
+		return repository.findById(id);
 	}
 	
-	public void excluir(int id_disciplina) throws SQLException  {
+	public void excluir(String id_disciplina) throws SQLException  {
 		
-		try {
-			dao.excluir(id_disciplina);
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SQLException("Erro ao excluir disciplina no banco de dados :"+e.getMessage());
-		}
+		Long id = Long.parseLong(id_disciplina);	
+		repository.deleteById(id);
 	}
 	
 	public void editar(ModeloDisciplina disciplina) throws SQLException, ValidationException{
@@ -124,26 +90,19 @@ public class ManterDisciplina {
 			throw new ValidationException("O campo nome precisa estar corretamente preenchido");
 		}else {
 		
-			try {
-				dao.editar(new ModeloDisciplina(disciplina.getId_disciplina(), disciplina.getId_periodo(), disciplina.getNome()));
-			}catch(SQLException e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				throw new SQLException("Erro ao excluir disciplina no banco de dados :"+e.getMessage());			
-			}
+			repository.save(disciplina);
 		}
 	}
 	
-	public ModeloPeriodo BuscarPeriodoPorId(String id) throws SQLException {
+	
+	
+	public Optional<ModeloPeriodo> BuscarPeriodoPorId(String id) throws SQLException {
 		
-		try {
-			return daoPeriodo.buscarPorId(id);
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			throw new SQLException("Erro ao buscar periodo no banco de dados :"+e.getMessage());
-		}
+		Long idLong = Long.parseLong(id);
+		return repositoryPeriodo.findById(idLong);
+		
 	}
+	
 	
 	
 	

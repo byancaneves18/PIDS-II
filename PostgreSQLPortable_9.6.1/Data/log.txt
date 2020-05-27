@@ -2553,3 +2553,102 @@ LOG:  startup process (PID 6496) was terminated by exception 0xC000013A
 HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
 LOG:  aborting startup due to startup process failure
 LOG:  database system is shut down
+LOG:  database system was interrupted; last known up at 2020-05-26 17:01:59 BRT
+FATAL:  the database system is starting up
+FATAL:  the database system is starting up
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/19F6DD0: wanted 24, got 0
+LOG:  redo is not required
+LOG:  could not parse file name "pg_logical/snapshots/ocupador de espaço.txt"
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+FATAL:  the database system is starting up
+LOG:  autovacuum launcher started
+LOG:  could not parse file name "pg_logical/snapshots/ocupador de espaço.txt"
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  incomplete startup packet
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+LOG:  server process (PID 15840) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  terminating any other active server processes
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+LOG:  statistics collector process (PID 15288) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  all server processes terminated; reinitializing
+LOG:  database system was interrupted; last known up at 2020-05-27 19:00:50 BRT
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/19F7C20: wanted 24, got 0
+LOG:  redo is not required
+LOG:  could not parse file name "pg_logical/snapshots/ocupador de espaço.txt"
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  statistics collector process (PID 4636) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  autovacuum launcher process (PID 6488) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  terminating any other active server processes
+LOG:  all server processes terminated; reinitializing
+LOG:  database system was interrupted; last known up at 2020-05-27 20:43:17 BRT
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/19F7C90: wanted 24, got 0
+LOG:  redo is not required
+LOG:  could not parse file name "pg_logical/snapshots/ocupador de espaço.txt"
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  WAL writer process (PID 17312) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  terminating any other active server processes
+LOG:  all server processes terminated; reinitializing
+LOG:  database system was interrupted; last known up at 2020-05-27 20:43:26 BRT
+LOG:  startup process (PID 7932) was terminated by exception 0xC000013A
+HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+LOG:  aborting startup due to startup process failure

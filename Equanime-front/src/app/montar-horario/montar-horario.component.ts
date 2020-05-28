@@ -17,7 +17,7 @@ export interface MontarHorarioElement {
 @Component({
   selector: 'app-montar-horario',
   templateUrl: './montar-horario.component.html',
-  styleUrls: ['./montar-horario.component.scss']
+  styleUrls: ['./montar-horario.component.css']
 })
 export class MontarHorarioComponent implements OnInit {
 
@@ -55,8 +55,8 @@ export class MontarHorarioComponent implements OnInit {
     {value: 'quinta', viewValue: 'Quinta-feira'},
     {value: 'sexta', viewValue: 'Sexta-feira'}
   ];
-  selectedDia = this.dias[0]; 
-  
+  selectedDia = this.dias[0];
+
 
 
   horas:any[]=[
@@ -72,26 +72,27 @@ export class MontarHorarioComponent implements OnInit {
     first = 0;
 
     rows = 10;
-  constructor(private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) { 
+  constructor(private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
     this.getGrade();
   }
 
   ngOnInit() {
-    //this.getJuncao();
+    this.getJuncao();
   }
- 
+
 
   getJuncao(){
     this.serviceJuntar.getJuncao().subscribe(
-      (data: any[])=>{
+      (data: any[]) => {
         this.disciplinas = data;
+        console.log("Trenzin");
         console.log('disciplinas =', +JSON.stringify(data));
         console.log('VARIAVEL PREENCHIDA', this.disciplinas);
       },
       (error: any) => {
         this.erro = error;
         console.log('ERRO: ', error);
-      } 
+      }
     );
   }
 
@@ -112,10 +113,10 @@ export class MontarHorarioComponent implements OnInit {
     );
   }
   dia :string;
-  
+
   teste(){
     console.log("Testando clicwk");
-    //this.dia 
+    //this.dia
     console.log("Dia: " + this.dias);
     console.log("Hora: " + this.horas);
   }

@@ -38,11 +38,10 @@ public class ApiDisciplinas {
 
 	}
 	
-	@GetMapping(path = "lista")
-	public Iterable<ModeloDisciplina> getDisciplinas() throws SQLException{
-		
+	@GetMapping(path = "disciplinas")
+	public List<ModeloDisciplina> getDisciplinas() throws SQLException{
 		System.out.println("Listar disciplinas solicitado");
-			return manterDisciplina.listarDisciplinas();
+			return manterDisciplina.listar();
 	}
 	
 	@PostMapping(path = "periodoById")

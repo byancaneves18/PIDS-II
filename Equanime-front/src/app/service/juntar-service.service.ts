@@ -6,12 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class JuntarServiceService {
-  URL_API = 'http://localhost:8080/disciplina';
+  //URL_API = 'http://localhost:8080/disciplina';
 
   constructor(private http: HttpClient) { }
 
-  
     getJuncao(): Observable<any[]> {
-      return this.http.get<any[]>(this.URL_API + '/listar');
+      return this.http.get<any[]>('http://localhost:8080/api/disciplinas');
     }
 }

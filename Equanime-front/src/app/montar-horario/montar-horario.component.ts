@@ -14,6 +14,7 @@ export interface MontarHorarioElement {
   juncao: string;
 }
 
+
 @Component({
   selector: 'app-montar-horario',
   templateUrl: './montar-horario.component.html',
@@ -66,6 +67,7 @@ export class MontarHorarioComponent implements OnInit {
     {value: 2050, viewValue: '20:50'}
   ];
   selectedHora = this.horas[0];
+
   disciplinas:any[]=[
   ];
 
@@ -73,7 +75,7 @@ export class MontarHorarioComponent implements OnInit {
 
     rows = 10;
   constructor(private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
-    this.getGrade();
+    
   }
 
   ngOnInit() {
@@ -81,11 +83,10 @@ export class MontarHorarioComponent implements OnInit {
   }
 
 
-  getJuncao(){
+  getJuncao(){   // Função utilizada pra pegar a lista de disciplinas
     this.serviceJuntar.getJuncao().subscribe(
       (data: any[]) => {
         this.disciplinas = data;
-        console.log("Trenzin");
         console.log('disciplinas =', +JSON.stringify(data));
         console.log('VARIAVEL PREENCHIDA', this.disciplinas);
       },
@@ -97,21 +98,6 @@ export class MontarHorarioComponent implements OnInit {
   }
 
 
-
-  getGrade(){
-    //console.log("Entrou - Grade: ");
-    this.serviceGrade.getGrade().subscribe(
-      (data: Grade[])=>{
-        this.grade = data;
-        //console.log('DATA RECEBIDO: ', data);
-        //console.log('VARIAVEL PREENCHIDA', this.grade);
-      },
-      (error: any) => {
-        this.erro = error;
-        //console.log('ERRO: ', error);
-      }
-    );
-  }
   dia :string;
 
   teste(){
@@ -119,9 +105,22 @@ export class MontarHorarioComponent implements OnInit {
     //this.dia
     console.log("Dia: " + this.dias);
     console.log("Hora: " + this.horas);
+    console.log("Disciplina "+ this.disciplinas);
   }
 
   salvarAula(){
 
   }
+
+  setarAula(){
+//    this.disciplinas.
+  }
+
+}
+
+
+export interface Disciplina {
+  id_disciplina:number;
+  nome:string;
+  id_periodo: number;
 }

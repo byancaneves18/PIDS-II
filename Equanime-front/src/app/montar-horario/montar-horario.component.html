@@ -80,12 +80,13 @@
             <br>
             <mat-form-field>
                 <mat-label>Selecione disciplina</mat-label>
-                 <mat-select>
-                  <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.id">
+                 <mat-select  id="disciplina">
+                  <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.nome">
                     {{disciplina.nome}}
                   </mat-option>
                 </mat-select> 
             </mat-form-field>
+            
             <br>
             <br>
             <button class="btn btn-success"  (click)="teste();"> Adicionar aula </button>

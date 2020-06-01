@@ -79,7 +79,7 @@
             <mat-form-field >
                 <mat-label>Selecione disciplina</mat-label>
                  <mat-select name="disciplinas" [(ngModel)]="disci" #disciplina="ngModel">
-                  <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.nome">
+                  <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.id_disciplina">
                     {{disciplina.nome}}
                   </mat-option>
                 </mat-select> 

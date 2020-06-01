@@ -1,6 +1,6 @@
-export class Grade{
-    public id: number;
-    public idjuncao: number;
-    public data: string;
-    public dia: string;
+export interface Grade{
+    id: number;
+    id_disciplina: number;
+    dia_semana: string;
+    hora: string;
 }

@@ -6,6 +6,7 @@ import { Grade } from '../modelo/grade.modelo';
 import { GradeServiceService } from '../service/grade-service.service';
 import { JuntarServiceService } from '../service/juntar-service.service';
 import { ServerComunicationService } from '../disciplina/disciplinas-server-comunication.service';
+import { Router } from '@angular/router';
 
 export interface MontarHorarioElement {
   dia:string;
@@ -28,12 +29,7 @@ export class MontarHorarioComponent implements OnInit {
   grade: Grade[] = [];
   erro: any;
 
-  CadastrarAula(){
-    console.log("teste formulario " + this.disci);
-    console.log("dia: " + this.di);
-    console.log("hora: " + this.hor);
-
-  }
+ 
 
   matrizHorario: MontarHorarioElement[] = [
     {dia:'segunda', hora: 1450, periodo: 0,juncao: 'vago' },
@@ -83,8 +79,10 @@ export class MontarHorarioComponent implements OnInit {
     first = 0;
 
     rows = 10;
-  constructor(private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
+  constructor(private router: Router, private back: GradeServiceService, private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
     
+
+
   }
 
   ngOnInit() {
@@ -116,18 +114,21 @@ export class MontarHorarioComponent implements OnInit {
     console.log("Hora: " + this.horas);
     console.log("Disciplina "+ this.disciplinas);
   }
-
-  salvarAula(){
-
+  
+  CadastrarAula(){
+    console.log("teste formulario " + this.disci);
+    console.log("dia: " + this.di);
+    console.log("hora: " + this.hor);
+    let novaAula: Grade;
+    novaAula = {
+      id : 0,
+      dia_semana: (this.di),
+      hora: (this.hor),
+      id_disciplina: Number(this.disci)
+    }
+    this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
   }
 
-  setarAula(){
-    //this.
-  }
-
-  compararDisciplinas(obj1, obj2){
-    return obj1 && obj2 ? (obj1.name == obj2.name && obj1.id === obj2.id) : obj2 === obj2;
-  }
 }
 
 

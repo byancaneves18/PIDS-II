@@ -21,10 +21,19 @@ export interface MontarHorarioElement {
   styleUrls: ['./montar-horario.component.css']
 })
 export class MontarHorarioComponent implements OnInit {
-
+  disci: string;
+  di: string;
+  hor: string;
   lista:any[] = [];
   grade: Grade[] = [];
   erro: any;
+
+  CadastrarAula(){
+    console.log("teste formulario " + this.disci);
+    console.log("dia: " + this.di);
+    console.log("hora: " + this.hor);
+
+  }
 
   matrizHorario: MontarHorarioElement[] = [
     {dia:'segunda', hora: 1450, periodo: 0,juncao: 'vago' },
@@ -32,7 +41,7 @@ export class MontarHorarioComponent implements OnInit {
     {dia:'segunda', hora: 1900, periodo: 2,juncao: 'vago' },
     {dia:'segunda', hora: 2050, periodo: 2,juncao: 'vago' },
     {dia:'terça', hora: 1450, periodo: 2,juncao: 'vago' },
-    {dia:'terça', hora: 1640, periodo: 2,juncao: 'vago' },
+    {dia:'terça', hora: 1640, periodo: 2,juncao: 'vago' }, 
     {dia:'terça', hora: 1900, periodo: 2,juncao: 'vago' },
     {dia:'terça', hora: 2050, periodo: 2,juncao: 'vago' },
     {dia:'quarta', hora: 1450, periodo: 2,juncao: 'teste' },
@@ -113,9 +122,12 @@ export class MontarHorarioComponent implements OnInit {
   }
 
   setarAula(){
-//    this.disciplinas.
+    //this.
   }
 
+  compararDisciplinas(obj1, obj2){
+    return obj1 && obj2 ? (obj1.name == obj2.name && obj1.id === obj2.id) : obj2 === obj2;
+  }
 }
 
 

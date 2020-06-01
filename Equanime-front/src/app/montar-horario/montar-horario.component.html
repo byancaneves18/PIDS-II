@@ -54,10 +54,10 @@
             </div>
             <hr>            
             <h1> Inserir aula</h1>
-
+            <form #formCadastrarAula="ngForm" (ngSubmit)="CadastrarAula()">
             <mat-form-field>
                 <mat-label>Selecione um dia</mat-label>
-                <mat-select [(value)]="selectedDia">
+                <mat-select name="dias" [(ngModel)]="di"  [(value)]="selectedDia" #dia="ngModel">
                     <mat-option value="segunda">Segunda-feira</mat-option>
                     <mat-option value="terca">Terça-feira</mat-option>
                     <mat-option value="quarta">Quarta-feira</mat-option>
@@ -65,32 +65,29 @@
                     <mat-option value="sexta">Sexta-feira</mat-option>
                   </mat-select>
             </mat-form-field>
-            <p>Você selecionou dia: {{selectedDia}}</p>
             <br>
             <mat-form-field>
                 <mat-label>Selecione um horário</mat-label>
-                <mat-select [(value)]="selectedHora">
+                <mat-select name="horas" [(ngModel)]="hor" #hora="ngModel" [(value)]="selectedHora">
                     <mat-option value="1450">14:50</mat-option>
                     <mat-option value="1640">16:40</mat-option>
                     <mat-option value="1900">19:00</mat-option>
                     <mat-option value="2050">20:50</mat-option>
                   </mat-select>
             </mat-form-field>
-            <p>Você selecionou o horario: {{selectedHora}}</p>
             <br>
-            <mat-form-field>
+            <mat-form-field >
                 <mat-label>Selecione disciplina</mat-label>
-                 <mat-select  id="disciplina">
+                 <mat-select name="disciplinas" [(ngModel)]="disci" #disciplina="ngModel">
                   <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.nome">
                     {{disciplina.nome}}
                   </mat-option>
                 </mat-select> 
             </mat-form-field>
-            
             <br>
             <br>
-            <button class="btn btn-success"  (click)="teste();"> Adicionar aula </button>
-            
+            <button type="submit" class="btn btn-success" > Adicionar aula </button>
+            </form>
         </mat-tab>
 
         <!-- Perido 2 -->

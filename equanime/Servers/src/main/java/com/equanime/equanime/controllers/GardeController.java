@@ -64,13 +64,13 @@ public class GardeController {
 		
 		System.out.println(value);
 		
-		Integer id_juncao, disciplina;
+		Integer id_disciplina, disciplina;
 		String  dia, hora;
 		 
 		Grade grade = new Grade();
 		
 		grade.setId(Integer.parseInt(json.get("id").toString()));
-		id_juncao = grade.getId();
+		id_disciplina = grade.getId();
 		
 		grade.setDia(json.get("dia_semana").toString());
 		dia = json.get("dia_semana").toString();
@@ -78,12 +78,12 @@ public class GardeController {
 		grade.setHora(json.get("hora").toString());
 		hora = json.get("hora").toString();
 		
-		grade.setDisciplina(Integer.parseInt(json.get("id_junfk").toString()));
-		disciplina = grade.getDiciplina();
+		grade.setDisciplina(Integer.parseInt(json.get("id_disciplina").toString()));
+		disciplina = grade.getDisciplina();
 		
-		System.out.println(id_juncao + hora + dia + disciplina);
+		System.out.println("resultado: " +id_disciplina + hora + dia + disciplina);
 		try {
-			repository.criarGrade(id_juncao, dia, disciplina, hora);
+			repository.criarGrade(id_disciplina, dia, disciplina, hora);
 			return "Certo";
 		}catch (Exception e) {
 			return e.getMessage();						

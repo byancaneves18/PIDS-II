@@ -21,7 +21,7 @@ public class Grade {
 	@Column(name="hora")
 	private String hora;
 
-	@Column(name="idDisciplina")
+	@Column(name="id_disciplina")
 	private Integer disciplina;
 	
 	public Integer getId() {
@@ -40,7 +40,7 @@ public class Grade {
 		this.dia_semana = dia_semana;
 	} 
 	
-	public Integer getDiciplina() {
+	public Integer getDisciplina() {
 		return disciplina;
 	}
 	public void setDisciplina(Integer disciplina) {

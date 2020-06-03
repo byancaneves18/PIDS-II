@@ -19,4 +19,16 @@ export class GradeServiceService {
       return this.http.get<Grade[]>(this.URL_API + '/lista');
     }
 
+    novaAula(body: Grade): Observable<Post>{
+      return this.http.post<Post>("http://localhost:8080/grade/montar",body);
+    }
+}
+
+class Post {
+  constructor(
+      public id: number,
+      public dia_semana: string,
+      public hora: string,
+      public id_disciplina: string
+  ) { }
 }

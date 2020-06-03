@@ -12,7 +12,7 @@ public interface GradeRepository extends CrudRepository<Grade, Long>{
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value="INSERT INTO grade_horaria (id, dia_semana, id_junfk, hora) values (:id, :dia_semana, :id_junfk, :hora)", nativeQuery = true)
-	public void criarGrade(@Param("id") int id, @Param("dia_semana") String dia_semana, @Param("id_junfk") int id_junfk, @Param("hora") String hora);
+	@Query(value="INSERT INTO grade_horaria (id, dia_semana, id_disciplina, hora) values (:id, :dia_semana, :id_disciplina, :hora)", nativeQuery = true)
+	public void criarGrade(@Param("id") int id, @Param("dia_semana") String dia_semana, @Param("id_disciplina") int id_disciplina, @Param("hora") String hora);
 
 }

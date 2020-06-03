@@ -79,10 +79,10 @@ export class MontarHorarioComponent implements OnInit {
     first = 0;
 
     rows = 10;
-  constructor(private router: Router, private back: GradeServiceService, private server: ServerComunicationService, public dialog: MatDialog, public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
+  constructor(private router: Router, private back: GradeServiceService, 
+    private server: ServerComunicationService, public dialog: MatDialog, 
+    public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
     
-
-
   }
 
   ngOnInit() {
@@ -115,13 +115,13 @@ export class MontarHorarioComponent implements OnInit {
     console.log("Disciplina "+ this.disciplinas);
   }
   
-  CadastrarAula(){
+  CadastrarAulaPerido1(){
     console.log("teste formulario " + this.disci);
     console.log("dia: " + this.di);
     console.log("hora: " + this.hor);
     let novaAula: Grade;
     novaAula = {
-      id : 0,
+      //id : 0, // serial
       dia_semana: (this.di),
       hora: (this.hor),
       id_disciplina: Number(this.disci)

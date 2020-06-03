@@ -69,8 +69,8 @@ public class GardeController {
 		 
 		Grade grade = new Grade();
 		
-		grade.setId(Integer.parseInt(json.get("id").toString()));
-		id_disciplina = grade.getId();
+		//grade.setId(Integer.parseInt(json.get("id").toString()));
+		//id_disciplina = grade.getId();
 		
 		grade.setDia(json.get("dia_semana").toString());
 		dia = json.get("dia_semana").toString();
@@ -81,9 +81,13 @@ public class GardeController {
 		grade.setDisciplina(Integer.parseInt(json.get("id_disciplina").toString()));
 		disciplina = grade.getDisciplina();
 		
-		System.out.println("resultado: " +id_disciplina + hora + dia + disciplina);
+		//System.out.println("resultado: " +id_disciplina + hora + dia + disciplina); Com id não serial
+		
+		System.out.println("resultado: " + hora + dia + disciplina);
+		
 		try {
-			repository.criarGrade(id_disciplina, dia, disciplina, hora);
+			//repository.criarGrade(id_disciplina, dia, disciplina, hora); Com id não serial
+			repository.criarGrade(dia, disciplina, hora); 
 			return "Certo";
 		}catch (Exception e) {
 			return e.getMessage();						

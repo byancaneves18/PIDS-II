@@ -24,6 +24,9 @@ public class Grade {
 	@Column(name="id_disciplina")
 	private Integer disciplina;
 	
+	@Column(name="periodo")
+	private Integer periodo;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -56,6 +59,13 @@ public class Grade {
 		this.hora = hora;
 	}
 	
+	public Integer getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
+	}
 	
 	
 }

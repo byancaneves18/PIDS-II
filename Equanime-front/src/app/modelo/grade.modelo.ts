@@ -3,4 +3,5 @@ export interface Grade{
     id_disciplina: number;
     dia_semana: string;
     hora: string;
+    periodo: number;
 }

@@ -29,8 +29,6 @@ export class MontarHorarioComponent implements OnInit {
   grade: Grade[] = [];
   erro: any;
 
- 
-
   matrizHorario: MontarHorarioElement[] = [
     {dia:'segunda', hora: 1450, periodo: 0,juncao: 'vago' },
     {dia:'segunda', hora: 1640, periodo: 2,juncao: 'vago'},
@@ -62,8 +60,6 @@ export class MontarHorarioComponent implements OnInit {
     {value: 'sexta', viewValue: 'Sexta-feira'}
   ];
   selectedDia = this.dias[0];
-
-
 
   horas:any[]=[
     {value: 1450, viewValue: '14:50'},
@@ -102,12 +98,12 @@ export class MontarHorarioComponent implements OnInit {
         console.log('ERRO: ', error);
       }
     );
-  }
+}
 
 
   dia :string;
 
-  teste(){
+  teste(){ //Botão teste
     console.log("Testando clicwk");
     //this.dia
     console.log("Dia: " + this.dias);
@@ -116,6 +112,7 @@ export class MontarHorarioComponent implements OnInit {
   }
   
   CadastrarAulaPerido1(){
+    
     console.log("teste formulario " + this.disci);
     console.log("dia: " + this.di);
     console.log("hora: " + this.hor);
@@ -124,13 +121,33 @@ export class MontarHorarioComponent implements OnInit {
       //id : 0, // serial
       dia_semana: (this.di),
       hora: (this.hor),
-      id_disciplina: Number(this.disci)
+      id_disciplina: Number(this.disci),
+      periodo : 1
     }
     this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
   }
 
-}
+  CadastrarAulaPerido2(){
+   
+    //periodo: Number;
+    console.log("teste formulario " + this.disci);
+    console.log("dia: " + this.di);
+    console.log("hora: " + this.hor);
+    let novaAula: Grade;
+    novaAula = {
+      //id : 0, // serial
+      dia_semana: (this.di),
+      hora: (this.hor),
+      id_disciplina: Number(this.disci),
+      periodo: 2
+    }
+    this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
+  }
 
+
+
+
+}
 
 export interface Disciplina {
   id_disciplina:number;

@@ -3,8 +3,7 @@
 <div style="text-align: center;">
     <br>
     <mat-tab-group animationDuration="0ms">
-        <mat-tab>
-            <!-- Periodo 1 -->
+        <mat-tab  > <!-- Periodo 1 -->
             <ng-template mat-tab-label style="width: 100%;">
                 <button class="btn btn-success" style="width: 100%;" (click)="teste();"> Período 1</button>
             </ng-template> 
@@ -142,23 +141,40 @@
             </div>
             <hr>            
             <h1> Inserir aula</h1>
-            <mat-form-field>
-                <mat-label>Selecione um dia</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let dia of dias"  [value]="dia.value">
-                    {{dia.viewValue}}
-                  </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Selecione um horário</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let hora of horas"  [value]="hora.value">
-                    {{hora.viewValue}}
-                  </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <form #formCadastrarAula="ngForm" (ngSubmit)="CadastrarAulaPerido2()">
+                <mat-form-field>
+                    <mat-label>Selecione um dia</mat-label>
+                    <mat-select name="dias" [(ngModel)]="di"  [(value)]="selectedDia" #dia="ngModel">
+                        <mat-option value="segunda">Segunda-feira</mat-option>
+                        <mat-option value="terca">Terça-feira</mat-option>
+                        <mat-option value="quarta">Quarta-feira</mat-option>
+                        <mat-option value="quinta">Quinta-feira</mat-option>
+                        <mat-option value="sexta">Sexta-feira</mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Selecione um horário</mat-label>
+                    <mat-select name="horas" [(ngModel)]="hor" #hora="ngModel" [(value)]="selectedHora">
+                        <mat-option value="1450">14:50</mat-option>
+                        <mat-option value="1640">16:40</mat-option>
+                        <mat-option value="1900">19:00</mat-option>
+                        <mat-option value="2050">20:50</mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field >
+                    <mat-label>Selecione disciplina</mat-label>
+                     <mat-select name="disciplinas" [(ngModel)]="disci" #disciplina="ngModel">
+                      <mat-option *ngFor="let disciplina of disciplinas"  [value]="disciplina.id_disciplina">
+                        {{disciplina.nome}}
+                      </mat-option>
+                    </mat-select> 
+                </mat-form-field>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-success" > Adicionar aula </button>
+                </form>
             <br>
         </mat-tab>
         

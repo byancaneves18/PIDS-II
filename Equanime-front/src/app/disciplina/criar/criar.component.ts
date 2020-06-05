@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./criar.component.css']
 })
 export class CriarComponent implements OnInit {
-
+  // TESTE
   NOME: string;
   PERIODO: Periodo[] = [];
   result : any;

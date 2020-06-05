@@ -41,7 +41,7 @@ export class MontarHorarioComponent implements OnInit {
     {dia:'quarta', hora: 1450, periodo: 2,juncao: 'teste' },
     {dia:'quarta', hora: 1640, periodo: 2,juncao: 'teste' },
     {dia:'quarta', hora: 1900, periodo: 2,juncao: 'teste' },
-    {dia:'quarta', hora: 2050, periodo: 2,juncao: 'teste' },
+    {dia:'quarta', hora: 2050, periodo: 2,juncao: 'teste' }, 
     {dia:'quinta', hora: 1450, periodo: 2,juncao: 'teste' },
     {dia:'quinta', hora: 1640, periodo: 2,juncao: 'teste' },
     {dia:'quinta', hora: 1900, periodo: 2,juncao: 'teste' },

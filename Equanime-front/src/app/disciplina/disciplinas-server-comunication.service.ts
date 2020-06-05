@@ -40,7 +40,7 @@ export class ServerComunicationService {
 
   public getDisciplinasLista(){
 
-    return this.http.get<Disciplina[]>(this.url+"/lista");
+    return this.http.get<Disciplina[]>(this.url+"/disciplinas");
 
   }
 

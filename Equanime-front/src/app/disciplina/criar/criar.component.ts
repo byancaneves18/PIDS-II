@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CriarComponent implements OnInit {
   // TESTE
+  // TESTE 3
   NOME: string;
   PERIODO: Periodo[] = [];
   result : any;

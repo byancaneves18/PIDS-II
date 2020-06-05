@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerComunicationService } from '../disciplinas-server-comunication.service';
+import { ServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import { Disciplina, Periodo } from '../listar/listarDisciplinas.component';
 import { ActivatedRoute, Router } from '@angular/router';
 

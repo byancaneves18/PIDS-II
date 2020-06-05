@@ -4,7 +4,7 @@ import { CriarComponent } from './criar/criar.component';
 import { ListarComponent } from './listar/listarDisciplinas.component';
 import {TableModule} from 'primeng/table';
 import {HttpClientModule} from '@angular/common/http'
-import { ServerComunicationService } from './disciplinas-server-comunication.service';
+import { ServerComunicationService } from '../services/disciplinas-server-comunication.service';
 import {FormsModule} from '@angular/forms';
 import { EditarComponent } from './editar/editar.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';

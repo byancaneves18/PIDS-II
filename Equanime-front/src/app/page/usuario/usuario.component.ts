@@ -4,7 +4,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { Usuarios } from 'src/app/modelo/usuario.modelo';
 import { Component, OnInit } from '@angular/core';
-import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+import { UsuarioServiceService } from 'src/app/services/usuario-service.service';
 
 
 @Component({

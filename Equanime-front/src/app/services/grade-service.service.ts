@@ -10,7 +10,7 @@ import { Grade } from '../modelo/grade.modelo';
 
 export class GradeServiceService {
 
-  URL_API = 'http://localhost:8080/disciplina';
+  URL_API = 'http://localhost:8080/disciplinas';
 
   constructor(private http: HttpClient) { }
 

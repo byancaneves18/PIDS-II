@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { ServerComunicationService } from '../disciplinas-server-comunication.service';
+import { ServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { Router } from '@angular/router';

@@ -1,7 +1,6 @@
 package com.equanime.equanime.api;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.ValidationException;

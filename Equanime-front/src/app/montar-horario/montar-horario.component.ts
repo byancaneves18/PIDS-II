@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
-import { GradeServiceService } from '../service/grade-service.service';
-import { JuntarServiceService } from '../service/juntar-service.service';
-import { ServerComunicationService } from '../disciplina/disciplinas-server-comunication.service';
+import { GradeServiceService } from '../services/grade-service.service';
+import { ServerComunicationService } from '../services/disciplinas-server-comunication.service';
 import { Router } from '@angular/router';
 
 export interface MontarHorarioElement {
@@ -73,11 +70,12 @@ export class MontarHorarioComponent implements OnInit {
   ];
 
     first = 0;
-
+ 
     rows = 10;
   constructor(private router: Router, private back: GradeServiceService, 
     private server: ServerComunicationService, public dialog: MatDialog, 
-    public serviceGrade: GradeServiceService, public serviceJuntar: JuntarServiceService) {
+    public serviceGrade: GradeServiceService, private BackDisciplinas: ServerComunicationService
+    ) {
     
   }
 
@@ -87,7 +85,7 @@ export class MontarHorarioComponent implements OnInit {
 
 
   getJuncao(){   // Função utilizada pra pegar a lista de disciplinas
-    this.serviceJuntar.getJuncao().subscribe(
+    this.BackDisciplinas.getDisciplinasLista().subscribe(
       (data: any[]) => {
         this.disciplinas = data;
         console.log('disciplinas =', +JSON.stringify(data));

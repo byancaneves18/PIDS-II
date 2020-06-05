@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import {Periodo} from './listar/listarDisciplinas.component';
-import {Disciplina} from './listar/listarDisciplinas.component';
+import {Periodo} from '../disciplina/listar/listarDisciplinas.component';
+import {Disciplina} from '../disciplina/listar/listarDisciplinas.component';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 

@@ -25,6 +25,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
+import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-periodo.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -37,6 +39,7 @@ import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-
     AlterarUsuarioComponent,
     ListarRedirectComponent,
     MontarHorarioComponent,
+    MontarPeriodoComponent,
 
   ],
   imports: [
@@ -57,7 +60,8 @@ import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-
     MatSelectModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    CommonModule
 
   ],
   providers: [HttpClient],

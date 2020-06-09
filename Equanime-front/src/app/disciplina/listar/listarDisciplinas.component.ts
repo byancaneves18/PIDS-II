@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { ServerComunicationService } from '../../services/disciplinas-server-comunication.service';
+import { DisciplinasServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ export class ListarComponent implements OnInit {
    firt = 0;
    rows = 10;
 
-  constructor(private server: ServerComunicationService, private confirmationService: ConfirmationService, private router: Router) {
+  constructor(private server: DisciplinasServerComunicationService, private confirmationService: ConfirmationService, private router: Router) {
 
 
 

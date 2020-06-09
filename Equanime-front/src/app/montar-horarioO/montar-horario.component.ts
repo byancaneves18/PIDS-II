@@ -5,9 +5,9 @@ import { GradeServiceService } from '../services/grade-service.service';
 import { DisciplinasServerComunicationService } from '../services/disciplinas-server-comunication.service';
 import { Router } from '@angular/router';
 
-export interface MontarHorarioElement {
+export interface grade_horaria_Elemento {
   dia:string;
-  hora: number;
+  hora: string;
   periodo: number;
   juncao: string;
 }
@@ -26,31 +26,31 @@ export class MontarHorarioComponent implements OnInit {
   grade: Grade[] = [];
   erro: any;
 
-  matrizHorario: MontarHorarioElement[] = [
-    {dia:'segunda', hora: 1450, periodo: 0,juncao: 'vago' },
-    {dia:'segunda', hora: 1640, periodo: 2,juncao: 'vago'},
-    {dia:'segunda', hora: 1900, periodo: 2,juncao: 'vago' },
-    {dia:'segunda', hora: 2050, periodo: 2,juncao: 'vago' },
-    {dia:'terça', hora: 1450, periodo: 2,juncao: 'vago' },
-    {dia:'terça', hora: 1640, periodo: 2,juncao: 'vago' }, 
-    {dia:'terça', hora: 1900, periodo: 2,juncao: 'vago' },
-    {dia:'terça', hora: 2050, periodo: 2,juncao: 'vago' },
-    {dia:'quarta', hora: 1450, periodo: 2,juncao: 'teste' },
-    {dia:'quarta', hora: 1640, periodo: 2,juncao: 'teste' },
-    {dia:'quarta', hora: 1900, periodo: 2,juncao: 'teste' },
-    {dia:'quarta', hora: 2050, periodo: 2,juncao: 'teste' }, 
-    {dia:'quinta', hora: 1450, periodo: 2,juncao: 'teste' },
-    {dia:'quinta', hora: 1640, periodo: 2,juncao: 'teste' },
-    {dia:'quinta', hora: 1900, periodo: 2,juncao: 'teste' },
-    {dia:'quinta', hora: 2050, periodo: 2,juncao: 'joilson' },
-    {dia:'sexta', hora: 1450, periodo: 2,juncao: 'teste' },
-    {dia:'sexta', hora: 1640, periodo: 2,juncao: 'teste' },
-    {dia:'sexta', hora: 1900, periodo: 2,juncao: 'joilson' },
-    {dia:'sexta', hora: 2050, periodo: 2,juncao: 'teste' },
+  matrizHorario: grade_horaria_Elemento[] = [
+    {dia:'SEGUNDA-FEIRA', hora: "14:50", periodo: 1,juncao: 'vago' },
+    {dia:'SEGUNDA-FEIRA', hora: "16:40", periodo: 1,juncao: 'vago'},
+    {dia:'SEGUNDA-FEIRA', hora: "19:00", periodo: 1,juncao: 'vago' },
+    {dia:'SEGUNDA-FEIRA', hora: "20:50", periodo: 1,juncao: 'vago' },
+    {dia:'terça', hora: "14:50", periodo: 2,juncao: 'vago' },
+    {dia:'terça', hora: "16:40", periodo: 2,juncao: 'vago' }, 
+    {dia:'terça', hora: "19:00", periodo: 2,juncao: 'vago' },
+    {dia:'terça', hora: "20:50", periodo: 2,juncao: 'vago' },
+    {dia:'quarta', hora: "14:50", periodo: 2,juncao: 'teste' },
+    {dia:'quarta', hora: "16:40", periodo: 2,juncao: 'teste' },
+    {dia:'quarta', hora: "19:00", periodo: 2,juncao: 'teste' },
+    {dia:'quarta', hora: "20:50", periodo: 2,juncao: 'teste' }, 
+    {dia:'quinta', hora: "14:50", periodo: 2,juncao: 'teste' },
+    {dia:'quinta', hora: "16:40", periodo: 2,juncao: 'teste' },
+    {dia:'quinta', hora: "19:00", periodo: 2,juncao: 'teste' },
+    {dia:'quinta', hora: "20:50", periodo: 2,juncao: 'joilson' },
+    {dia:'sexta', hora: "14:50", periodo: 2,juncao: 'teste' },
+    {dia:'sexta', hora: "16:40", periodo: 2,juncao: 'teste' },
+    {dia:'sexta', hora: "19:00", periodo: 2,juncao: 'joilson' },
+    {dia:'sexta', hora: "20:50", periodo: 2,juncao: 'teste' },
   ];
 
   dias=[
-    {value: 'segunda', viewValue: 'Segunda-feira'},
+    {value: 'SEGUNDA-FEIRA', viewValue: 'SEGUNDA-FEIRA-feira'},
     {value: 'terca', viewValue: 'Terça-feira'},
     {value: 'quarta', viewValue: 'Quarta-feira'},
     {value: 'quinta', viewValue: 'Quinta-feira'},
@@ -109,23 +109,23 @@ export class MontarHorarioComponent implements OnInit {
     console.log("Disciplina "+ this.disciplinas);
   }
   
- /* CadastrarAulaPerido1(){
+  CadastrarAulaPerido1(){
     
     console.log("teste formulario " + this.disci);
     console.log("dia: " + this.di);
     console.log("hora: " + this.hor);
     let novaAula: Grade;
     novaAula = {
-      //id : 0, // serial
+      id : 0, // serial
       dia_semana: (this.di),
       hora: (this.hor),
       id_disciplina: Number(this.disci),
-      periodo : 1
+      id_periodo : 1
     }
     this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
-  }*/
+  }
 
-/*  CadastrarAulaPerido2(){
+  CadastrarAulaPerido2(){
    
     //periodo: Number;
     console.log("teste formulario " + this.disci);
@@ -133,14 +133,14 @@ export class MontarHorarioComponent implements OnInit {
     console.log("hora: " + this.hor);
     let novaAula: Grade;
     novaAula = {
-      //id : 0, // serial
+      id : 0, // serial
       dia_semana: (this.di),
       hora: (this.hor),
       id_disciplina: Number(this.disci),
-      periodo: 2
+      id_periodo: 2
     }
     this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
-  }*/
+  }
 
 
 

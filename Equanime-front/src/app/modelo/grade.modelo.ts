@@ -1,7 +1,7 @@
 export interface Grade{
-   // id: number; // tirada para colocar serial
+     id: number; 
     id_disciplina: number;
     dia_semana: string;
     hora: string;
-    periodo: number;
+    id_periodo: number;
 }

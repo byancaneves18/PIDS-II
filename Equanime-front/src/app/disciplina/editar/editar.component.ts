@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerComunicationService } from '../../services/disciplinas-server-comunication.service';
+import { DisciplinasServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import { Disciplina, Periodo } from '../listar/listarDisciplinas.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ export class EditarComponent implements OnInit {
   NOME: string;
   PERIODO_ID: string;
 
-  constructor(private back:ServerComunicationService, private route: ActivatedRoute,private router: Router) { }
+  constructor(private back:DisciplinasServerComunicationService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
 

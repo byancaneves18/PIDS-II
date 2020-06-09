@@ -8,7 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ServerComunicationService {
+export class DisciplinasServerComunicationService {
 
   url : string = 'http://localhost:8080/disciplinas';
 

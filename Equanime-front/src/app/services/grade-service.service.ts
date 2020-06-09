@@ -10,17 +10,23 @@ import { Grade } from '../modelo/grade.modelo';
 
 export class GradeServiceService {
 
-  URL_API = 'http://localhost:8080/disciplinas';
+  url = 'http://localhost:8080/grade';
 
   constructor(private http: HttpClient) { }
 
 
     getGrade(): Observable<Grade[]> {
-      return this.http.get<Grade[]>(this.URL_API + '/lista');
+      return this.http.get<Grade[]>(this.url + '/lista');
     }
 
     novaAula(body: Grade): Observable<Post>{
       return this.http.post<Post>("http://localhost:8080/grade/montar",body);
+    }
+
+    setGrade(body:Grade):Observable<Post>{
+
+      return this.http.post<Post>(this.url+"/setGrade",body);
+
     }
 }
 

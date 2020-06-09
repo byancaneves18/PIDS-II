@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerComunicationService } from '../../services/disciplinas-server-comunication.service';
+import { DisciplinasServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import {Periodo} from '../listar/listarDisciplinas.component';
 import {Disciplina} from '../listar/listarDisciplinas.component';
 import { DisciplinaModule } from '../disciplina.module';
@@ -18,7 +18,7 @@ export class CriarComponent implements OnInit {
   result : any;
   PERIODO_ID: string;
 
-  constructor(private back:ServerComunicationService,private router: Router) { }
+  constructor(private back:DisciplinasServerComunicationService,private router: Router) { }
 
   ngOnInit() {
 

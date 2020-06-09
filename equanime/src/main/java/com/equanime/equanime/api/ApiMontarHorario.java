@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,25 @@ public class ApiMontarHorario {
 	public String form() {
 		return "grade/formGrade";
 	}
+	
+	
+	@RequestMapping(value="/setGrade", method = RequestMethod.POST)
+	@ResponseBody
+	public void SetGrade(@RequestBody String body) throws ParseException {
+		Grade grade = new Grade();
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(body);
+		grade.setDia(json.get("dia_semana").toString());
+		grade.setHora(json.get("hora").toString());
+		grade.setDisciplina(Integer.parseInt(json.get("id_disciplina").toString()));
+		System.out.println("novo slot");
+		System.out.println("dia: "+grade.getDia());
+		System.out.println("as : "+grade.getHora());
+		System.out.println("disciplina :"+grade.getDiciplina());
+
+		
+	}
+	
 	
 	@RequestMapping(value="/teste", method = RequestMethod.GET)
 	@ResponseBody

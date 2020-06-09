@@ -15,14 +15,19 @@ public class Grade {
 	@GeneratedValue
 	private Integer id;
 	
+	@Column(name="id_disciplina")
+	private Integer id_disciplina;
+	
 	@Column(name="dia_semana")
 	private String dia_semana;
 	
 	@Column(name="hora")
 	private String hora;
 
-	@Column(name="idDisciplina")
-	private Integer disciplina;
+	@Column(name="id_periodo")
+	private Integer id_periodo;
+
+	
 	
 	public Integer getId() {
 		return id;
@@ -41,10 +46,10 @@ public class Grade {
 	} 
 	
 	public Integer getDiciplina() {
-		return disciplina;
+		return id_disciplina;
 	}
 	public void setDisciplina(Integer disciplina) {
-		this.disciplina = disciplina;
+		this.id_disciplina = disciplina;
 	}
 	
 

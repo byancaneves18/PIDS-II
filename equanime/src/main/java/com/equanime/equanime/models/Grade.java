@@ -13,43 +13,43 @@ public class Grade {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 	
 	@Column(name="id_disciplina")
-	private Integer id_disciplina;
+	private Integer idDisciplina;
 	
 	@Column(name="dia_semana")
-	private String dia_semana;
+	private String diaSemana;
 	
 	@Column(name="hora")
 	private String hora;
 
 	@Column(name="id_periodo")
-	private Integer id_periodo;
+	private Integer idPeriodo;
 
 	
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	public String getDia() {
-		return dia_semana;
+		return diaSemana;
 	}
 	
 	public void setDia(String dia_semana) {
-		this.dia_semana = dia_semana;
+		this.diaSemana = dia_semana;
 	} 
 	
 	public Integer getDiciplina() {
-		return id_disciplina;
+		return idDisciplina;
 	}
 	public void setDisciplina(Integer disciplina) {
-		this.id_disciplina = disciplina;
+		this.idDisciplina = disciplina;
 	}
 	
 
@@ -59,6 +59,14 @@ public class Grade {
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+
+	public Integer getId_periodo() {
+		return idPeriodo;
+	}
+
+	public void setId_periodo(Integer id_periodo) {
+		this.idPeriodo = id_periodo;
 	}
 	
 	

@@ -6,12 +6,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.equanime.equanime.controllers.GradeController;
 import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.repository.GradeRepository;
 
@@ -21,7 +25,8 @@ public class ApiMontarHorario {
 
 	@Autowired
 	GradeRepository repository;
-	
+	@Autowired
+	GradeController manterGrade;
 	
 	@RequestMapping("/montarGrade")
 	public String form() {
@@ -29,21 +34,41 @@ public class ApiMontarHorario {
 	}
 	
 	
-	@RequestMapping(value="/setGrade", method = RequestMethod.POST)
-	@ResponseBody
-	public void SetGrade(@RequestBody String body) throws ParseException {
+	//chamado quando se deseja alterar um slot do horario, reconhecido no banco de dados como grade_horario, espera um objeto do tipo grade no body
+	@PostMapping(path = "setGrade")
+	public void SetSlot(@RequestBody String body) throws ParseException {
 		Grade grade = new Grade();
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(body);
-		grade.setDia(json.get("dia_semana").toString());
+		grade.setDia(json.get("dia").toString());
 		grade.setHora(json.get("hora").toString());
-		grade.setDisciplina(Integer.parseInt(json.get("id_disciplina").toString()));
-		System.out.println("novo slot");
+		grade.setDisciplina(Integer.parseInt(json.get("diciplina").toString()));
+		grade.setId(Long.parseLong(json.get("id").toString()));
+		grade.setId_periodo(Integer.parseInt(json.get("id_periodo").toString()));
+		System.out.println("alteração de slot");
 		System.out.println("dia: "+grade.getDia());
 		System.out.println("as : "+grade.getHora());
 		System.out.println("disciplina :"+grade.getDiciplina());
-
 		
+		manterGrade.alterarSlot(grade);
+		
+
+	}
+	
+	//retorna todos os slots da grade
+	@PostMapping(path = "gradeSlots")
+	public Iterable<Grade> GradeSlots() {
+		
+		
+		return manterGrade.GradeSlots();
+	}
+	
+	//retorna todos os slots da grade dado um determinado periodo
+	@PostMapping(path = "gradeSlotsByPeriodo")
+	public Iterable<Grade> GradeSlotsByPeriodo(@RequestBody Integer id_periodo) {
+		
+		
+		return manterGrade.GradeSlotsByPeriodo(id_periodo);
 	}
 	
 	
@@ -74,7 +99,7 @@ public class ApiMontarHorario {
 		return "Funcionou";
 	}
 	
-	@RequestMapping(value="/montar", method = RequestMethod.POST)
+	/*@RequestMapping(value="/montar", method = RequestMethod.POST)
 	@ResponseBody
 	public String montarGradeHoraria(@RequestBody String value) throws org.json.simple.parser.ParseException{
 		
@@ -108,7 +133,7 @@ public class ApiMontarHorario {
 		}catch (Exception e) {
 			return e.getMessage();						
 		}
-	}
+	}*/
 	
 	
 }

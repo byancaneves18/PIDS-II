@@ -28,6 +28,12 @@ export class GradeServiceService {
       return this.http.post<Post>(this.url+"/setGrade",body);
 
     }
+
+    getGradesByPeriodo(id_periodo:number):Observable<Grade[]>{
+
+        return this.http.post<Grade[]>(this.url+"/gradeSlotsByPeriodo",id_periodo);
+
+    }
 }
 
 class Post {

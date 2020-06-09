@@ -1,14 +1,18 @@
 
-<div *ngFor="let hora of horarios" class="row" style="width: 100%;">
-    <div class="col-sm-2"><strong>{{hora}}</strong></div>
-    <div *ngFor="let dia of diasDaSemana"  class="col-sm-2">
+<div *ngIf="isSlotCarregado()">
+    <div *ngFor="let hora of horarios" class="row" style="width: 100%;">
+        <div class="col-sm-2"><strong>{{hora}}</strong></div>
+        <div *ngFor="let dia of diasDaSemana"  class="col-sm-2">
 
-        <select class="form-control" name="disciplinas"   (change)="setGradeSlot(hora,dia,$event.target.value)">
-            <option selected="selected" [value]="0" >Vazio</option>
-            <option *ngFor="let disciplina of disciplinas" [value]="disciplina.id_disciplina" >{{disciplina.nome}}</option>
+            <select class="form-control" name="disciplinas"   (change)="setGradeSlot(hora,dia,$event.target.value)">
 
-        </select>
+                <option [value]="0" >Vazio</option>
+                <option *ngFor="let disciplina of disciplinas" [value]="disciplina.id_disciplina" [selected]="isPosicionadaAqui(disciplina.id_disciplina,hora,dia)" >{{disciplina.nome}}</option>
 
+            </select>
+
+        </div>
+        
     </div>
 </div>
 

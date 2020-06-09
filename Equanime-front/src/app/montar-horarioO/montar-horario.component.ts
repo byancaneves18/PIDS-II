@@ -117,9 +117,9 @@ export class MontarHorarioComponent implements OnInit {
     let novaAula: Grade;
     novaAula = {
       id : 0, // serial
-      dia_semana: (this.di),
+      dia: (this.di),
       hora: (this.hor),
-      id_disciplina: Number(this.disci),
+      diciplina: Number(this.disci),
       id_periodo : 1
     }
     this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})
@@ -134,9 +134,9 @@ export class MontarHorarioComponent implements OnInit {
     let novaAula: Grade;
     novaAula = {
       id : 0, // serial
-      dia_semana: (this.di),
+      dia: (this.di),
       hora: (this.hor),
-      id_disciplina: Number(this.disci),
+      diciplina: Number(this.disci),
       id_periodo: 2
     }
     this.back.novaAula(novaAula).subscribe(sucesso => {this.router.navigate(['/grade'])}, fracasso => {})

@@ -27,6 +27,7 @@ import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cada
 import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
 import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-periodo.component';
 import { CommonModule } from '@angular/common';
+import { EventEmitterService } from './services/event-emitter.service';
 
 
 
@@ -64,7 +65,10 @@ import { CommonModule } from '@angular/common';
     CommonModule
 
   ],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    EventEmitterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

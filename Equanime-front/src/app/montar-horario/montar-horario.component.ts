@@ -4,6 +4,9 @@ import { Grade } from '../modelo/grade.modelo';
 import { GradeServiceService } from '../services/grade-service.service';
 import { DisciplinasServerComunicationService } from '../services/disciplinas-server-comunication.service';
 import { Router } from '@angular/router';
+import { Periodo } from '../modelo/periodo.modelo';
+import { MontarPeriodoComponent } from './montar-periodo/montar-periodo.component';
+import { EventEmitterService } from '../services/event-emitter.service';
 
 export interface MontarHorarioElement {
   dia:string;
@@ -19,6 +22,56 @@ export interface MontarHorarioElement {
   styleUrls: ['./montar-horario.component.css']
 })
 export class MontarHorarioComponent implements OnInit {
+
+  periodos :Periodo[] = [];
+  //periodo_selecionadoID: number = 1;
+
+
+  constructor(private router: Router, private back: GradeServiceService, 
+    private server: DisciplinasServerComunicationService, public dialog: MatDialog, 
+    public serviceGrade: GradeServiceService, 
+    private BackDisciplinas: DisciplinasServerComunicationService,
+    private eventEmitterService: EventEmitterService 
+    ) {
+    
+  }
+
+  ngOnInit() {
+    this.getJuncao();
+    this.getPeriodos();
+  }
+
+
+  getPeriodos(){ //Pega os periodos do banco de dados e joga em uma variavel
+
+    this.BackDisciplinas.getPeriodosLista().subscribe( dados =>{
+
+      this.periodos = dados;
+
+    });
+
+  }
+
+
+  isPeriodosCarregado():boolean{ //Retorna true se foram carregados periodos do banco de
+
+    if(this.periodos[0]!=null){
+
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+  selecionarPeriodo(id_periodo:number){ // chamado quando o usuario seleciona um periodo na tabela
+
+    //this.montarPeriodo.mudarPeriodo(id_periodo);
+    this.eventEmitterService.mudarPeriodo(id_periodo);
+
+  }
+
+
   disci: string;
   di: string;
   hor: string;
@@ -72,16 +125,9 @@ export class MontarHorarioComponent implements OnInit {
     first = 0;
  
     rows = 10;
-  constructor(private router: Router, private back: GradeServiceService, 
-    private server: DisciplinasServerComunicationService, public dialog: MatDialog, 
-    public serviceGrade: GradeServiceService, private BackDisciplinas: DisciplinasServerComunicationService
-    ) {
-    
-  }
 
-  ngOnInit() {
-    this.getJuncao();
-  }
+
+
 
 
   getJuncao(){   // Função utilizada pra pegar a lista de disciplinas
@@ -147,8 +193,4 @@ export class MontarHorarioComponent implements OnInit {
 
 }
 
-export interface Disciplina {
-  id_disciplina:number;
-  nome:string;
-  id_periodo: number;
-}
+

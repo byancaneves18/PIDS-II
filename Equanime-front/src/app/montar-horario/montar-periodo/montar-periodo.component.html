@@ -6,7 +6,7 @@
 
             <select class="form-control" name="disciplinas"   (change)="setGradeSlot(hora,dia,$event.target.value)">
 
-                <option [value]="0" >Vazio</option>
+                <option [value]="-1" [selected]="isVazio(hora,dia)"  >Vazio</option>
                 <option *ngFor="let disciplina of disciplinas" [value]="disciplina.id_disciplina" [selected]="isPosicionadaAqui(disciplina.id_disciplina,hora,dia)" >{{disciplina.nome}}</option>
 
             </select>

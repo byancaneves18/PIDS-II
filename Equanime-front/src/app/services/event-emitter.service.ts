@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';    
 import { Subscription } from 'rxjs/internal/Subscription';
+import { Dia } from '../modelo/dia_semana.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,16 @@ import { Subscription } from 'rxjs/internal/Subscription';
 export class EventEmitterService {
 
 
-  invokeFirstComponentFunction = new EventEmitter();    
-  subsVar: Subscription;    
+  mudarPeriodoEmitter = new EventEmitter();       
+  subsVarMudarPeriodo: Subscription;    
     
   constructor() { }    
     
   mudarPeriodo(id_periodo : number) {    
-    this.invokeFirstComponentFunction.emit(id_periodo);    
-  }    
+    this.mudarPeriodoEmitter.emit(id_periodo);    
+  } 
+  
+
 
 
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Grade } from 'src/app/modelo/grade.modelo';
-import { Router } from '@angular/router';
 import { GradeServiceService } from 'src/app/services/grade-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Disciplina } from 'src/app/modelo/disciplina.modelo';
 import { DisciplinasServerComunicationService } from 'src/app/services/disciplinas-server-comunication.service';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
+import { Dia } from 'src/app/modelo/dia_semana.modelo';
 
 @Component({
   selector: 'app-montar-periodo',
@@ -13,24 +13,33 @@ import { EventEmitterService } from 'src/app/services/event-emitter.service';
   styleUrls: ['./montar-periodo.component.css']
 })
 
-
+//===========================================================================================================================
+//Esse componente representa a estrutura interna da "Tabela" de montar horário, é nele que são carregados os slots de horario
+//de acordo com o período selecionado no componente "Montar horário", este componente é dinâmico o que significa que seus 
+//valores serão alterados toda vez que o usuário selecionar um perído diferente
+//===========================================================================================================================
 export class MontarPeriodoComponent implements OnInit {
 
-  diasDaSemana : string[] = ['SEGUNDA-FEIRA','TERÇA-FEIRA','QUARTA-FEIRA','QUINTA-FEIRA','SEXTA-FEIRA']; //placeholder, na versão final virá do banco
-  horarios : string[] = ['14:50','16:40','19:00','20:40','22:30'];
-  
-  disciplinas : Disciplina[] = [];
-  slots:Grade[] ;
-  erro: any;
-
-  slotsLoaded : boolean = false;
-  periodo_selecionado:number = 1; //carregando periodo id = 1 como padrão
+  diasDaSemana : Dia[]; //Variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
+  horarios : string[] = ['14:50','16:40','19:00','20:40','22:30']; //Variável local que representa as diferentes horas em que pode ocorrer uma aula, por enquanto está estática mas pode facilmente ser implementada a partir do banco de dados
+  disciplinas : Disciplina[] = []; //Variável local que representa as disciplinas vindas do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
+  slots:Grade[] ;//Variável local que representa os elementos grade_horaria do periodo selecionado vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()' ou quando o usuário troca de periodo
 
 
-  constructor(private router: Router, public dialog: MatDialog, 
-    public backGrade: GradeServiceService, 
-    private backDisciplinas: DisciplinasServerComunicationService,
-    private eventEmitterService: EventEmitterService   
+  slotsLoaded : boolean = false; //variável que indica se os slots estão atualizados com o banco de dados
+  periodo_selecionado:number = 1; // indica o periodo selecionado o periodo periodo id = 1 é carregado como padrão
+
+
+
+  //=====================================================INICIALIZAÇÃO======================================================================
+  //Métodos que inicializam o componente
+  //========================================================================================================================================
+
+  constructor(
+    public dialog: MatDialog, 
+    private backDisciplinas: DisciplinasServerComunicationService, //serviço de acesso a interface 'ApiDisciplinas' do backend
+    private eventEmitterService: EventEmitterService , //serviço responsavel por comunicar eventos entre os componentes por exemplo: passar uma variável ou exigir uma ação em outro componente
+    private backMontarHorario: GradeServiceService //serviço de acesso a interface 'ApiMontarHorário' do backend
     ) {
     
   }
@@ -38,153 +47,156 @@ export class MontarPeriodoComponent implements OnInit {
   ngOnInit() {
     this.getDisciplinas();
     this.loadSlots(1); //carregando periodo id = 1 como padrão
+    this.getDiasDaSemana();
 
-
-    if (this.eventEmitterService.subsVar==undefined) {    
-      this.eventEmitterService.subsVar = this.eventEmitterService.    
-      invokeFirstComponentFunction.subscribe((id_periodo:number) => {    
+    if (this.eventEmitterService.subsVarMudarPeriodo==undefined) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'mudarPeriodo'
+      this.eventEmitterService.subsVarMudarPeriodo = this.eventEmitterService.    
+      mudarPeriodoEmitter.subscribe((id_periodo:number) => {    
         this.mudarPeriodo(id_periodo);    
       });    
-    }    
-
-
+    } 
   }
 
 
-  mudarPeriodo(id_novoPeriodo:number){ //chamado quando o usuario muda de periodo na tabela
+  //=====================================================VERIFICAÇÃO=======================================================================
+  //Métodos que verificam a existencia de uma variável, isso é necessário pois eu não posso por exemplo: tentar preencher o cabeçalho de
+  //períodos sem antes ter carregado os períodos do banco de dados, então normalmente atravez da diretiva '*ngIf' o html verifica a 
+  //existencia da variável, caso não exista o mesmo fica impedido de continuar 
+  //========================================================================================================================================
 
-    this.slots = null;
-    this.slotsLoaded= false;
-    console.log("Mudando para periodo: "+id_novoPeriodo);
-    this.periodo_selecionado = id_novoPeriodo;
-    this.loadSlots(id_novoPeriodo);
-  }
 
-  isSlotCarregado():boolean{ // retorna true se os slots ja foram carregados do banco
+  isDiasCarregado():boolean{ //Retorna true se foram carregados dias da semana do back
 
-   /* if(this.slots[0]!=null){
-
+    if(this.diasDaSemana!=null&&this.diasDaSemana[0]!=null){
       return true;
     }else{
       return false;
-    }*/
-    return this.slotsLoaded;
-
+    }
 
   }
 
-  isVazio(hora:string,dia:string):boolean{// verifica se o slot hora/dia esta preenchido por alguma disciplina
+  isSlotCarregado():boolean{ //retorna true se os slots ja foram carregados do banco
+
+    return this.slotsLoaded;
+ 
+  }
+
+  isVazio(hora:string,dia:string):boolean{// verifica se o slot na hora/dia informados esta preenchido por alguma disciplina ou se está vazio, em caso de vazio retorn true
 
     var i = 0;
-    console.log("a");
-       while(this.slots[i]!=null){
-         if(this.slots[i].hora==hora&&this.slots[i].dia==dia){
-           return false;
-         }
-         i++;
-       }
-
-       return true;
-  }
-
-  isPosicionadaAqui(id_disciplina:number,hora:string,dia:string){//verifica se uma dada disciplina em uma dada hora em um dado dia estão presentes no banco
- 
-
-     var i = 0;
-   // console.log("e slot :"+this.slots[0].dia);
-  // console.log("a");
-      while(this.slots[i]!=null){
-       // console.log("a");
-        if(this.slots[i].diciplina==id_disciplina&&this.slots[i].hora==hora&&this.slots[i].dia==dia){
-          //console.log("disciplina id : "+id_disciplina+" esta na hora : "+hora+" dia : "+dia);
-          return true;
-        }
-        i++;
+    while(this.slots[i]!=null){
+      if(this.slots[i].hora==hora&&this.slots[i].dia==dia){
+        return false;
       }
-    
-
-    return false;
+      i++;
+    }
+    return true;
   }
 
 
+  isPosicionadaAqui(id_disciplina:number,hora:string,dia:string){//verifica se uma dada disciplina está posicionada em uma certa hora e dia na tabela, caso esteja retorna true
+ 
+    var i = 0;
+
+    while(this.slots[i]!=null){
+      if(this.slots[i].diciplina==id_disciplina&&this.slots[i].hora==hora&&this.slots[i].dia==dia){
+        return true;
+      }
+      i++;
+    }
+   
+   return false;
+ }
 
 
- loadSlots(id_periodo:number){//Carrega os slots de horário a partir do banco de dados, note que os slots do tipo grade que são exibidos na tabela de horário
+  //=====================================================SERVIDOR===========================================================================
+  //Métodos que usam o serviço de acesso ao servidor para desempenhar ações no memso
+  //========================================================================================================================================
 
-    this.backGrade.getGradesByPeriodo(id_periodo).subscribe( 
+  getDiasDaSemana(){ // busca os dias da semana gravados no back e grava na variavel 'diasDaSemana'
+    this.backMontarHorario.getDiasSemana().subscribe(dados =>{
+      this.diasDaSemana = dados;
+    });
+  }
+
+
+  loadSlots(id_periodo:number){//Carrega os slots de horário do periodo selecionado a partir do banco de dados em uma variavel, após o carregamento seta os slots como carregado na variavel 'slotsLoaded = true'
+
+    this.backMontarHorario.getGradesByPeriodo(id_periodo).subscribe( 
       (data: Grade[]) => {
         this.slots = data;
         this.slotsLoaded = true;
-      },
-      (error: any) => {
-        this.erro = error;
-        console.log('ERRO: ', error);
       }
     );
       
   }
 
-  setGradeSlot( hora:string,dia:string,disciplina){ //Função que manda pro back a informação que deve ser armazenada em um slot do horario
+
+  setGradeSlot( hora:string,dia:string,disciplina){ //Chamada quando uma alteração é feita no horário, esse método analisa a alteração e a encaminha para o servidor se necessario
     
     var i = 0
-    var existe : boolean = false;
-    while(this.slots[i]!=null){ //percorre a lista de slots para verificar se o slot alterado ja existe ou se é novo
-       if(this.slots[i].diciplina==disciplina&&this.slots[i].hora==hora&&this.slots[i].dia==dia){
+    var existe : boolean = false; //true se o slot que pretende se alterar ja existe
+    var gradeSeExistir : Grade; // caso o slot exista ele fica armazenado aqui para futuras operações
+
+    while(this.slots[i]!=null){ //percorre a lista de slots para verificar se o slot que pretende se alterar ja existe ou se é novo
+       if(this.slots[i].hora==hora&&this.slots[i].dia==dia){
          existe = true;
+         gradeSeExistir = this.slots[i];
        }
        i++;
      }
 
-     if(existe&&disciplina == -1){ //disciplina = -1 significa horário vago, ou seja se esse horario esta armazenado deve ser deletado
+     //=========Verifica a solicitação e a encaminha aqui ===========
 
+     if(existe&&disciplina == -1){ //disciplina = -1 significa horário vago, ou seja se esse horario existe e está armazenado deve ser deletado
+
+      this.backMontarHorario.deleteGrade(gradeSeExistir).subscribe();
 
      }else if(existe){ // se o horario existe no banco e não está sendo setado como vazio então ele deve ser editado
 
+      this.backMontarHorario.editGrade(gradeSeExistir).subscribe();
+
      }else if(disciplina != -1){ // se o horario não existe e não esta sendo setado como vazio então ele deve ser criado, caso contrário ou seja não existe e esta sendo setado como vazio nada precisa ser feito
 
-      let novaGrade : Grade ;
+      let novaGrade : Grade;
+
       novaGrade = {
         dia : dia,
         diciplina : disciplina,
         hora : hora,
-        id : -1,
+        id : -1, //id sera gerado no back de qualquer forma quando criado um novo elemento
         id_periodo : this.periodo_selecionado
   
       }
   
-  
-  
-      this.backGrade.setGrade(novaGrade).subscribe();
-  
-      console.log('Set grade slot');
-      console.log('Hora : '+novaGrade.hora);
-      console.log('Na : '+novaGrade.dia);
-      console.log('disciplina : '+novaGrade.diciplina);
-
+      this.backMontarHorario.setGrade(novaGrade).subscribe();
 
      }
 
 
-
-
-
   }
 
-  getDisciplinas(){   // Função utilizada pra pegar a lista de disciplinas
+  getDisciplinas(){   // Função utilizada pra pegar uma lista completa de disciplinas no back
     
     this.backDisciplinas.getDisciplinasLista().subscribe(
       (data: any[]) => {
         this.disciplinas = data;
-        console.log('disciplinas =', +JSON.stringify(data));
-        console.log('VARIAVEL PREENCHIDA', this.disciplinas);
-      },
-      (error: any) => {
-        this.erro = error;
-        console.log('ERRO: ', error);
       }
     );
+
   }
 
+  //=====================================================AÇÃO==============================================================================
+  //Métodos chamados quando uma ação é feita no front
+  //========================================================================================================================================
+
+  mudarPeriodo(id_novoPeriodo:number){ //chamado quando o usuario muda de periodo na tabela
+
+    this.slots = null;  //Quando se muda de periodo os slots são resetados para serem novamente preenchidos com slots do novo periodo selecionado
+    this.slotsLoaded= false;
+    this.periodo_selecionado = id_novoPeriodo;
+    this.loadSlots(id_novoPeriodo);
+  }
 
 }
 

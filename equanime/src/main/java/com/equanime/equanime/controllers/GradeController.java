@@ -5,7 +5,9 @@ import javax.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.equanime.equanime.models.DiaSemana;
 import com.equanime.equanime.models.Grade;
+import com.equanime.equanime.repository.DiaSemanaRepository;
 import com.equanime.equanime.repository.GradeRepository;
 
 @Controller
@@ -13,23 +15,60 @@ public class GradeController {
 	
 	@Autowired
 	GradeRepository gradeRepository;
+	@Autowired
+	DiaSemanaRepository diaRepository;
+	
+	
+	
+	public Iterable<DiaSemana> getDiasSemana() { // retorna uma lista com todos os dias da semana
+		
+		return diaRepository.findAll();
+	}
+	
+	
+	public void deletarSlot(Grade grade) {
+		
+		if(grade==null) {
+			
+			throw new ValidationException("A função deletarSlot precisa receber um objeto do tipo grade não nulo");
+			
+		}else {
+		
+			gradeRepository.delete(grade);
+		}
+	}
+	
+	
 
-	//é dado uma grade, se o id for maior que 0 e existir é feito uma alteração na tabela existente, caso contrário uma nova tabela é criada
-	public void alterarSlot(Grade grade) {
+	public void editarSlot(Grade grade) {
 		
 
 				
 		if(grade==null) {
 			
-			throw new ValidationException("A função alterarSlot precisa receber um objeto do tipo grade não nulo");
-			
-		}else if(grade.getId()>1&&ExisteGradePorId(grade.getId())) { //se verdadeiro a grade é alterada, caso contrario uma nova é criada
-			
-			gradeRepository.save(grade);
+			throw new ValidationException("A função editarSlot precisa receber um objeto do tipo grade não nulo");
 			
 		}else {
 		
-			gradeRepository.save(grade);	//por enquanto os mesmo métodos estão sendo usados porque o spring não diferencia criar de alterar
+			gradeRepository.save(grade);
+			
+		}
+		
+		
+	}
+
+
+	public void criarSlot(Grade grade) {
+		
+
+				
+		if(grade==null) {
+			
+			throw new ValidationException("A função criarSlot precisa receber um objeto do tipo grade não nulo");
+			
+		}else {
+		
+			gradeRepository.save(grade);	
 			
 		}
 		

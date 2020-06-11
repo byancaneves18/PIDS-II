@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
+import { Dia } from '../modelo/dia_semana.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -15,32 +16,37 @@ export class GradeServiceService {
   constructor(private http: HttpClient) { }
 
 
-    getGrade(): Observable<Grade[]> {
-      return this.http.get<Grade[]>(this.url + '/lista');
-    }
 
-    novaAula(body: Grade): Observable<Post>{
-      return this.http.post<Post>("http://localhost:8080/grade/montar",body);
-    }
+    getDiasSemana():Observable<Dia[]>{
 
-    setGrade(body:Grade):Observable<Post>{
-
-      return this.http.post<Post>(this.url+"/setGrade",body);
+      return this.http.get<Dia[]>(this.url+"/getDias");
 
     }
 
-    getGradesByPeriodo(id_periodo:number):Observable<Grade[]>{
+    setGrade(body:Grade){ //da ordem para o back criar uma nova grade especificada no body
+
+      return this.http.post(this.url+"/setGrade",body);
+
+    }
+
+
+    editGrade(body:Grade){ //da ordem para o back editar uma grade especificada no body
+
+      return this.http.post(this.url+"/editGrade",body);
+
+    }
+
+    deleteGrade(body:Grade){ //da ordem para o back deletar uma grade especificada no body
+
+      return this.http.post(this.url+"/deleteGrade",body);
+
+    }
+
+
+    getGradesByPeriodo(id_periodo:number):Observable<Grade[]>{ //busca no back uma lista de elementos grade pertencentes ao periodo id = id_periodo
 
         return this.http.post<Grade[]>(this.url+"/gradeSlotsByPeriodo",id_periodo);
 
     }
 }
 
-class Post {
-  constructor(
-      public id: number,
-      public dia_semana: string,
-      public hora: string,
-      public id_disciplina: string
-  ) { }
-}

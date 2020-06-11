@@ -1,39 +1,17 @@
 
-
 <div style="text-align: center;">
     <br>
-
-    <mat-tab-group animationDuration="0ms" *ngIf="isPeriodosCarregado()">
-        <mat-tab  *ngFor="let periodo of periodos"> 
+    <mat-tab-group animationDuration="0ms" *ngIf="isPeriodosCarregado()"><!--O cabeçalho é feito em forma de tabela ainda porque achei bonitinho e responsivo, ele serve para selecionar o período, ele só é carregado se os periodos estiverem devidamente carregados também-->
+        <mat-tab  *ngFor="let periodo of periodos"> <!--um '*ngFor' é usado para gerar quantos botões ouver em períodos-->
             <ng-template  mat-tab-label style="width: 100%;">
-                <button  class="btn btn-success" style="width: 100%;" (click)="selecionarPeriodo(periodo.id_periodo);">{{periodo.periodo_semestre}}</button>
-            </ng-template>   
-            
-        </mat-tab>
-        
+                <button  class="btn btn-success" style="width: 100%;" (click)="selecionarPeriodo(periodo.id_periodo);">{{periodo.periodo_semestre}}</button><!--Cada botão possui o nome do periodo (variavel estabelecida no '*ngFor*') e chama a função 'selecionarPeriodo()" quando clicado-->
+            </ng-template>    
+        </mat-tab>   
     </mat-tab-group>
-
-
-
-
-    <!--mat-tab-group animationDuration="0ms" *ngIf="isPeriodosCarregado()">
-        <mat-tab  > 
-            <ng-template *ngFor="let periodo of periodos" mat-tab-label style="width: 100%;">
-                <button  class="btn btn-success" style="width: 100%;" (click)="teste();">{{periodo.periodo_semestre}}</button>
-            </ng-template-->  
-            <div class="row" style="width: 100%;">
-                <div class="col-sm-2"><strong>Hora</strong></div>
-                <div class="col-sm-2"><strong>Segunda</strong></div>
-                <div class="col-sm-2"><strong>Terça</strong></div>
-                <div class="col-sm-2"><strong>Quarta</strong></div>
-                <div class="col-sm-2"><strong>Quinta</strong></div>
-                <div class="col-sm-2"><strong>Sexta</strong></div>
-            </div>
-           <app-montar-periodo></app-montar-periodo> 
-            
-        <!--/mat-tab>
-        
-    </mat-tab-group-->
-
-
+    <div class="row" style="width: 100%;" *ngIf="isDiasCarregado()"><!--Barra de título onde aparece os dias da semana, também não é carregada até que os dias tenham chegado do banco de dados-->
+        <div class="col-sm-2"><strong>Hora</strong></div><!--Sempre aparecerá para indicar as horas a esquerda da tabela portanto é estática-->
+        <div class="col-sm-2" *ngFor="let dia of diasDaSemana"><strong>{{dia.dia_semana}}</strong></div><!--Usado também um '*ngFor' para contemplar todos os dias-->
+    </div>
+    <br>
+    <app-montar-periodo *ngIf="isDiasCarregado()" ></app-montar-periodo> <!--Corpo da tabela o componente montar período só é chamado também quando os dias estão carregados-->
 </div>

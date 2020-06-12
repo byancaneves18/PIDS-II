@@ -9,7 +9,9 @@ export class EventEmitterService {
 
 
   mudarPeriodoEmitter = new EventEmitter();       
-  subsVarMudarPeriodo: Subscription;    
+  subsVarMudarPeriodo: Subscription;  
+  atualizarEmitter = new EventEmitter();       
+  subsVaratualizar: Subscription;   
     
   constructor() { }    
     
@@ -17,7 +19,9 @@ export class EventEmitterService {
     this.mudarPeriodoEmitter.emit(id_periodo);    
   } 
   
-
+  atualizar() {    
+    this.atualizarEmitter.emit();    
+  } 
 
 
 }

@@ -5,6 +5,7 @@ import { DisciplinasServerComunicationService } from '../services/disciplinas-se
 import { Periodo } from '../modelo/periodo.modelo';
 import { EventEmitterService } from '../services/event-emitter.service';
 import { Dia } from '../modelo/dia_semana.modelo';
+import { Alerta } from '../modelo/alera.modelo';
 
 
 
@@ -20,10 +21,26 @@ import { Dia } from '../modelo/dia_semana.modelo';
 //seleciona os períodos, a parte que exibe o conteúdo da "tabela" foi movida para um componente separado para evitar código
 //repetido 
 //===========================================================================================================================
-export class MontarHorarioComponent implements OnInit {
+export class MontarHorarioComponent implements OnInit{
 
   periodos :Periodo[] = []; //variável local que representa os períodos vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   diasDaSemana : Dia[]; // variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
+  alertas: Alerta[] =
+  [
+    {
+      tipo : 'ALERTA',
+      mensagem: 'Professora Elke está de muleta'
+    },
+    {
+      tipo : 'ALERTA',
+      mensagem: 'Guiliano morreu'
+    },
+    {
+      tipo : 'AVISO',
+      mensagem: 'Alunos não suportam mais a juliana bessa'
+    }
+
+  ]; // alertas que aparecem caso algo esteja errado no horário
 
 
 
@@ -31,9 +48,6 @@ export class MontarHorarioComponent implements OnInit {
   //=====================================================INICIALIZAÇÃO======================================================================
   //Métodos que inicializam o componente
   //========================================================================================================================================
-
-
-
 
   constructor(
     private backMontarHorario: GradeServiceService, //serviço de acesso a interface 'ApiMontarHorário' do backend
@@ -47,6 +61,14 @@ export class MontarHorarioComponent implements OnInit {
   ngOnInit() {
     this.getPeriodos();
     this.getDiasDaSemana();
+    this.getAlertas();
+
+    if (this.eventEmitterService.subsVaratualizar==undefined) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'getAlertas'
+      this.eventEmitterService.subsVaratualizar= this.eventEmitterService.    
+      atualizarEmitter.subscribe(() => {    
+        this.getAlertas();   
+      });    
+    } 
   }
 
 
@@ -78,9 +100,21 @@ export class MontarHorarioComponent implements OnInit {
 
   }
 
+
   //=====================================================SERVIDOR===========================================================================
   //Métodos que usam o serviço de acesso ao servidor para desempenhar ações no memso
   //========================================================================================================================================
+
+
+  getAlertas(){//buscar alertas no back e grava na variável
+    this.alertas = null;
+    this.backMontarHorario.getAlertas().subscribe(dados=>{
+      this.alertas = dados;
+    });
+
+    console.log("get alertas");
+
+  }
 
   getDiasDaSemana(){ // busca os dias da semana gravados no back
     this.backMontarHorario.getDiasSemana().subscribe(dados =>{
@@ -103,6 +137,8 @@ export class MontarHorarioComponent implements OnInit {
   //=====================================================AÇÃO==============================================================================
   //Métodos chamados quando uma ação é feita no front
   //========================================================================================================================================
+
+
 
   selecionarPeriodo(id_periodo:number){ //chamado quando o usuario seleciona um periodo na tabela
 

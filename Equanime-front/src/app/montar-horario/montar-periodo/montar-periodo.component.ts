@@ -20,6 +20,7 @@ import { Dia } from 'src/app/modelo/dia_semana.modelo';
 //===========================================================================================================================
 export class MontarPeriodoComponent implements OnInit {
 
+ 
   diasDaSemana : Dia[]; //Variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   horarios : string[] = ['14:50','16:40','19:00','20:40','22:30']; //Variável local que representa as diferentes horas em que pode ocorrer uma aula, por enquanto está estática mas pode facilmente ser implementada a partir do banco de dados
   disciplinas : Disciplina[] = []; //Variável local que representa as disciplinas vindas do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
@@ -131,7 +132,6 @@ export class MontarPeriodoComponent implements OnInit {
       
   }
 
-
   setGradeSlot( hora:string,dia:string,disciplina){ //Chamada quando uma alteração é feita no horário, esse método analisa a alteração e a encaminha para o servidor se necessario
     
     var i = 0
@@ -150,11 +150,15 @@ export class MontarPeriodoComponent implements OnInit {
 
      if(existe&&disciplina == -1){ //disciplina = -1 significa horário vago, ou seja se esse horario existe e está armazenado deve ser deletado
 
-      this.backMontarHorario.deleteGrade(gradeSeExistir).subscribe();
+      this.backMontarHorario.deleteGrade(gradeSeExistir).subscribe(dados =>{
+        this.eventEmitterService.atualizar();
+      });
 
      }else if(existe){ // se o horario existe no banco e não está sendo setado como vazio então ele deve ser editado
 
-      this.backMontarHorario.editGrade(gradeSeExistir).subscribe();
+      this.backMontarHorario.editGrade(gradeSeExistir).subscribe(dados =>{
+        this.eventEmitterService.atualizar();
+      });
 
      }else if(disciplina != -1){ // se o horario não existe e não esta sendo setado como vazio então ele deve ser criado, caso contrário ou seja não existe e esta sendo setado como vazio nada precisa ser feito
 
@@ -169,7 +173,9 @@ export class MontarPeriodoComponent implements OnInit {
   
       }
   
-      this.backMontarHorario.setGrade(novaGrade).subscribe();
+      this.backMontarHorario.setGrade(novaGrade).subscribe(dados =>{
+        this.eventEmitterService.atualizar();
+      });
 
      }
 

@@ -55,7 +55,7 @@ public class GradeController {
 				
 				if(disciplina1.getId_professor()==disciplina2.getId_professor()) { //checa se duas grades com mesmo professor
 					
-					System.out.println(grades.get(i).getHora()+" "+grades.get(i2).getHora()+" "+grades.get(i).getDia()+" "+grades.get(i2).getDia());
+					//System.out.println(grades.get(i).getHora()+" "+grades.get(i2).getHora()+" "+grades.get(i).getDia()+" "+grades.get(i2).getDia());
 					
 					if( grades.get(i).getHora().equals(grades.get(i2).getHora())&&grades.get(i).getDia().equals(grades.get(i2).getDia())) { //checa se duas grades com mesmo professor estão no mesmo dia e horário
 											
@@ -167,7 +167,7 @@ public class GradeController {
 	}
 	
 	//retorna todos os slots da grade que pertencem a um dado periodo
-	public Iterable<Grade> GradeSlotsByPeriodo(Integer id_periodo) {
+	public Iterable<Grade> GradeSlotsByPeriodo(Long id_periodo) {
 		
 		return gradeRepository.findGradeByIdPeriodo(id_periodo);
 	}

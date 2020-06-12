@@ -120,7 +120,7 @@ public class ApiMontarHorario {
 	
 	//retorna todos os slots da grade dado um determinado periodo
 	@PostMapping(path = "gradeSlotsByPeriodo")
-	public Iterable<Grade> GradeSlotsByPeriodo(@RequestBody Integer id_periodo) {
+	public Iterable<Grade> GradeSlotsByPeriodo(@RequestBody Long id_periodo) {
 		
 		
 		return manterGrade.GradeSlotsByPeriodo(id_periodo);

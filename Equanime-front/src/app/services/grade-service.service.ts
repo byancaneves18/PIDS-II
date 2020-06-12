@@ -4,6 +4,7 @@ import { Observable} from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
 import { Dia } from '../modelo/dia_semana.modelo';
+import { Alerta } from '../modelo/alera.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,11 @@ export class GradeServiceService {
   constructor(private http: HttpClient) { }
 
 
+
+    getAlertas():Observable<Alerta[]>{
+
+      return this.http.get<Alerta[]>(this.url+"/getAlertas");
+    }
 
     getDiasSemana():Observable<Dia[]>{
 

@@ -15,3 +15,18 @@
     <br>
     <app-montar-periodo *ngIf="isDiasCarregado()" ></app-montar-periodo> <!--Corpo da tabela o componente montar período só é chamado também quando os dias estão carregados-->
 </div>
+<br><br>
+
+
+<!-- bootstrap para o funcionamento das warnings -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<div *ngFor="let alerta of alertas">
+    <div *ngIf="alerta.tipo=='ALERTA'" class="alert alert-danger" role="alert">
+        <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+    </div>
+    <div *ngIf="alerta.tipo=='AVISO'" class="alert alert-warning" role="alert">
+        <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+    </div>
+</div>

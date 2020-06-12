@@ -15,7 +15,7 @@ public interface GradeRepository extends CrudRepository<Grade, Long>{
 	@Query(value="INSERT INTO grade_horaria (id, dia_semana, id_junfk, hora) values (:id, :dia_semana, :id_junfk, :hora)", nativeQuery = true)
 	public void criarGrade(@Param("id") int id, @Param("dia_semana") String dia_semana, @Param("id_junfk") int id_junfk, @Param("hora") String hora);
 	
-	public Iterable<Grade> findGradeByIdPeriodo(Integer id_periodo);
+	public Iterable<Grade> findGradeByIdPeriodo(Long id_periodo);
 	
 
 }

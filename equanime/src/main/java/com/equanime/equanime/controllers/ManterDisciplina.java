@@ -27,7 +27,7 @@ public class ManterDisciplina {
 		
 	}
 	
-	
+
 	
 	public Iterable<ModeloPeriodo> listarPeriodos() throws SQLException{
 		
@@ -65,11 +65,9 @@ public class ManterDisciplina {
 	}
 	
 	
-	public Optional<ModeloDisciplina> buscarPorId(String id_disciplina) throws SQLException {
+	public Optional<ModeloDisciplina> buscarPorId(Long id_disciplina) throws SQLException {
 		
-		Long id = Long.parseLong(id_disciplina);
-		
-		return repository.findById(id);
+		return repository.findById(id_disciplina);
 	}
 	
 	public void excluir(String id_disciplina) throws SQLException  {
@@ -96,10 +94,10 @@ public class ManterDisciplina {
 	
 	
 	
-	public Optional<ModeloPeriodo> BuscarPeriodoPorId(String id) throws SQLException {
+	public Optional<ModeloPeriodo> BuscarPeriodoPorId(Long id) throws SQLException {
 		
-		Long idLong = Long.parseLong(id);
-		return repositoryPeriodo.findById(idLong);
+
+		return repositoryPeriodo.findById(id);
 		
 	}
 	

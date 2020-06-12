@@ -1,5 +1,8 @@
 package com.equanime.equanime.api;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.equanime.equanime.controllers.GradeController;
 import com.equanime.equanime.models.DiaSemana;
 import com.equanime.equanime.models.Grade;
+import com.equanime.equanime.models.ModeloAlerta;
 
 @RequestMapping("/grade")
 @RestController
@@ -27,6 +31,11 @@ public class ApiMontarHorario {
 		return "grade/formGrade";
 	}
 	
+	@GetMapping (path = "getAlertas")
+	public List<ModeloAlerta> getAlertas() throws SQLException {
+		
+		return manterGrade.checarHorario();
+	}
 	
 	@GetMapping (path = "getDias")
 	public Iterable<DiaSemana> getDiaSemana() { // retorna uma lista de dias da semana
@@ -44,9 +53,9 @@ public class ApiMontarHorario {
 		JSONObject json = (JSONObject) parser.parse(body);
 		grade.setDia(json.get("dia").toString());
 		grade.setHora(json.get("hora").toString());
-		grade.setDisciplina(Integer.parseInt(json.get("diciplina").toString()));
+		grade.setDisciplina(Long.parseLong(json.get("diciplina").toString()));
 		grade.setId(Long.parseLong(json.get("id").toString()));
-		grade.setId_periodo(Integer.parseInt(json.get("id_periodo").toString()));
+		grade.setId_periodo(Long.parseLong(json.get("id_periodo").toString()));
 		System.out.println("criação de slot");
 		System.out.println("dia: "+grade.getDia());
 		System.out.println("as : "+grade.getHora());
@@ -65,9 +74,9 @@ public class ApiMontarHorario {
 		JSONObject json = (JSONObject) parser.parse(body);
 		grade.setDia(json.get("dia").toString());
 		grade.setHora(json.get("hora").toString());
-		grade.setDisciplina(Integer.parseInt(json.get("diciplina").toString()));
+		grade.setDisciplina(Long.parseLong(json.get("diciplina").toString()));
 		grade.setId(Long.parseLong(json.get("id").toString()));
-		grade.setId_periodo(Integer.parseInt(json.get("id_periodo").toString()));
+		grade.setId_periodo(Long.parseLong(json.get("id_periodo").toString()));
 		System.out.println("edição de slot");
 		System.out.println("dia: "+grade.getDia());
 		System.out.println("as : "+grade.getHora());
@@ -88,9 +97,9 @@ public class ApiMontarHorario {
 		JSONObject json = (JSONObject) parser.parse(body);
 		grade.setDia(json.get("dia").toString());
 		grade.setHora(json.get("hora").toString());
-		grade.setDisciplina(Integer.parseInt(json.get("diciplina").toString()));
+		grade.setDisciplina(Long.parseLong(json.get("diciplina").toString()));
 		grade.setId(Long.parseLong(json.get("id").toString()));
-		grade.setId_periodo(Integer.parseInt(json.get("id_periodo").toString()));
+		grade.setId_periodo(Long.parseLong(json.get("id_periodo").toString()));
 		System.out.println("exclusão de slot");
 		System.out.println("dia: "+grade.getDia());
 		System.out.println("as : "+grade.getHora());

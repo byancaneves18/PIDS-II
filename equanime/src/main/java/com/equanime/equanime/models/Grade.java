@@ -16,7 +16,7 @@ public class Grade {
 	private Long id;
 	
 	@Column(name="id_disciplina")
-	private Integer idDisciplina;
+	private Long idDisciplina;
 	
 	@Column(name="dia_semana")
 	private String diaSemana;
@@ -25,7 +25,7 @@ public class Grade {
 	private String hora;
 
 	@Column(name="id_periodo")
-	private Integer idPeriodo;
+	private Long idPeriodo;
 
 	
 	
@@ -45,10 +45,10 @@ public class Grade {
 		this.diaSemana = dia_semana;
 	} 
 	
-	public Integer getDiciplina() {
+	public Long getDiciplina() {
 		return idDisciplina;
 	}
-	public void setDisciplina(Integer disciplina) {
+	public void setDisciplina(Long disciplina) {
 		this.idDisciplina = disciplina;
 	}
 	
@@ -61,11 +61,11 @@ public class Grade {
 		this.hora = hora;
 	}
 
-	public Integer getId_periodo() {
+	public Long getId_periodo() {
 		return idPeriodo;
 	}
 
-	public void setId_periodo(Integer id_periodo) {
+	public void setId_periodo(Long id_periodo) {
 		this.idPeriodo = id_periodo;
 	}
 	

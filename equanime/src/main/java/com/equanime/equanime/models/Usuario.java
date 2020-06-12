@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
 	@Column(name= "nome")
 	private String nome;
@@ -34,19 +34,19 @@ public class Usuario implements Serializable {
 	private String senha;
 	
 	@Column(name="cpf")
-	private long cpf;
+	private String cpf;
 	
 	@Column(name="email")
 	private String email;
 	
 	@Column(name="carga_horaria")
-	private String cargaHoraria;
+	private Integer cargaHoraria;
 	
 	@Column(name="telefone")
-	private long telefone;
+	private String telefone;
 	
-	@Column(name="id_papel")
-	private Integer papel;
+	@Column(name="papel")
+	private String papel;
 	
 	@Column(name="cidade")
 	private String cidade;
@@ -75,11 +75,11 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -91,27 +91,27 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getPapel() {
+	public String getPapel() {
 		return papel;
 	}
 
-	public void setPapel(Integer papel) {
+	public void setPapel(String papel) {
 		this.papel = papel;
 	}
 
-	public String getCargaHoraria() {
+	public Integer getCargaHoraria() {
 		return cargaHoraria;
 	}
 	
-	public void setCargaHoraria(String cargaHoraria) {
+	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
 
-	public long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

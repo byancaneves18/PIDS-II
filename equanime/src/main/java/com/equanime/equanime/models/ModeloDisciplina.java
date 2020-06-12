@@ -18,11 +18,11 @@ public class ModeloDisciplina implements Serializable {
 	@GeneratedValue
 	private Long id;
 	@Column(name= "id_periodo")
-	private int id_periodo;
+	private Long id_periodo;
 	@Column(name= "nome")
 	private String nome;
 	@Column (name = "id_professor")
-	private Integer id_professor;
+	private Long id_professor;
 	
 	
 	/*public ModeloDisciplina(Long id_disciplina, int id_periodo, String nome) {
@@ -35,11 +35,11 @@ public class ModeloDisciplina implements Serializable {
 		
 	}*/
 	
-	public ModeloDisciplina(int id_periodo, String nome) {
+	public ModeloDisciplina(Long id_periodo, String nome) {
 		
 		this.id_periodo = id_periodo;
 		this.nome = nome;
-		this.id_professor =  99; //professor 99 é o valor default "sem professor"
+		this.id_professor =  (long) 99; //professor 99 é o valor default "sem professor"
 		
 		
 		
@@ -58,10 +58,10 @@ public class ModeloDisciplina implements Serializable {
 		this.id = id_disciplina;
 	}
 
-	public int getId_periodo() {
+	public Long getId_periodo() {
 		return id_periodo;
 	}
-	public void setId_periodo(int id_periodo) {
+	public void setId_periodo(Long id_periodo) {
 		this.id_periodo = id_periodo;
 	}
 	public String getNome() {
@@ -71,11 +71,11 @@ public class ModeloDisciplina implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getId_professor() {
+	public Long getId_professor() {
 		return id_professor;
 	}
 
-	public void setId_professor(int id_professor) {
+	public void setId_professor(Long id_professor) {
 		this.id_professor = id_professor;
 	}
 	

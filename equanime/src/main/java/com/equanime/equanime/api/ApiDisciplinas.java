@@ -45,7 +45,7 @@ public class ApiDisciplinas {
 	}
 	
 	@PostMapping(path = "periodoById")
-	public Optional<ModeloPeriodo> getPeriodoById(@RequestBody String id) throws SQLException{
+	public Optional<ModeloPeriodo> getPeriodoById(@RequestBody Long id) throws SQLException{
 
 			return manterDisciplina.BuscarPeriodoPorId(id);
 
@@ -66,8 +66,8 @@ public class ApiDisciplinas {
 	
 	
 	@PostMapping(path = "disciplinaById")
-	public Optional<ModeloDisciplina> getDisciplinaById(@RequestBody String id) throws NumberFormatException, SQLException{
-		
+	public Optional<ModeloDisciplina> getDisciplinaById(@RequestBody Long id) throws NumberFormatException, SQLException{
+
 			return manterDisciplina.buscarPorId(id);
 
 	}

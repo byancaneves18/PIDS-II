@@ -7,17 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="dia_semana")
-public class DiaSemana {
+@Table(name = "turno")
+public class ModeloTurno {
 	
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 	
-	@Column(name="nome_semana")
-	String  nomeSemana;
-	
-	
+	@Column(name = "nome")
+	private String nome;
 
 	public Long getId() {
 		return id;
@@ -27,13 +25,12 @@ public class DiaSemana {
 		this.id = id;
 	}
 
-	public String getDia_semana() {
-		return nomeSemana;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDia_semana(String dia_semana) {
-		this.nomeSemana = dia_semana;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	
 
 }

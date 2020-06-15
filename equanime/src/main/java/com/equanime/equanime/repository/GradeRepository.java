@@ -16,6 +16,7 @@ public interface GradeRepository extends CrudRepository<Grade, Long>{
 	public void criarGrade(@Param("id") int id, @Param("dia_semana") String dia_semana, @Param("id_junfk") int id_junfk, @Param("hora") String hora);
 	
 	public Iterable<Grade> findGradeByIdPeriodo(Long id_periodo);
+	public Iterable<Grade> findGradeByDiaSemana(String diaSemana);
 	
 
 }

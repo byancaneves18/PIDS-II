@@ -5,7 +5,7 @@ import { DisciplinasServerComunicationService } from '../services/disciplinas-se
 import { Periodo } from '../modelo/periodo.modelo';
 import { EventEmitterService } from '../services/event-emitter.service';
 import { Dia } from '../modelo/dia_semana.modelo';
-import { Alerta } from '../modelo/alera.modelo';
+import { Alerta } from '../modelo/alerta.modelo';
 
 
 
@@ -25,22 +25,7 @@ export class MontarHorarioComponent implements OnInit{
 
   periodos :Periodo[] = []; //variável local que representa os períodos vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   diasDaSemana : Dia[]; // variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
-  alertas: Alerta[] =
-  [
-    {
-      tipo : 'ALERTA',
-      mensagem: 'Professora Elke está de muleta'
-    },
-    {
-      tipo : 'ALERTA',
-      mensagem: 'Guiliano morreu'
-    },
-    {
-      tipo : 'AVISO',
-      mensagem: 'Alunos não suportam mais a juliana bessa'
-    }
-
-  ]; // alertas que aparecem caso algo esteja errado no horário
+  alertas: Alerta[] =[]; // alertas que aparecem caso algo esteja errado no horário
 
 
 

@@ -4,7 +4,7 @@ import { Observable} from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
 import { Dia } from '../modelo/dia_semana.modelo';
-import { Alerta } from '../modelo/alera.modelo';
+import { Alerta } from '../modelo/alerta.modelo';
 
 @Injectable({
   providedIn: 'root'

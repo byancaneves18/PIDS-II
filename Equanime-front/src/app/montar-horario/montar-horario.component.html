@@ -16,17 +16,37 @@
     <app-montar-periodo *ngIf="isDiasCarregado()" ></app-montar-periodo> <!--Corpo da tabela o componente montar período só é chamado também quando os dias estão carregados-->
 </div>
 <br><br>
-
+  
 
 <!-- bootstrap para o funcionamento das warnings -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-<div *ngFor="let alerta of alertas">
-    <div *ngIf="alerta.tipo=='ALERTA'" class="alert alert-danger" role="alert">
-        <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+<div class="row">
+    <div class="column">
+        <div *ngFor="let alerta of alertas">
+            <div *ngIf="alerta.tipo=='ALERTA'" class="alert alert-danger" role="alert">
+                <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+            </div>
+            <div *ngIf="alerta.tipo=='AVISO'" class="alert alert-warning" role="alert">
+                <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+            </div>
+        </div>
     </div>
-    <div *ngIf="alerta.tipo=='AVISO'" class="alert alert-warning" role="alert">
-        <strong>{{alerta.tipo}}</strong> {{alerta.mensagem}}
+
+    <div class="column">
+        <div class="panel panel-info" *ngFor="let alerta of alertas">
+            <div class="panel-body" >
+            Panel content
+            </div>
+            <div class="panel-footer" >Panel footer
+                <div class="wrapper">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+

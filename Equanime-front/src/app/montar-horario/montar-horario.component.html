@@ -33,16 +33,31 @@
         </div>
     </div>
 
-    <div class="column">
-        <div class="panel panel-info" *ngFor="let alerta of alertas">
-            <div class="panel-body" >
-            Panel content
+    <div class="column" *ngIf="isUsuariosCarregado()&& isObservacoesCarregado()">
+        <div  *ngFor="let pedidoP of pedidosProfessor">
+            <div class="panel panel-success" *ngIf="pedidoP.atendido" style="background-color:rgb(176, 252, 199);">
+                <div class="panel-body " *ngIf="usuarioExists(pedidoP.id_professor)">
+                {{getUsuariobyId(pedidoP.id_professor).nome}}
+                </div>
+                <div class="panel-footer" style="background-color:rgb(218, 253, 228);">{{pedidoP.observacao}}
+                    <div class="wrapper">
+                        <button type="button" class="btn btn-default btn-lg" (click)="tickPedidoProfessor(pedidoP,!pedidoP.atendido);">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:rgb(0, 255, 72);"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="panel-footer" >Panel footer
-                <div class="wrapper">
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    </button>
+
+            <div class="panel panel-primary" *ngIf="!pedidoP.atendido" style="background-color:rgb(176, 228, 252);">
+                <div class="panel-body " *ngIf="usuarioExists(pedidoP.id_professor)">
+                {{getUsuariobyId(pedidoP.id_professor).nome}}
+                </div>
+                <div class="panel-footer" >{{pedidoP.observacao}}
+                    <div class="wrapper">
+                        <button type="button" class="btn btn-default btn-lg" (click)="tickPedidoProfessor(pedidoP,!pedidoP.atendido);">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

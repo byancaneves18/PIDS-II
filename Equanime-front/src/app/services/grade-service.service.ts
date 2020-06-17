@@ -5,6 +5,7 @@ import { HttpClient} from '@angular/common/http';
 import { Grade } from '../modelo/grade.modelo';
 import { Dia } from '../modelo/dia_semana.modelo';
 import { Alerta } from '../modelo/alerta.modelo';
+import { PedidoProf } from '../modelo/pedidoProfessor.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,17 @@ export class GradeServiceService {
   constructor(private http: HttpClient) { }
 
 
+
+    updateObservacao(body:PedidoProf){ //da ordem para o back atualizar a observacao especificada no body
+
+      return this.http.post(this.url+"/updateObservacao",body);
+
+    }
+
+    getObservacoes(): Observable<PedidoProf[]>{
+
+      return this.http.get<PedidoProf[]>(this.url+"/getObservacoes");
+    }
 
     getAlertas():Observable<Alerta[]>{
 

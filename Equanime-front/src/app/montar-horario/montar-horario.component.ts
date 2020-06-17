@@ -6,6 +6,9 @@ import { Periodo } from '../modelo/periodo.modelo';
 import { EventEmitterService } from '../services/event-emitter.service';
 import { Dia } from '../modelo/dia_semana.modelo';
 import { Alerta } from '../modelo/alerta.modelo';
+import { PedidoProf } from '../modelo/pedidoProfessor.modelo';
+import { Usuarios } from '../modelo/usuario.modelo';
+import { UsuarioServiceService } from '../services/usuario-service.service';
 
 
 
@@ -26,6 +29,8 @@ export class MontarHorarioComponent implements OnInit{
   periodos :Periodo[] = []; //variável local que representa os períodos vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   diasDaSemana : Dia[]; // variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   alertas: Alerta[] =[]; // alertas que aparecem caso algo esteja errado no horário
+  usuarios: Usuarios[];
+  pedidosProfessor : PedidoProf[];
 
 
 
@@ -38,7 +43,8 @@ export class MontarHorarioComponent implements OnInit{
     private backMontarHorario: GradeServiceService, //serviço de acesso a interface 'ApiMontarHorário' do backend
     public dialog: MatDialog, 
     private BackDisciplinas: DisciplinasServerComunicationService, //serviço de acesso a interface 'ApiDisciplinas' do backend
-    private eventEmitterService: EventEmitterService  //serviço responsavel por comunicar eventos entre os componentes por exemplo: passar uma variável ou exigir uma ação em outro componente
+    private eventEmitterService: EventEmitterService,  //serviço responsavel por comunicar eventos entre os componentes por exemplo: passar uma variável ou exigir uma ação em outro componente
+    private backUsuarios: UsuarioServiceService
     ) {
     
   }
@@ -47,6 +53,8 @@ export class MontarHorarioComponent implements OnInit{
     this.getPeriodos();
     this.getDiasDaSemana();
     this.getAlertas();
+    this.getUsuarios();
+    this.getPedidosProfessor();
 
     if (this.eventEmitterService.subsVaratualizar==undefined) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'getAlertas'
       this.eventEmitterService.subsVaratualizar= this.eventEmitterService.    
@@ -63,7 +71,37 @@ export class MontarHorarioComponent implements OnInit{
   //existencia da variável, caso não exista o mesmo fica impedido de continuar 
   //========================================================================================================================================
 
+  usuarioExists(id:number): boolean{ // retorna true se o usuario com id fornecido esta armazenado localmente
 
+
+      for(let i =0;i<this.usuarios.length;i++){
+
+        if(this.usuarios[i].id==id){
+          return true;
+        }
+
+      }
+      return false;
+  }
+
+
+  isObservacoesCarregado() : boolean{
+    
+    if(this.pedidosProfessor!=null&&this.usuarios[0]!=null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isUsuariosCarregado() : boolean{
+    
+    if(this.usuarios!=null&&this.usuarios[0]!=null){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   isDiasCarregado():boolean{ //Retorna true se foram carregados dias da semana do back
 
@@ -90,6 +128,30 @@ export class MontarHorarioComponent implements OnInit{
   //Métodos que usam o serviço de acesso ao servidor para desempenhar ações no memso
   //========================================================================================================================================
 
+
+  getPedidosProfessor(){ //busca a lista de pedidos de professor no back e armazena em uma variavel
+
+    this.backMontarHorario.getObservacoes().subscribe(dados =>{
+
+      this.pedidosProfessor = dados;
+
+
+    });
+
+
+  }
+
+  getUsuarios(){ //busca a lista de usuarios no back e armazena em uma variavel
+
+    this.backUsuarios.getUsuarios().subscribe( dados =>{
+
+      this.usuarios = dados;
+
+      console.log(this.usuarios);
+
+    });
+
+  }
 
   getAlertas(){//buscar alertas no back e grava na variável
     this.alertas = null;
@@ -129,6 +191,32 @@ export class MontarHorarioComponent implements OnInit{
 
     this.eventEmitterService.mudarPeriodo(id_periodo); //notifica o componente 'montar-periodo' da mudança de periodo atravez de um event Emitter
 
+  }
+
+
+  tickPedidoProfessor(observacao:PedidoProf,novoEstado:boolean){ //Chamado quando o usuario altera o estado de um pedido de professor
+
+    observacao.atendido = novoEstado;
+
+    this.backMontarHorario.updateObservacao(observacao).subscribe();
+
+  }
+
+
+//=====================================================OUTROS==============================================================================
+  
+
+  getUsuariobyId(id:number): Usuarios{ // retorna um usuario baseado no sei id
+
+    for(let i =0;i<this.usuarios.length;i++){
+
+      if(this.usuarios[i].id==id){
+        return this.usuarios[i];
+      }
+
+    }
+
+    return null;
   }
 
 }

@@ -17,6 +17,7 @@ import com.equanime.equanime.controllers.GradeController;
 import com.equanime.equanime.models.DiaSemana;
 import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.models.ModeloAlerta;
+import com.equanime.equanime.models.ModeloObservacaoProfessor;
 
 @RequestMapping("/grade")
 @RestController
@@ -29,6 +30,33 @@ public class ApiMontarHorario {
 	@RequestMapping("/montarGrade")
 	public String form() {
 		return "grade/formGrade";
+	}
+	
+	@PostMapping (path = "updateObservacao")
+	public void updateObservacoesProfessor(@RequestBody String body) throws ParseException{ //Retona uma lista com todas as observações de professor
+		
+		ModeloObservacaoProfessor observacao = new ModeloObservacaoProfessor();
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(body);
+		observacao.setId(Long.parseLong(json.get("id").toString()));
+		observacao.setAtendido(Boolean.parseBoolean(json.get("atendido").toString()));
+		observacao.setId_professor(Long.parseLong(json.get("id_professor").toString()));
+		observacao.setObservacao(json.get("observacao").toString());
+		
+		System.out.println("update Observacao");
+		System.out.println("id: "+observacao.getId());
+		System.out.println("atendido : "+observacao.isAtendido());
+		System.out.println("observacao :"+observacao.getObservacao());
+		
+		 manterGrade.updateObservacoesProfessor(observacao);
+		
+	}
+	
+	@GetMapping (path = "getObservacoes")
+	public Iterable<ModeloObservacaoProfessor> getObservacoesProfessor(){ //Retona uma lista com todas as observações de professor
+		
+		return manterGrade.getObservacoesProfessor();
+		
 	}
 	
 	@GetMapping (path = "getAlertas")

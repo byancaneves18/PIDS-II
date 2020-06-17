@@ -16,9 +16,11 @@ import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.models.ModeloAlerta;
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloDisponibilidadeProfessor;
+import com.equanime.equanime.models.ModeloObservacaoProfessor;
 import com.equanime.equanime.repository.DiaSemanaRepository;
 import com.equanime.equanime.repository.DisponibilidadeProfessorRepository;
 import com.equanime.equanime.repository.GradeRepository;
+import com.equanime.equanime.repository.ObservacaoProfessorRepository;
 import com.equanime.equanime.repository.TurnoRepository;
 
 
@@ -37,6 +39,15 @@ public class GradeController {
 	DisponibilidadeProfessorRepository disponibilidadeRepository;
 	@Autowired
 	TurnoRepository turnoRepository;
+	@Autowired
+	ObservacaoProfessorRepository observacaoRepository; 
+	
+	
+	
+	public Iterable<ModeloObservacaoProfessor> getObservacoesProfessor(){ //Retona uma lista com todas as observações de professor
+		
+		return observacaoRepository.findAll();
+	}
 	
 	
 	public List<ModeloAlerta> checarDisponibilidades() throws SQLException{ //Verifica se as aulas estão de acordo com as preferencias dos professores
@@ -277,6 +288,13 @@ public class GradeController {
 	public boolean ExisteGradePorId(Long id) {
 		
 		return gradeRepository.existsById(id);
+	}
+
+
+	public void updateObservacoesProfessor(ModeloObservacaoProfessor observacao) {
+		
+		observacaoRepository.save(observacao);
+		
 	}
 	
 	

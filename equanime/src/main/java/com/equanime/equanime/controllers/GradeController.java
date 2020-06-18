@@ -17,10 +17,12 @@ import com.equanime.equanime.models.ModeloAlerta;
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloDisponibilidadeProfessor;
 import com.equanime.equanime.models.ModeloObservacaoProfessor;
+import com.equanime.equanime.models.ModeloPedidoAluno;
 import com.equanime.equanime.repository.DiaSemanaRepository;
 import com.equanime.equanime.repository.DisponibilidadeProfessorRepository;
 import com.equanime.equanime.repository.GradeRepository;
 import com.equanime.equanime.repository.ObservacaoProfessorRepository;
+import com.equanime.equanime.repository.Pedido_aluno_Repository;
 import com.equanime.equanime.repository.TurnoRepository;
 
 
@@ -41,7 +43,20 @@ public class GradeController {
 	TurnoRepository turnoRepository;
 	@Autowired
 	ObservacaoProfessorRepository observacaoRepository; 
+	@Autowired
+	Pedido_aluno_Repository pedidoAlunoRespository;
 	
+	
+	
+	public void updatePedidoAluno(ModeloPedidoAluno pedido) {
+		
+		pedidoAlunoRespository.save(pedido);
+	}
+	
+	public Iterable<ModeloPedidoAluno> getPedidosAluno(){ //retorna uma lista com todos os pedidos de aluno
+		
+		return pedidoAlunoRespository.findAll();
+	}
 	
 	
 	public Iterable<ModeloObservacaoProfessor> getObservacoesProfessor(){ //Retona uma lista com todas as observações de professor

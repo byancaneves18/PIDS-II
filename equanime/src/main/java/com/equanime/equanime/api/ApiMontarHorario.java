@@ -18,6 +18,7 @@ import com.equanime.equanime.models.DiaSemana;
 import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.models.ModeloAlerta;
 import com.equanime.equanime.models.ModeloObservacaoProfessor;
+import com.equanime.equanime.models.ModeloPedidoAluno;
 
 @RequestMapping("/grade")
 @RestController
@@ -32,8 +33,32 @@ public class ApiMontarHorario {
 		return "grade/formGrade";
 	}
 	
+	
+	@PostMapping (path = "updatePedido")
+	public void updatePedidosAluno(@RequestBody String body) throws ParseException{ //Atualiza um pedido de aluno especificado no body
+		
+		
+		ModeloPedidoAluno pedido = new ModeloPedidoAluno();
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(body);
+		pedido.setId(Long.parseLong(json.get("id").toString()));
+		pedido.setAtendido(Boolean.parseBoolean(json.get("atendido").toString()));
+		pedido.setPedido(json.get("pedido").toString());
+		
+		
+		 manterGrade.updatePedidoAluno(pedido);
+		
+	}
+	
+	@GetMapping (path = "getPedidos")
+	public Iterable<ModeloPedidoAluno> getPedidosAluno(){ //retorna uma lista com todos os pedidos de aluno
+		
+		return manterGrade.getPedidosAluno();
+		
+	}
+	
 	@PostMapping (path = "updateObservacao")
-	public void updateObservacoesProfessor(@RequestBody String body) throws ParseException{ //Retona uma lista com todas as observações de professor
+	public void updateObservacoesProfessor(@RequestBody String body) throws ParseException{ //Atualiza uma observação de professor especificada no body
 		
 		ModeloObservacaoProfessor observacao = new ModeloObservacaoProfessor();
 		JSONParser parser = new JSONParser();

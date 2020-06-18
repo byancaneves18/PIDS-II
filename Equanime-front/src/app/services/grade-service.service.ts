@@ -6,6 +6,7 @@ import { Grade } from '../modelo/grade.modelo';
 import { Dia } from '../modelo/dia_semana.modelo';
 import { Alerta } from '../modelo/alerta.modelo';
 import { PedidoProf } from '../modelo/pedidoProfessor.modelo';
+import { PedidoAluno } from '../modelo/pedidosAluno.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,19 @@ export class GradeServiceService {
 
   constructor(private http: HttpClient) { }
 
+    updatePedido(body:PedidoAluno){ //da ordem para o back atualizar o pedido especificado no body
 
+      return this.http.post(this.url+"/updatePedido",body);
+
+    }
+
+
+    getPedidosAluno():Observable<PedidoAluno[]>{// busca uma lista de pedidos de aluno no back
+      
+      return this.http.get<PedidoAluno[]>(this.url+"/getPedidos");
+
+
+    }
 
     updateObservacao(body:PedidoProf){ //da ordem para o back atualizar a observacao especificada no body
 

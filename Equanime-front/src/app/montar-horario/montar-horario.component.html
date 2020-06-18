@@ -21,7 +21,10 @@
 <!-- bootstrap para o funcionamento das warnings -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
 <div class="row">
+    <!--ALERTAS E AVISOS-->
     <div class="column">
         <div *ngFor="let alerta of alertas">
             <div *ngIf="alerta.tipo=='ALERTA'" class="alert alert-danger" role="alert">
@@ -33,6 +36,8 @@
         </div>
     </div>
 
+    
+    <!--PEDIDOS DE PROFESSOR-->
     <div class="column" *ngIf="isUsuariosCarregado()&& isObservacoesCarregado()">
         <div  *ngFor="let pedidoP of pedidosProfessor">
             <div class="panel panel-success" *ngIf="pedidoP.atendido" style="background-color:rgb(176, 252, 199);">
@@ -61,7 +66,44 @@
                 </div>
             </div>
         </div>
+        <!--PEDIDOS DE ALUNOS-->
+        <div *ngIf="isPedidosCarregado()">
+            <div  *ngFor="let pedidoA of pedidosAluno">
+                <div class="panel panel-success" *ngIf="pedidoA.atendido" style="background-color:rgb(176, 252, 199);">
+                    <div class="panel-body ">
+                        Colegiado
+                    </div>
+                    <div class="panel-footer" style="background-color:rgb(218, 253, 228);">{{pedidoA.pedido}}
+                        <div class="wrapper">
+                            <button type="button" class="btn btn-default btn-lg" (click)="tickPedidoAluno(pedidoA,!pedidoA.atendido);">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:rgb(0, 255, 72);"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary" *ngIf="!pedidoA.atendido" style="background-color:rgb(176, 228, 252);">
+                    <div class="panel-body " >
+                        Colegiado
+                    </div>
+                    <div class="panel-footer" >{{pedidoA.pedido}}
+                        <div class="wrapper">
+                            <button type="button" class="btn btn-default btn-lg" (click)="tickPedidoAluno(pedidoA,!pedidoA.atendido);">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+
 </div>
 
 

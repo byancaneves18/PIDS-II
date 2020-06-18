@@ -9,6 +9,7 @@ import { Alerta } from '../modelo/alerta.modelo';
 import { PedidoProf } from '../modelo/pedidoProfessor.modelo';
 import { Usuarios } from '../modelo/usuario.modelo';
 import { UsuarioServiceService } from '../services/usuario-service.service';
+import { PedidoAluno } from '../modelo/pedidosAluno.modelo';
 
 
 
@@ -31,6 +32,8 @@ export class MontarHorarioComponent implements OnInit{
   alertas: Alerta[] =[]; // alertas que aparecem caso algo esteja errado no horário
   usuarios: Usuarios[];
   pedidosProfessor : PedidoProf[];
+  pedidosAluno: PedidoAluno[];
+
 
 
 
@@ -55,6 +58,7 @@ export class MontarHorarioComponent implements OnInit{
     this.getAlertas();
     this.getUsuarios();
     this.getPedidosProfessor();
+    this.getPedidosAluno();
 
     if (this.eventEmitterService.subsVaratualizar==undefined) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'getAlertas'
       this.eventEmitterService.subsVaratualizar= this.eventEmitterService.    
@@ -85,9 +89,19 @@ export class MontarHorarioComponent implements OnInit{
   }
 
 
+  isPedidosCarregado() : boolean{
+    
+    if(this.pedidosAluno!=null&&this.pedidosAluno[0]!=null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
   isObservacoesCarregado() : boolean{
     
-    if(this.pedidosProfessor!=null&&this.usuarios[0]!=null){
+    if(this.pedidosProfessor!=null&&this.pedidosProfessor[0]!=null){
       return true;
     }else{
       return false;
@@ -128,6 +142,14 @@ export class MontarHorarioComponent implements OnInit{
   //Métodos que usam o serviço de acesso ao servidor para desempenhar ações no memso
   //========================================================================================================================================
 
+
+  getPedidosAluno(){ //busca a lista de pedidos de aluno no back e armazena em uma variavel
+
+    this.backMontarHorario.getPedidosAluno().subscribe(dados=>{
+      this.pedidosAluno = dados;
+    });
+
+  }
 
   getPedidosProfessor(){ //busca a lista de pedidos de professor no back e armazena em uma variavel
 
@@ -199,6 +221,14 @@ export class MontarHorarioComponent implements OnInit{
     observacao.atendido = novoEstado;
 
     this.backMontarHorario.updateObservacao(observacao).subscribe();
+
+  }
+
+  tickPedidoAluno(pedido:PedidoAluno,novoEstado:boolean){ //Chamado quando o usuario altera o estado de um pedido de professor
+
+    pedido.atendido = novoEstado;
+
+    this.backMontarHorario.updatePedido(pedido).subscribe();
 
   }
 

@@ -18,6 +18,12 @@ export class GradeServiceService {
 
   constructor(private http: HttpClient) { }
 
+
+
+
+    downloadPdf(): Observable<any>{
+      return this.http.get(this.url+"/getHorarioPDF", {responseType: 'blob'});
+    }
     updatePedido(body:PedidoAluno){ //da ordem para o back atualizar o pedido especificado no body
 
       return this.http.post(this.url+"/updatePedido",body);

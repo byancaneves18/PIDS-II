@@ -208,6 +208,20 @@ export class MontarHorarioComponent implements OnInit{
   //========================================================================================================================================
 
 
+  baixarHorarioPdf(){
+
+
+    this.backMontarHorario.downloadPdf().subscribe(response => {
+			//let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
+			//const url= window.URL.createObjectURL(blob);
+			//window.open(url);
+			window.location.href = response.url;
+			//fileSaver.saveAs(blob, 'employees.json');
+		}), error => console.log('Error downloading the file'),
+                 () => console.info('File downloaded successfully');
+
+
+  }
 
   selecionarPeriodo(id_periodo:number){ //chamado quando o usuario seleciona um periodo na tabela
 

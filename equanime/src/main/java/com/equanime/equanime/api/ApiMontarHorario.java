@@ -1,5 +1,8 @@
 package com.equanime.equanime.api;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -7,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,7 @@ import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.models.ModeloAlerta;
 import com.equanime.equanime.models.ModeloObservacaoProfessor;
 import com.equanime.equanime.models.ModeloPedidoAluno;
+import com.itextpdf.text.DocumentException;
 
 @RequestMapping("/grade")
 @RestController
@@ -31,6 +36,18 @@ public class ApiMontarHorario {
 	@RequestMapping("/montarGrade")
 	public String form() {
 		return "grade/formGrade";
+	}
+	
+	
+	
+	
+	@GetMapping (path = "getHorarioPDF")
+	public ResponseEntity<byte[]> getHorarioPDF() throws DocumentException, SQLException, IOException{ 
+		
+		
+		System.out.println("getHorarioPDF");
+		 return manterGrade.downloadPDF();
+		
 	}
 	
 	

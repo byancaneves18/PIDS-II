@@ -1,5 +1,12 @@
 package com.equanime.equanime.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +16,9 @@ import java.util.stream.Stream;
 import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.equanime.equanime.models.DiaSemana;
@@ -18,12 +28,28 @@ import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloDisponibilidadeProfessor;
 import com.equanime.equanime.models.ModeloObservacaoProfessor;
 import com.equanime.equanime.models.ModeloPedidoAluno;
+import com.equanime.equanime.models.ModeloPeriodo;
 import com.equanime.equanime.repository.DiaSemanaRepository;
 import com.equanime.equanime.repository.DisponibilidadeProfessorRepository;
 import com.equanime.equanime.repository.GradeRepository;
 import com.equanime.equanime.repository.ObservacaoProfessorRepository;
 import com.equanime.equanime.repository.Pedido_aluno_Repository;
+import com.equanime.equanime.repository.PeriodoRepository;
 import com.equanime.equanime.repository.TurnoRepository;
+import com.itextpdf.text.pdf.PdfPCell;
+//import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
 
 @Controller
@@ -45,6 +71,149 @@ public class GradeController {
 	ObservacaoProfessorRepository observacaoRepository; 
 	@Autowired
 	Pedido_aluno_Repository pedidoAlunoRespository;
+	@Autowired
+	PeriodoRepository periodoRespository;
+	
+
+	
+	//caminho do relatorio que sera gerado
+	String horarioPdf = "Horario.pdf";
+	
+	
+	
+	public ResponseEntity<byte[]> downloadPDF() throws DocumentException, SQLException, IOException{
+		
+
+        Path path = Paths.get(horarioPdf);
+        byte[] content = Files.readAllBytes(path);
+		
+		CriarArquivoPDF(horarioPdf);
+		
+		return ResponseEntity.ok()
+                .contentLength(content.length)
+                .header(HttpHeaders.CONTENT_TYPE, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "Horário.pdf")
+                .body(content);
+	}
+	
+	//Gera um arquivo pdf do horário no caminho desejado
+	public void CriarArquivoPDF(String path) throws DocumentException, SQLException, IOException{
+		
+		//File file = new  File(path);
+		//FileOutputStream fos = new FileOutputStream(file);  
+		//PdfWriter pdfwriter = new PdfWriter(fos);
+		//PdfDocument pdfDocument = new PdfDocument(pdfwriter);
+		//Document document = new Document(pdfDocument);
+		
+		Document document = new Document();
+		PdfWriter.getInstance(document, new FileOutputStream(path));
+		document.open();
+		List<ModeloPeriodo> periodos = (List<ModeloPeriodo>) periodoRespository.findAll();
+		List<DiaSemana> diasSemana = (List<DiaSemana>) diaRepository.findAll();
+		
+		for (ModeloPeriodo modeloPeriodo : periodos) {
+			
+			Font tituloFont = new Font(FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
+			Font bold = new Font(FontFamily.HELVETICA, 14, Font.BOLD);
+
+			List<Grade> gradesDoPeriodo = (List<Grade>) gradeRepository.findGradeByIdPeriodo(modeloPeriodo.getId_periodo());
+			
+			Phrase titulo= new Phrase(modeloPeriodo.getPeriodo_semestre()+" período");
+			titulo.setFont(tituloFont);
+			document.add(titulo);	
+			
+			document.add(new Paragraph(".                                                                                                                                                                                           ."));
+			
+			PdfPTable cabecalho = new PdfPTable(diasSemana.size()+1);
+			Phrase horarioLabel = new Phrase("Horario");
+			horarioLabel.setFont(bold);
+			PdfPCell cel = new PdfPCell(horarioLabel);
+			cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cabecalho.addCell(cel);
+			
+
+			for (DiaSemana dia : diasSemana) {
+			
+				Phrase phraseDia = new Phrase(dia.getDia_semana());
+				horarioLabel.setFont(bold);
+				PdfPCell celdia = new PdfPCell(phraseDia);
+				celdia.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cabecalho.addCell(celdia);
+			}
+			
+			document.add(cabecalho);
+			
+			for(int i =0;i<4;i++) {
+				
+				PdfPTable horariox = new PdfPTable(diasSemana.size()+1);
+				
+				switch (i) {
+					case 0: horariox.addCell("14:50"); 
+					break;
+					case 1: horariox.addCell("16:40");
+					break;
+					case 2: horariox.addCell("19:00");
+					break;
+					case 3: horariox.addCell("20:50"); 
+					break;
+				}
+				
+				
+				//cabecalho.addCell("Hora");
+				for (DiaSemana dia : diasSemana) {
+					
+					boolean existe = false;
+					
+					for (Grade grade : gradesDoPeriodo) {
+						
+						
+						if(grade.getHora().equals("14:50")&&i==0||grade.getHora().equals("16:40")&&i==1||grade.getHora().equals("19:00")&&i==2||grade.getHora().equals("20:40")&&i==3) {
+							
+							if(grade.getDia().equals(dia.getDia_semana())) {
+								existe = true;
+								PdfPCell cell = new PdfPCell(new Phrase(manterDisciplina.buscarPorId(grade.getDiciplina()).get().getNome()));
+						        cell.setFixedHeight(60);
+						        cell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+								horariox.addCell(cell);
+							}
+							
+						}
+						
+					}
+					
+					
+					if(!existe) {
+						
+				        PdfPCell cell = new PdfPCell(new Phrase("Vago"));
+				        cell.setFixedHeight(60);
+				        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				       // cell.setColspan(2);
+						
+						horariox.addCell(cell);
+						
+					}
+					
+				}
+				
+				document.add(horariox);
+			}
+			
+			Chunk linebreak = new Chunk(new DottedLineSeparator());
+			 
+			//document.add(linebreak); 
+			document.add(new Paragraph(".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ."));                     
+
+			
+		}
+		
+		document.close();
+		
+		//return file;
+		
+		
+	}
+	
+	
 	
 	
 	

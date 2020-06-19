@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="src/main/resources/Itext7/sign-7.1.3.jar"/>
 	<classpathentry kind="lib" path="src/main/resources/Itext7/styled-xml-parser-7.1.3.jar"/>
 	<classpathentry kind="lib" path="src/main/resources/Itext7/svg-7.1.3.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/Itext7/itextpdf-5.5.13.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

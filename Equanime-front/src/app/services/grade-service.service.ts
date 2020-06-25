@@ -16,73 +16,77 @@ export class GradeServiceService {
 
   url = 'http://localhost:8080/grade';
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient,/*private http: Http*/) { }
 
 
 
 
     downloadPdf(): Observable<any>{
-      return this.http.get(this.url+"/getHorarioPDF", {responseType: 'blob'});
+      return this.httpClient.get(this.url+"/getHorarioPDF", {responseType: 'blob'});
+
     }
+
+
+
     updatePedido(body:PedidoAluno){ //da ordem para o back atualizar o pedido especificado no body
 
-      return this.http.post(this.url+"/updatePedido",body);
+      return this.httpClient.post(this.url+"/updatePedido",body);
 
     }
 
 
     getPedidosAluno():Observable<PedidoAluno[]>{// busca uma lista de pedidos de aluno no back
       
-      return this.http.get<PedidoAluno[]>(this.url+"/getPedidos");
+      return this.httpClient.get<PedidoAluno[]>(this.url+"/getPedidos");
 
 
     }
 
     updateObservacao(body:PedidoProf){ //da ordem para o back atualizar a observacao especificada no body
 
-      return this.http.post(this.url+"/updateObservacao",body);
+      return this.httpClient.post(this.url+"/updateObservacao",body);
 
     }
 
     getObservacoes(): Observable<PedidoProf[]>{
 
-      return this.http.get<PedidoProf[]>(this.url+"/getObservacoes");
+      return this.httpClient.get<PedidoProf[]>(this.url+"/getObservacoes");
     }
 
     getAlertas():Observable<Alerta[]>{
 
-      return this.http.get<Alerta[]>(this.url+"/getAlertas");
+      return this.httpClient.get<Alerta[]>(this.url+"/getAlertas");
     }
 
     getDiasSemana():Observable<Dia[]>{
 
-      return this.http.get<Dia[]>(this.url+"/getDias");
+      return this.httpClient.get<Dia[]>(this.url+"/getDias");
 
     }
 
     setGrade(body:Grade){ //da ordem para o back criar uma nova grade especificada no body
 
-      return this.http.post(this.url+"/setGrade",body);
+      return this.httpClient.post(this.url+"/setGrade",body);
 
     }
 
 
     editGrade(body:Grade){ //da ordem para o back editar uma grade especificada no body
 
-      return this.http.post(this.url+"/editGrade",body);
+      return this.httpClient.post(this.url+"/editGrade",body);
 
     }
 
     deleteGrade(body:Grade){ //da ordem para o back deletar uma grade especificada no body
 
-      return this.http.post(this.url+"/deleteGrade",body);
+      return this.httpClient.post(this.url+"/deleteGrade",body);
 
     }
 
 
     getGradesByPeriodo(id_periodo:number):Observable<Grade[]>{ //busca no back uma lista de elementos grade pertencentes ao periodo id = id_periodo
 
-        return this.http.post<Grade[]>(this.url+"/gradeSlotsByPeriodo",id_periodo);
+        return this.httpClient.post<Grade[]>(this.url+"/gradeSlotsByPeriodo",id_periodo);
 
     }
 }

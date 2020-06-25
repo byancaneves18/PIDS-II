@@ -21,13 +21,14 @@ import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-red
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient} from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
 import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-periodo.component';
 import { CommonModule } from '@angular/common';
 import { EventEmitterService } from './services/event-emitter.service';
+
 
 
 

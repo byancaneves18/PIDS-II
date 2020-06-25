@@ -208,20 +208,18 @@ export class MontarHorarioComponent implements OnInit{
   //========================================================================================================================================
 
 
-  baixarHorarioPdf(){
+  baixarHorarioPdf(){ //Chamado quando o usuario clica em baixar horario como pdf, também faz um acesso no banco para pegar o arquivo e chama uma função para realizar o download
 
 
-    this.backMontarHorario.downloadPdf().subscribe(response => {
-			//let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
-			//const url= window.URL.createObjectURL(blob);
-			//window.open(url);
-			window.location.href = response.url;
-			//fileSaver.saveAs(blob, 'employees.json');
-		}), error => console.log('Error downloading the file'),
-                 () => console.info('File downloaded successfully');
-
+    this.backMontarHorario.downloadPdf().subscribe(response => { 
+      
+      var today = new Date();
+      this.downLoadFile(response, "application/pdf","Horario "+today.getFullYear()+".pdf")});
+                
 
   }
+
+
 
   selecionarPeriodo(id_periodo:number){ //chamado quando o usuario seleciona um periodo na tabela
 
@@ -261,6 +259,20 @@ export class MontarHorarioComponent implements OnInit{
     }
 
     return null;
+  }
+
+
+  downLoadFile(data: any, type: string,nomeArquivo : string) { //recebe um data no formato binario contendo um arquivo e um tipo e manda o navegador baixa-lo com o nome especificado
+    let blob = new Blob([data], { type: type});
+    let url = window.URL.createObjectURL(blob);
+   // let pwa = window.open(url);
+    let anchor = document.createElement("a");
+    anchor.download = nomeArquivo;
+    anchor.href = url;
+    anchor.click();
+   /* if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }*/
   }
 
 }

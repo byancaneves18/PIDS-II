@@ -10,6 +10,7 @@ import { PedidoProf } from '../modelo/pedidoProfessor.modelo';
 import { Usuarios } from '../modelo/usuario.modelo';
 import { UsuarioServiceService } from '../services/usuario-service.service';
 import { PedidoAluno } from '../modelo/pedidosAluno.modelo';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 
 
@@ -208,6 +209,19 @@ export class MontarHorarioComponent implements OnInit{
   //========================================================================================================================================
 
 
+
+
+
+  baixarHorarioCsv(){ //Chamado quando o usuario clica em baixar horario como csv, também faz um acesso no banco para pegar o arquivo e chama uma função para realizar o download
+
+
+    this.backMontarHorario.downloadCsv().subscribe(response => { 
+      
+      var today = new Date();
+      this.downLoadFile(response, "text/csv","Horario "+today.getFullYear()+".csv")});
+                
+  }
+
   baixarHorarioPdf(){ //Chamado quando o usuario clica em baixar horario como pdf, também faz um acesso no banco para pegar o arquivo e chama uma função para realizar o download
 
 
@@ -216,14 +230,14 @@ export class MontarHorarioComponent implements OnInit{
       var today = new Date();
       this.downLoadFile(response, "application/pdf","Horario "+today.getFullYear()+".pdf")});
                 
-
   }
-
 
 
   selecionarPeriodo(id_periodo:number){ //chamado quando o usuario seleciona um periodo na tabela
 
     this.eventEmitterService.mudarPeriodo(id_periodo); //notifica o componente 'montar-periodo' da mudança de periodo atravez de um event Emitter
+
+    console.log("periodo: "+id_periodo+" clicado");
 
   }
 
@@ -244,6 +258,10 @@ export class MontarHorarioComponent implements OnInit{
 
   }
 
+  onLinkClick(event: MatTabChangeEvent) {
+    console.log("{ event }");
+
+  }
 
 //=====================================================OUTROS==============================================================================
   

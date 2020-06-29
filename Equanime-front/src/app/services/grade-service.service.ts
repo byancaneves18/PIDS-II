@@ -21,12 +21,16 @@ export class GradeServiceService {
 
 
 
+
+    downloadCsv(): Observable<any>{
+      return this.httpClient.get(this.url+"/getHorarioCSV", {responseType: 'blob'});
+
+    }
+
     downloadPdf(): Observable<any>{
       return this.httpClient.get(this.url+"/getHorarioPDF", {responseType: 'blob'});
 
     }
-
-
 
     updatePedido(body:PedidoAluno){ //da ordem para o back atualizar o pedido especificado no body
 

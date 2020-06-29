@@ -1,7 +1,5 @@
 package com.equanime.equanime.api;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -39,6 +37,16 @@ public class ApiMontarHorario {
 	}
 	
 	
+	
+	
+	@GetMapping (path = "getHorarioCSV")
+	public ResponseEntity<byte[]> getHorarioCSV() throws IOException, SQLException, DocumentException{ 
+		
+		
+		System.out.println("getHorarioCSV");
+		return manterGrade.downloadCSV();
+		
+	}
 	
 	
 	@GetMapping (path = "getHorarioPDF")

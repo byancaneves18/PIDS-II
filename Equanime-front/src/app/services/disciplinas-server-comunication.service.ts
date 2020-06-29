@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {Periodo} from '../disciplina/listar/listarDisciplinas.component';
-import {Disciplina} from '../disciplina/listar/listarDisciplinas.component';
+import { Disciplina } from 'src/app/modelo/disciplina.modelo';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -15,21 +15,10 @@ export class DisciplinasServerComunicationService {
   constructor(private http: HttpClient) { }
  
 
-  public teste(){
+  public getDisciplinasByPeriodo(id_periodo):Observable<Disciplina[]>{
 
-  //  const req = http.get<Heroes>('/api/heroes');
-// 0 requests made - .subscribe() not called.
-//req.subscribe();
-// 1 request made.
-//req.subscribe();
-// 2 requests made.
+    return this.http.post<Disciplina[]>(this.url+"/getByPeriodo",id_periodo);
 
-   const req = this.http.post(this.url,'qualque coisa');
-   req.subscribe();
-    this.http.get(`${this.url}`);
-    this.http.get(this.url);
-    console.log('Mensagem enviada pro back url:'+this.url);
-  
   }
 
   public getPeriodosLista(){

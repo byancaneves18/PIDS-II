@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DisciplinasServerComunicationService } from '../../services/disciplinas-server-comunication.service';
-import { Disciplina, Periodo } from '../listar/listarDisciplinas.component';
+import {  Periodo } from '../listar/listarDisciplinas.component';
+import { Disciplina } from 'src/app/modelo/disciplina.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -15,6 +16,7 @@ export class EditarComponent implements OnInit {
   ID : String;
   NOME: string;
   PERIODO_ID: string;
+  PROFESSOR_ID :string;
 
   constructor(private back:DisciplinasServerComunicationService, private route: ActivatedRoute,private router: Router) { }
 
@@ -29,6 +31,7 @@ export class EditarComponent implements OnInit {
         this.ID = disciplina.id_disciplina.toString();
         this.NOME = disciplina.nome;
         this.PERIODO_ID = disciplina.id_periodo.toString();
+        this.PROFESSOR_ID = disciplina.id_professor.toString();
 
       });
 
@@ -51,6 +54,7 @@ export class EditarComponent implements OnInit {
     novaDisciplina = {
       id_disciplina : Number(this.ID),
       id_periodo: Number(this.PERIODO_ID),
+      id_professor: Number(this.PROFESSOR_ID),
       nome: this.NOME
 
     }

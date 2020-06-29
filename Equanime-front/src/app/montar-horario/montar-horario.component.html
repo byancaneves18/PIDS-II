@@ -2,10 +2,10 @@
 <div style="text-align: center;">
     <br>
     <mat-tab-group animationDuration="0ms" *ngIf="isPeriodosCarregado()"><!--O cabeçalho é feito em forma de tabela ainda porque achei bonitinho e responsivo, ele serve para selecionar o período, ele só é carregado se os periodos estiverem devidamente carregados também-->
-        <mat-tab  *ngFor="let periodo of periodos"> <!--um '*ngFor' é usado para gerar quantos botões ouver em períodos-->
-            <ng-template  mat-tab-label style="width: 100%;">
-                <button  class="btn btn-success" style="width: 100%;" (click)="selecionarPeriodo(periodo.id_periodo);">{{periodo.periodo_semestre}}</button><!--Cada botão possui o nome do periodo (variavel estabelecida no '*ngFor*') e chama a função 'selecionarPeriodo()" quando clicado-->
-            </ng-template>    
+        <mat-tab  *ngFor="let periodo of periodos" > <!--um '*ngFor' é usado para gerar quantos botões ouver em períodos-->
+            <ng-template  mat-tab-label style="width: 100%;" >
+                <button  class="btn btn-success" style="width: 100%" (click)="selecionarPeriodo(periodo.id_periodo);">{{periodo.periodo_semestre}}</button><!--Cada botão possui o nome do periodo (variavel estabelecida no '*ngFor*') e chama a função 'selecionarPeriodo()" quando clicado-->              
+            </ng-template>   
         </mat-tab>   
     </mat-tab-group>
     <div class="row" style="width: 100%;" *ngIf="isDiasCarregado()"><!--Barra de título onde aparece os dias da semana, também não é carregada até que os dias tenham chegado do banco de dados-->
@@ -19,7 +19,7 @@
   
 <div style=" text-align: center">
     <button style="margin: 16px" class="btn btn-primary" (click)="baixarHorarioPdf()">Baixar em PDF</button>
-    <button style="margin: 16px" class="btn btn-primary" >Baixar em .CSV</button>
+    <button style="margin: 16px" class="btn btn-primary" (click)="baixarHorarioCsv()">Baixar em .CSV</button>
     <button style="margin: 16px" class="btn btn-primary" >Baixar Relatorio de pedidos</button>
 </div>
 <br><br>

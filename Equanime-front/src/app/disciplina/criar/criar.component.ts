@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DisciplinasServerComunicationService } from '../../services/disciplinas-server-comunication.service';
 import {Periodo} from '../listar/listarDisciplinas.component';
-import {Disciplina} from '../listar/listarDisciplinas.component';
+import { Disciplina } from 'src/app/modelo/disciplina.modelo';
 import { DisciplinaModule } from '../disciplina.module';
 import { Router } from '@angular/router';
 
@@ -39,7 +39,8 @@ export class CriarComponent implements OnInit {
     novaDisciplina = {
       id_disciplina : 0,
       id_periodo: Number(this.PERIODO_ID),
-      nome: this.NOME
+      nome: this.NOME,
+      id_professor:99 //professor padrão
 
     }
 

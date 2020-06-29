@@ -1,8 +1,8 @@
 package com.equanime.equanime.controllers;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -39,8 +38,6 @@ import com.equanime.equanime.repository.TurnoRepository;
 import com.itextpdf.text.pdf.PdfPCell;
 //import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPage;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -49,7 +46,6 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
 
 @Controller
@@ -76,23 +72,128 @@ public class GradeController {
 	
 
 	
-	//caminho do relatorio que sera gerado
-	String horarioPdf = "Horario.pdf";
+	//caminho do arquivo pdf que sera gerado
+	String horarioPdfNamepath = "Horario.pdf";
+	String horarioCsvNamepath = "Horario.csv";
+	
+	//Retorna um csv com o horario
+	public ResponseEntity<byte[]> downloadCSV() throws DocumentException, SQLException, IOException{
+			
+
+			CriarArquivoCSV(horarioCsvNamepath);
+			
+	        Path path = Paths.get(horarioCsvNamepath);
+	        byte[] content = Files.readAllBytes(path);
+			
+			return ResponseEntity.ok()
+	                .contentLength(content.length)
+	                .header(HttpHeaders.CONTENT_TYPE, "text/csv")
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "Horario.csv")
+	                .body(content);
+	}
+	
+	//Gera um arquivo .CSV do horário no caminho desejado
+	public void CriarArquivoCSV(String path) throws IOException, SQLException {
+		
+	    try {
+	        File arquivo = new File(path);
+	        if (arquivo.createNewFile()) {
+	          System.out.println("Arquivo CSV criado: " + arquivo.getName());
+	        } else {
+	          System.out.println("Arquivo ja existe");
+	        }
+	      } catch (IOException e) {
+	        System.out.println("Ocorreu um erro");
+	        e.printStackTrace();
+	      }
+	    
+	    FileWriter document = new FileWriter(path);  
+	    List<ModeloPeriodo> periodos = (List<ModeloPeriodo>) periodoRespository.findAll();
+		List<DiaSemana> diasSemana = (List<DiaSemana>) diaRepository.findAll();
+		
+		for (ModeloPeriodo modeloPeriodo : periodos) {
+			
+
+			List<Grade> gradesDoPeriodo = (List<Grade>) gradeRepository.findGradeByIdPeriodo(modeloPeriodo.getId_periodo());
+			
+			document.write("\n\n\n");
+			document.write(modeloPeriodo.getPeriodo_semestre()+" período\n");
+			document.write("\n");
+			
+			document.write("Horario");
+			
+
+			for (DiaSemana dia : diasSemana) {
+			
+				document.write(","+dia.getDia_semana());
+
+			}
+			document.write("\n");
+			
+			for(int i =0;i<4;i++) {
+				
+				
+				switch (i) {
+					case 0: document.write("14:50,"); 
+					break;
+					case 1: document.write("\n16:40,");
+					break;
+					case 2: document.write("\n19:00,");
+					break;
+					case 3: document.write("\n20:50,"); 
+					break;
+				}
+				
+					
+					for (DiaSemana dia : diasSemana) {
+						
+						boolean existe = false;
+						
+						for (Grade grade : gradesDoPeriodo) {
+							
+							
+							if(grade.getHora().equals("14:50")&&i==0||grade.getHora().equals("16:40")&&i==1||grade.getHora().equals("19:00")&&i==2||grade.getHora().equals("20:40")&&i==3) {
+								
+								if(grade.getDia().equals(dia.getDia_semana())) {
+									existe = true;
+									document.write(manterDisciplina.buscarPorId(grade.getDiciplina()).get().getNome()+",");
+
+								}
+								
+							}
+							
+						}
+						
+						
+						if(!existe) {
+							
+							document.write("Vago,");
+							
+						}
+						
+					}
+				}
+
+			}
+
+		 document.close();
+		 
+		}
+	    
 	
 	
-	
+	//Retorna um pdf com o horario
 	public ResponseEntity<byte[]> downloadPDF() throws DocumentException, SQLException, IOException{
 		
+		CriarArquivoPDF(horarioPdfNamepath);
 
-        Path path = Paths.get(horarioPdf);
+        Path path = Paths.get(horarioPdfNamepath);
         byte[] content = Files.readAllBytes(path);
-		
-		CriarArquivoPDF(horarioPdf);
 		
 		return ResponseEntity.ok()
                 .contentLength(content.length)
-                .header(HttpHeaders.CONTENT_TYPE, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "Horário.pdf")
+                .header(HttpHeaders.CONTENT_TYPE, "application/pdf")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "Horario.pdf")
                 .body(content);
 	}
 	
@@ -198,7 +299,7 @@ public class GradeController {
 				document.add(horariox);
 			}
 			
-			Chunk linebreak = new Chunk(new DottedLineSeparator());
+		
 			 
 			//document.add(linebreak); 
 			document.add(new Paragraph(".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ."));                     
@@ -212,9 +313,6 @@ public class GradeController {
 		
 		
 	}
-	
-	
-	
 	
 	
 	public void updatePedidoAluno(ModeloPedidoAluno pedido) {

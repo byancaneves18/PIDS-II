@@ -32,6 +32,12 @@ public class ApiDisciplinas {
 	}
 	
 	
+	@PostMapping(path = "getByPeriodo")
+	public Iterable<ModeloDisciplina> getByPeriodoId(@RequestBody Long id_periodo) {
+		
+		return manterDisciplina.listarPorPeriodo(id_periodo);
+	}
+	
 	@GetMapping(path = "periodos")
 	public Iterable<ModeloPeriodo> getPeriodos() throws SQLException{
 			return manterDisciplina.listarPeriodos();

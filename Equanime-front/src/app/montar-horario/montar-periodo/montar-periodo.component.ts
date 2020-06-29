@@ -23,7 +23,7 @@ export class MontarPeriodoComponent implements OnInit {
  
   diasDaSemana : Dia[]; //Variável local que representa os dias da semana vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
   horarios : string[] = ['14:50','16:40','19:00','20:40','22:30']; //Variável local que representa as diferentes horas em que pode ocorrer uma aula, por enquanto está estática mas pode facilmente ser implementada a partir do banco de dados
-  disciplinas : Disciplina[] = []; //Variável local que representa as disciplinas vindas do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()'
+  disciplinas : Disciplina[] = []; //Variável local que representa as disciplinas desse periodo vindas do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()' ou quando o usuario muda de periodo
   slots:Grade[] ;//Variável local que representa os elementos grade_horaria do periodo selecionado vindos do banco de dados é setada toda vez que a página carrega no método 'ngOnInit()' ou quando o usuário troca de periodo
 
 
@@ -46,7 +46,7 @@ export class MontarPeriodoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDisciplinas();
+    this.getDisciplinas(1); //carregando periodo id = 1 como padrão
     this.loadSlots(1); //carregando periodo id = 1 como padrão
     this.getDiasDaSemana();
 
@@ -182,10 +182,10 @@ export class MontarPeriodoComponent implements OnInit {
 
   }
 
-  getDisciplinas(){   // Função utilizada pra pegar uma lista completa de disciplinas no back
+  getDisciplinas(id_periodo){   // Função utilizada pra pegar uma lista completa de disciplinas no back
     
-    this.backDisciplinas.getDisciplinasLista().subscribe(
-      (data: any[]) => {
+    this.backDisciplinas.getDisciplinasByPeriodo(id_periodo).subscribe(
+      data => {
         this.disciplinas = data;
       }
     );
@@ -202,6 +202,9 @@ export class MontarPeriodoComponent implements OnInit {
     this.slotsLoaded= false;
     this.periodo_selecionado = id_novoPeriodo;
     this.loadSlots(id_novoPeriodo);
+    this.getDisciplinas(id_novoPeriodo);
+
+    console.log("periodo: "+id_novoPeriodo+" selecionado");
   }
 
 }

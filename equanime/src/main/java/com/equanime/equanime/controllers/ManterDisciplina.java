@@ -27,6 +27,11 @@ public class ManterDisciplina {
 		
 	}
 	
+	public Iterable<ModeloDisciplina> listarPorPeriodo(Long id_periodo) { //Retorna uma lista de disciplinas de um determinado periodo
+		
+		return repository.findByIdPeriodo(id_periodo);
+	}
+	
 
 	
 	public Iterable<ModeloPeriodo> listarPeriodos() throws SQLException{

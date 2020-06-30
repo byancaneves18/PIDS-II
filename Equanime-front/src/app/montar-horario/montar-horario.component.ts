@@ -209,7 +209,17 @@ export class MontarHorarioComponent implements OnInit{
   //========================================================================================================================================
 
 
+  baixarRelatorioPdf(){// Chamado quando o usuario clica em baixar relatorio de pedidos, acessa o back pega o relatorio e faz download
 
+
+    this.backMontarHorario.downloadRelatorioPdf().subscribe(response => { 
+      
+      var today = new Date();
+      this.downLoadFile(response, "application/pdf","Relatório de pedidos atendidos pelo horário "+today.getFullYear()+".pdf")
+
+    });
+
+  }
 
 
   baixarHorarioCsv(){ //Chamado quando o usuario clica em baixar horario como csv, também faz um acesso no banco para pegar o arquivo e chama uma função para realizar o download

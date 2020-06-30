@@ -362,7 +362,7 @@ public class GradeController {
 				
 				
 				
-				if(grade.getHora()=="19:00"||grade.getHora()=="20:40"||grade.getHora()=="22:30") {
+				if(grade.getHora().equals("19:00")||grade.getHora().equals("20:40")||grade.getHora().equals("22:30")) {
 					
 					if(turnoRepository.findById(disponibilidade.getIdTurno()).get().getNome().equals("NOTURNO")||turnoRepository.findById(disponibilidade.getIdTurno()).get().getNome().equals("VESPERTINO-NOTURNO")) {
 						

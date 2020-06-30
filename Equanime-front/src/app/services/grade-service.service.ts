@@ -15,12 +15,17 @@ import { PedidoAluno } from '../modelo/pedidosAluno.modelo';
 export class GradeServiceService {
 
   url = 'http://localhost:8080/grade';
+  urlRelatorios = 'http://localhost:8080/relatorios';
 
   constructor(private httpClient: HttpClient,/*private http: Http*/) { }
 
 
 
+    downloadRelatorioPdf():Observable<any>{
 
+      return this.httpClient.get(this.urlRelatorios+"/arquivo", {responseType: 'blob'});
+
+    }
 
     downloadCsv(): Observable<any>{
       return this.httpClient.get(this.url+"/getHorarioCSV", {responseType: 'blob'});

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +26,10 @@ public class ApiGerarRelatorios {
 	}
 	
 	@GetMapping(path = "arquivo")
-	public ResponseEntity<Resource> download() throws IOException {
+	public ResponseEntity<byte[]> download() throws IOException {
 
 
-	    return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).body(gerarRelatorios.ArquivoRelatorioDePedidosAtendidos());
+	    return gerarRelatorios.ArquivoRelatorioDePedidosAtendidos();
 	}
 	
 	

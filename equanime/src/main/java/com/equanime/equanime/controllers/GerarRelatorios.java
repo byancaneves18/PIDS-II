@@ -1,5 +1,6 @@
 package com.equanime.equanime.controllers;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,7 +11,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.equanime.equanime.models.ModeloObservacaoProfessor;
@@ -40,19 +42,23 @@ public class GerarRelatorios {
 	
 	
 	
-	//Gera e retorna um pdf contendo o relatório de pedidos 
-	public ByteArrayResource ArquivoRelatorioDePedidosAtendidos() throws IOException {
+	//Retorna um pdf contendo o relatório de pedidos 
+	public ResponseEntity<byte[]> ArquivoRelatorioDePedidosAtendidos() throws IOException {
 		
-		File file = CriarArquivoPDF(pathToFile);
-		
-	    Path path = Paths.get(file.getAbsolutePath());
-	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-		
-		return resource;
+		CriarArquivoPDF(pathToFile);
+
+        Path path = Paths.get(pathToFile);
+	    byte[] content = Files.readAllBytes(path);
+	    
+		return ResponseEntity.ok()
+                .contentLength(content.length)
+                .header(HttpHeaders.CONTENT_TYPE, "application/pdf")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "Relatorio.pdf")
+                .body(content);
 	}
 	
 	//Gera um arquivo pdf contendo o relatório de pedidos no caminho desejado
-	public File CriarArquivoPDF(String path) throws FileNotFoundException{
+	public void CriarArquivoPDF(String path) throws FileNotFoundException{
 		
 		File file = new  File(path);
 		FileOutputStream fos = new FileOutputStream(file);  
@@ -62,7 +68,6 @@ public class GerarRelatorios {
 		document.add(new Paragraph(RelatorioDePedidosAtendidos()));
 		document.close();
 		
-		return file;
 		
 		
 	}

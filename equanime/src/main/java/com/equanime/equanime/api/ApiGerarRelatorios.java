@@ -19,16 +19,16 @@ public class ApiGerarRelatorios {
 	private GerarRelatorios gerarRelatorios;
 	
 	@GetMapping(path = "texto")
-	public String getPeriodos() throws SQLException{
+	public String getRelatorioString() throws SQLException{
 					
 			return gerarRelatorios.RelatorioDePedidosAtendidos();
 
 	}
 	
 	@GetMapping(path = "arquivo")
-	public ResponseEntity<byte[]> download() throws IOException {
+	public ResponseEntity<byte[]> download() throws IOException, SQLException {
 
-
+		
 	    return gerarRelatorios.ArquivoRelatorioDePedidosAtendidos();
 	}
 	

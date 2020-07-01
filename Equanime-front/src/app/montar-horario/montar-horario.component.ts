@@ -11,6 +11,7 @@ import { Usuarios } from '../modelo/usuario.modelo';
 import { UsuarioServiceService } from '../services/usuario-service.service';
 import { PedidoAluno } from '../modelo/pedidosAluno.modelo';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 
@@ -48,7 +49,8 @@ export class MontarHorarioComponent implements OnInit{
     public dialog: MatDialog, 
     private BackDisciplinas: DisciplinasServerComunicationService, //serviço de acesso a interface 'ApiDisciplinas' do backend
     private eventEmitterService: EventEmitterService,  //serviço responsavel por comunicar eventos entre os componentes por exemplo: passar uma variável ou exigir uma ação em outro componente
-    private backUsuarios: UsuarioServiceService
+    private backUsuarios: UsuarioServiceService,
+    private snackBar: MatSnackBar //Snackbar para mostrar erros
     ) {
     
   }
@@ -217,7 +219,7 @@ export class MontarHorarioComponent implements OnInit{
       var today = new Date();
       this.downLoadFile(response, "application/pdf","Relatório de pedidos atendidos pelo horário "+today.getFullYear()+".pdf")
 
-    });
+    },error => this.snackBar.open('Erro ao gerar relatório :c', 'Ok',{duration: 10000,}));
 
   }
 

@@ -28,6 +28,7 @@ import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-
 import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-periodo.component';
 import { CommonModule } from '@angular/common';
 import { EventEmitterService } from './services/event-emitter.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 
@@ -68,7 +69,8 @@ import { EventEmitterService } from './services/event-emitter.service';
   ],
   providers: [
     HttpClient,
-    EventEmitterService
+    EventEmitterService,
+    MatSnackBar
   ],
   bootstrap: [AppComponent]
 })

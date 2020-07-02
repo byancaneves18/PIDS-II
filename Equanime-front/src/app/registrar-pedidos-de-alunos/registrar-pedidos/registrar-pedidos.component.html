@@ -1,0 +1,33 @@
+<div style="text-align: center;">
+    <br>
+    <h1>Pedidos</h1>
+    <br><br><br>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container>
+      
+        <!-- Coluna pedido -->
+        <ng-container matColumnDef="pedido">
+          <mat-header-cell *matHeaderCellDef> Pedido </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.pedido}} </mat-cell>
+        </ng-container>
+         
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+<br><br>
+<div class="container-fluid" > 
+    <button mat-flat-button color="primary"(click)="novoPedido()">Novo Pedido</button> 
+</div>
+
+
+
+
+
+
+   

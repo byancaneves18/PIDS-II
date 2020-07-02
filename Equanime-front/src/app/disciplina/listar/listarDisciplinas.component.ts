@@ -54,8 +54,8 @@ export class ListarComponent implements OnInit {
       for (let disciplina  of this.disciplinas) {
 
         let periodo: Periodo;
-        this.server.getPeriodobyid(disciplina.id_periodo.toString()).subscribe((dado2) =>{
-
+        this.server.getPeriodobyid(disciplina.id_periodo).subscribe((dado2) =>{
+ 
           periodo = dado2;
           console.log("periodo ="+JSON.stringify(periodo));
 

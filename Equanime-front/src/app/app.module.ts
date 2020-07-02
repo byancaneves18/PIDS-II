@@ -29,6 +29,8 @@ import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-p
 import { CommonModule } from '@angular/common';
 import { EventEmitterService } from './services/event-emitter.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { RegistrarPedidosDeAlunosModule } from './registrar-pedidos-de-alunos/registrar-pedidos-de-alunos.module';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -64,7 +66,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     HttpClientModule,
     ReactiveFormsModule,
     MatTabsModule,
-    CommonModule
+    CommonModule,
+    RegistrarPedidosDeAlunosModule
 
   ],
   providers: [

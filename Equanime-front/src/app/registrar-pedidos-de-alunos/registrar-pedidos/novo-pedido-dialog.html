@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Novo pedido</h1>
+<div mat-dialog-content>
+  <!--p>What's your favorite animal?</p-->
+  <mat-form-field>
+    <mat-label>Insira seu pedido aqui</mat-label>
+    <input matInput [(ngModel)]="pedido">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="salvar()" cdkFocusInitial>Salvar</button>
+</div>

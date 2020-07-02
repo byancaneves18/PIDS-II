@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {Periodo} from '../disciplina/listar/listarDisciplinas.component';
 import { Disciplina } from 'src/app/modelo/disciplina.modelo';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +38,7 @@ export class DisciplinasServerComunicationService {
 
   }
 
-  public getPeriodobyid(id : string){
+  public getPeriodobyid(id : number){
 
     return this.http.post<Periodo>(this.url+"/periodoById",id);
 

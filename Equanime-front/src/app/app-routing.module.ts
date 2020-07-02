@@ -9,6 +9,7 @@ import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-red
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
+import { RegistrarPedidosComponent } from './registrar-pedidos-de-alunos/registrar-pedidos/registrar-pedidos.component'
 
 
 
@@ -19,9 +20,10 @@ const routes: Routes = [
   { path: 'usuario/cadastrar', component: CadastrarUsuarioComponent},
   { path: 'usuario/alterar', component: AlterarUsuarioComponent},
   { path: 'disciplinas', component: ListarComponent},
-  {path: 'disciplinas/nova', component: CriarComponent},
-  {path: 'disciplinas/editar/:id', component: EditarComponent},
-  {path: 'disciplinas/redirect', component: ListarRedirectComponent}
+  { path: 'disciplinas/nova', component: CriarComponent},
+  { path: 'disciplinas/editar/:id', component: EditarComponent},
+  { path: 'disciplinas/redirect', component: ListarRedirectComponent},
+  { path: 'alunos/pedido', component: RegistrarPedidosComponent}
 ];
 
 @NgModule({

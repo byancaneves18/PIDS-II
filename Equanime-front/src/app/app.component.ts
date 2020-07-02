@@ -16,4 +16,5 @@ export class AppComponent {
   Disciplinas()   { this.router.navigate(['/disciplinas']); }
   MontarHorario() { this.router.navigate(['/montar']);      }
   Usuarios()      { this.router.navigate(['/usuario']);     }
+  RegistrarPedido() { this.router.navigate(['/alunos/pedido']);}
 }

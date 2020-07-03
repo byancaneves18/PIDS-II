@@ -4,16 +4,20 @@
     <br><br><br>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <!-- Coluna de ação -->
+        <ng-container matColumnDef="acao" >
+          <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button class="btn " #tooltip="matTooltip" matTooltip="Excluir pedido">
+              <span class="material-icons" style="color: rgb(84, 84, 85)" (click)="deletarPedido(element)">delete</span> 
+            </button>
+          </mat-cell>
         </ng-container>
       
         <!-- Coluna pedido -->
         <ng-container matColumnDef="pedido">
           <mat-header-cell *matHeaderCellDef> Pedido </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.pedido}} </mat-cell>
+          <mat-cell *matCellDef="let element" > {{element.pedido}} </mat-cell>
         </ng-container>
          
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

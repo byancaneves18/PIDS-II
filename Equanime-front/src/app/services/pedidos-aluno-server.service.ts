@@ -18,5 +18,15 @@ export class PedidosAlunoServerService {
     return this.http.post(this.url+"/novo",pedido);
 
   }
+  
+
+  listarPedidos(): Observable<PedidoAluno[]>{
+
+    return this.http.get<PedidoAluno[]>(this.url+"/getLista");
+  }
+
+  excluirPedido(pedido: PedidoAluno){
+    return this.http.post(this.url+"/deletar",pedido);
+  }
 
 }

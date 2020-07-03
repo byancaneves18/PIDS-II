@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import {  FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [RegistrarPedidosComponent,
@@ -19,7 +20,8 @@ import { MatTableModule } from '@angular/material/table';
    MatIconModule,
    MatDialogModule,
    FormsModule,
-   MatTableModule
+   MatTableModule,
+   MatTooltipModule
   ],
   providers: [
     MatSnackBar

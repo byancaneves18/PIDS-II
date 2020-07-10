@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './page/login/login.component';
+import { LoginComponent } from './login/login.component';
 import {  MatFormFieldModule } from '@angular/material/form-field';
 import {  MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
@@ -29,8 +29,15 @@ import { MontarPeriodoComponent } from './montar-horario/montar-periodo/montar-p
 import { CommonModule } from '@angular/common';
 import { EventEmitterService } from './services/event-emitter.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+
 import { RegistrarPedidosDeAlunosModule } from './registrar-pedidos-de-alunos/registrar-pedidos-de-alunos.module';
 import { MatButtonModule } from '@angular/material/button';
+
+import { RecuperarComponent } from './recuperar/recuperar.component';
+import { AuthService } from './login/auth.service';
+import { AuthGuard } from './login/valido/auth-guard/auth-guard.component';
+import { HomeComponent } from './page/home/home.component';
+
 
 
 
@@ -45,6 +52,8 @@ import { MatButtonModule } from '@angular/material/button';
     ListarRedirectComponent,
     MontarHorarioComponent,
     MontarPeriodoComponent,
+    RecuperarComponent,
+    HomeComponent,
 
   ],
   imports: [
@@ -73,7 +82,10 @@ import { MatButtonModule } from '@angular/material/button';
   providers: [
     HttpClient,
     EventEmitterService,
-    MatSnackBar
+    MatSnackBar,
+    EventEmitterService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

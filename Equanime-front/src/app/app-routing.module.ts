@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './page/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './page/usuario/usuario.component';
 import { ListarComponent} from './disciplina/listar/listarDisciplinas.component';
 import { CriarComponent } from './disciplina/criar/criar.component';
@@ -9,10 +9,13 @@ import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-red
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
+import { RecuperarComponent } from './recuperar/recuperar.component';
+import { AuthGuard } from './login/valido/auth-guard/auth-guard.component';
 import { RegistrarPedidosComponent } from './registrar-pedidos-de-alunos/registrar-pedidos/registrar-pedidos.component'
+import { HomeComponent } from './page/home/home.component';
 
 
-
+/*
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'montar', component: MontarHorarioComponent },
@@ -24,6 +27,23 @@ const routes: Routes = [
   { path: 'disciplinas/editar/:id', component: EditarComponent},
   { path: 'disciplinas/redirect', component: ListarRedirectComponent},
   { path: 'alunos/pedido', component: RegistrarPedidosComponent}
+*/
+
+
+const routes: Routes = [
+  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'montar', component: MontarHorarioComponent, canActivate: [AuthGuard]},
+  { path: 'recuperar', component: RecuperarComponent},
+  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'usuario/cadastrar', component: CadastrarUsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'usuario/alterar', component: AlterarUsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'disciplinas', component: ListarComponent, canActivate: [AuthGuard]},
+  {path: 'disciplinas/nova', component: CriarComponent, canActivate: [AuthGuard]},
+  {path: 'disciplinas/editar/:id', component: EditarComponent, canActivate: [AuthGuard]},
+  {path: 'disciplinas/redirect', component: ListarRedirectComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({

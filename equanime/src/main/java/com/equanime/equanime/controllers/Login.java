@@ -23,15 +23,7 @@ import javassist.tools.rmi.ObjectNotFoundException;
 public class Login {
 	@Autowired
 	UsuarioRepository userRep;
-	/*
-	public Usuario findCPF(String cpf) throws ObjectNotFoundException {
-		System.out.println("Passou "+cpf);
-		Usuario obj = userRep.findByCpf(cpf); 
-	    
-	    System.out.println(obj);
-	    return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! CPF: " + cpf ));
-	}
-	*/
+	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean efetuarLogin(@RequestBody String value) throws org.json.simple.parser.ParseException, ObjectNotFoundException{

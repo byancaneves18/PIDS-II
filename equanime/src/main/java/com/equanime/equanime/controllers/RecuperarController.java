@@ -37,7 +37,7 @@ public class RecuperarController {
 	
 	@RequestMapping(value="/recuperar", method = RequestMethod.POST)
 	@ResponseBody
-	public String RecuperarSenha(@RequestBody String value) throws MessagingException, org.json.simple.parser.ParseException, ObjectNotFoundException, MailException, InterruptedException {
+	public void RecuperarSenha(@RequestBody String value) throws MessagingException, org.json.simple.parser.ParseException, ObjectNotFoundException, MailException, InterruptedException {
 		
 		Usuario usuario = new Usuario();
 		Iterable<Usuario> lista = userRep.findAll();
@@ -55,15 +55,15 @@ public class RecuperarController {
 				
 				if(apiRecuperar.RecuperarUsuario(obj)) {
 					System.out.println("usuário: " + cpf);
-					return "entrou na função e recuperou";
+					
 				}
 				
 			}else {
 				System.out.println("Usuário não existe para recuperar a senha!" + cpf);
-				return "não recuperou";
+				
 			}
 		}
-		return "não recuperou";
+		
 	}
 
 	

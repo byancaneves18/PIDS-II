@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
    
   }
 
-  fazerLogin(){
+
+ fazerLogin(){
     console.log(this.usuario);
     this.authService.testarLogin(this.usuario).subscribe(acesso=>{
         this.acesso=acesso;
@@ -34,14 +35,24 @@ export class LoginComponent implements OnInit {
     })
     
   }
-  usuarioEstaAutenticado(){
-    console.log(this.usuarioAutenticado);
-    return this.usuarioAutenticado;
-  }
 
+
+
+
+
+
+/*
+  fazerLogin(){
+    console.log(this.usuario);
+    this.authService.testarLogin(this.usuario).subscribe(acesso=>{
+        this.acesso=acesso;
+       this.authService.getfazerLogin(acesso, this.usuario);
+    })
+    
+  }*/
   recuperar(){
     this.router.navigate(['/recuperar']);
-    console.log("Recuperar");
+    console.log("tela Recuperar");
   }
 
   logout() {

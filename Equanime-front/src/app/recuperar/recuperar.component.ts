@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/login/auth.service';
+import { Usuario } from 'src/app/login/usuario';
+import { RecuperarService} from 'src/app/services/recuperar-service.service';
 
 @Component({
   selector: 'app-recuperar',
@@ -8,18 +9,27 @@ import { AuthService } from 'src/app/login/auth.service';
   styleUrls: ['./recuperar.component.css']
 })
 export class RecuperarComponent implements OnInit {
+  public usuario: Usuario = new Usuario();
+  resgate: boolean = false;
+  nResgate: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private recuperarService: RecuperarService) { }
 
   ngOnInit(): void {
   }
 
   recuperar(){
-    this.router.navigate(['/recuperar']);
-    console.log("Recuperar");
+    
+    console.log("função recuperar");
+    console.log(this.usuario);
+    this.recuperarService.testarRecuperar(this.usuario).subscribe(resgate=>{
+        this.nResgate=resgate;
+        this.resgate=resgate;
+       this.recuperarService.getRecuperar(resgate, this.usuario);
+    })
   }
   cancelar(){
     this.router.navigate(['/login']);
   }
-
+  
 }

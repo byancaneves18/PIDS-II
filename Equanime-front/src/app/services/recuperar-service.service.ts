@@ -10,6 +10,7 @@ import { Usuario } from 'src/app/login/usuario';
   providedIn: 'root'
 })
 export class RecuperarService {
+  acesso: boolean=true;
   private usuarioAutenticado: boolean = false;
   public usuario: Usuario = new Usuario();
   URL_API = 'http://localhost:8080/';
@@ -27,12 +28,16 @@ export class RecuperarService {
   getRecuperar(resgate: boolean, usuario: Usuario){
 
     if(resgate){
-      //this.usuarioAutenticado = true;
+      //this.resgaste;
       console.log("recuperou aqui");
-      this.router.navigate(['/login']);
+      this.router.navigate(['/recuperar']);
       
      }else{
+      resgate=true;
+      console.log(resgate);
       this.usuarioAutenticado = false;
+      this.router.navigate(['/recuperar']);
+     
     }
   }
 

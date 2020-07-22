@@ -11,8 +11,7 @@ import { RecuperarService} from 'src/app/services/recuperar-service.service';
 export class RecuperarComponent implements OnInit {
   public usuario: Usuario = new Usuario();
   resgate: boolean = false;
-  nResgate: boolean = false;
-
+  nresgate: boolean = true;
   constructor(private router: Router, private recuperarService: RecuperarService) { }
 
   ngOnInit(): void {
@@ -23,8 +22,9 @@ export class RecuperarComponent implements OnInit {
     console.log("função recuperar");
     console.log(this.usuario);
     this.recuperarService.testarRecuperar(this.usuario).subscribe(resgate=>{
-        this.nResgate=resgate;
         this.resgate=resgate;
+        this.nresgate=resgate;
+        console.log(this.nresgate);
        this.recuperarService.getRecuperar(resgate, this.usuario);
     })
   }

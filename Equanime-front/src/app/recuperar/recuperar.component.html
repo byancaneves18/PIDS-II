@@ -2,16 +2,16 @@
     <mat-card class="card">
         <img src="../../../assets/img/LogoEquânime.png" class="img-taman">
         <strong>Recuperar senha!</strong>
-        <br>
-        <span style="color: red" *ngIf=nResgate>CPF inválido</span>
+
         <br>
         <span style="color: rgb(0, 38, 255)" *ngIf=resgate>E-mail enviado com nova senha!</span>
+        <span style="color: rgb(0, 38, 255)" *ngIf=!nresgate>CPF inválido</span>
         <mat-form-field class="example-full-width">
             <mat-label>CPF</mat-label>
             <input [(ngModel)]="usuario.cpf" id="usuario" type="number" matInput placeholder="Ex. 98765432178">
         </mat-form-field>
         <div>
-            <button class="btn btn-success example-full-width " (click)="recuperar()">Recuperar Senhar</button>
+           <button class="btn btn-success example-full-width " (click)="recuperar()">Recuperar Senhar</button>
         </div>
         <br>
         <div>

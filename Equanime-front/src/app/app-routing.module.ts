@@ -31,7 +31,7 @@ const routes: Routes = [
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'montar', component: MontarHorarioComponent, canActivate: [AuthGuard]},

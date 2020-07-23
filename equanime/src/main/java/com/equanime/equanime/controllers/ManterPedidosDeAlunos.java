@@ -15,14 +15,24 @@ public class ManterPedidosDeAlunos {
 	
 	
 	
-	public void novoPedido(ModeloPedidoAluno modelo) {
+	public void novoPedido(ModeloPedidoAluno modelo) throws Exception {
 		
-		pedidosRepo.save(modelo);
+		if(isStringNullOrWhiteSpace(modelo.getPedido())) {
+			
+			throw new Exception("O pedido não pode estar em branco"); 
+		}else {
+		
+			pedidosRepo.save(modelo);
+		}
 	}
 	
 	public void editarPedido(ModeloPedidoAluno modelo) {
-		
-		pedidosRepo.save(modelo);
+		if(isStringNullOrWhiteSpace(modelo.getPedido())) {
+			
+			
+		}else {
+			pedidosRepo.save(modelo);
+		}
 	}
 	
 	public void deletarPedido(ModeloPedidoAluno modelo) {
@@ -40,6 +50,21 @@ public class ManterPedidosDeAlunos {
 	public ModeloPedidoAluno buscarPorId(Long id) {
 		
 		return pedidosRepo.findById(id).get();
+	}
+	
+	
+	public static boolean isStringNullOrWhiteSpace(String value) {
+	    if (value == null) {
+	        return true;
+	    }
+
+	    for (int i = 0; i < value.length(); i++) {
+	        if (!Character.isWhitespace(value.charAt(i))) {
+	            return false;
+	        }
+	    }
+
+	    return true;
 	}
 	
 }

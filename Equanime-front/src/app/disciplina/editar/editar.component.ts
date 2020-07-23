@@ -24,9 +24,9 @@ export class EditarComponent implements OnInit {
 
     this.back.getPeriodosLista().subscribe((dados) =>{this.PERIODO = dados ; console.log("dados ="+JSON.stringify(this.PERIODO))});
     this.route.params.subscribe((id)=>{
+ 
 
-
-      this.back.getDisciplinabyid(id['id']).subscribe((disciplina)=>{
+      this.back.getDisciplinabyid(parseInt(id['id'],10)).subscribe((disciplina)=>{
 
         this.ID = disciplina.id_disciplina.toString();
         this.NOME = disciplina.nome;

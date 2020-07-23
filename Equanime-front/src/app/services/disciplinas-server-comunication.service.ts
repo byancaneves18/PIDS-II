@@ -32,7 +32,7 @@ export class DisciplinasServerComunicationService {
 
   }
 
-  public getDisciplinabyid(id : string){
+  public getDisciplinabyid(id : number){
 
     return this.http.post<Disciplina>(this.url+"/disciplinaById",id);
 

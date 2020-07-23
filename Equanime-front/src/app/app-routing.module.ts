@@ -40,9 +40,10 @@ const routes: Routes = [
   { path: 'usuario/cadastrar', component: CadastrarUsuarioComponent, canActivate: [AuthGuard]},
   { path: 'usuario/alterar', component: AlterarUsuarioComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas', component: ListarComponent, canActivate: [AuthGuard]},
-  {path: 'disciplinas/nova', component: CriarComponent, canActivate: [AuthGuard]},
-  {path: 'disciplinas/editar/:id', component: EditarComponent, canActivate: [AuthGuard]},
-  {path: 'disciplinas/redirect', component: ListarRedirectComponent, canActivate: [AuthGuard]}
+  { path: 'disciplinas/nova', component: CriarComponent, canActivate: [AuthGuard]},
+  { path: 'disciplinas/editar/:id', component: EditarComponent, canActivate: [AuthGuard]},
+  { path: 'disciplinas/redirect', component: ListarRedirectComponent, canActivate: [AuthGuard]},
+  { path: 'alunos/pedido', component: RegistrarPedidosComponent}
 
 ];
 

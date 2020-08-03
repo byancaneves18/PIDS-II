@@ -8,11 +8,11 @@ import { EditarComponent } from './disciplina/editar/editar.component';
 import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
-import { AlterarUsuarioComponent } from './page/usuario/alterar-usuario/alterar-usuario.component';
 import { RecuperarComponent } from './recuperar/recuperar.component';
 import { AuthGuard } from './login/valido/auth-guard/auth-guard.component';
 import { RegistrarPedidosComponent } from './registrar-pedidos-de-alunos/registrar-pedidos/registrar-pedidos.component'
 import { HomeComponent } from './page/home/home.component';
+import { VincularProfDisciplinaComponent } from './vincular-prof-disciplina/vincular-prof-disciplina.component';
 
 
 /*
@@ -38,13 +38,12 @@ const routes: Routes = [
   { path: 'recuperar', component: RecuperarComponent},
   { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard]},
   { path: 'usuario/cadastrar', component: CadastrarUsuarioComponent, canActivate: [AuthGuard]},
-  { path: 'usuario/alterar', component: AlterarUsuarioComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas', component: ListarComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas/nova', component: CriarComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas/editar/:id', component: EditarComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas/redirect', component: ListarRedirectComponent, canActivate: [AuthGuard]},
-  { path: 'alunos/pedido', component: RegistrarPedidosComponent}
-
+  { path: 'alunos/pedido', component: RegistrarPedidosComponent},
+  { path: 'vincular', component: VincularProfDisciplinaComponent}
 ];
 
 @NgModule({

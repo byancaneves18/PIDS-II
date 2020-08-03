@@ -1,10 +1,10 @@
-<div style="text-align: center;" class="container">
+<div style="text-align: center;" class="container" [ngClass]="openNovo ? 'display-none':null">
     <br>
     <h1>Lista de usuarios</h1>
 
     <div style="text-align: right" >
-        <a href="usuario/cadastrar" class="btn">
-        <span class="material-icons" style="color: rgb(243, 10, 10)">add</span>
+        <a  class="btn">
+        <span class="material-icons" (click)="novo()" style="color: rgb(243, 10, 10)">add</span>
       </a>
 
       <a href="/usuario" class="btn">
@@ -34,17 +34,22 @@
                     {{rowData[col.field]}}
                 </td>
                 <td>
-                  <a href="usuario/alterar" class="btn">
+                  <a class="btn">
                     <span class="material-icons" style="color: #007BFF" (click)= 'carregarUsuario(rowData)' >edit</span>
                   </a>
 
                   <button class="btn" >
-                    <a href="usuario">
-                      <span class="material-icons"  style="color: #DC3545" (click)= 'deletarUsuario(rowData)' >delete</span>
-                    </a>
+                    
+                      <span class="material-icons"  style="color: #DC3545" (click)= 'openDialog(rowData)' >delete</span>
+                    
+                    <a href="usuario"></a>
                   </button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+
+<app-cadastrar-usuario #novoModal [ngClass]="!openNovo ? 'display-none':null" (closeNovo)="closeNovo()" ></app-cadastrar-usuario>
+
+

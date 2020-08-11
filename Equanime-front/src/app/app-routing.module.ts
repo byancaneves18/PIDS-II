@@ -5,7 +5,6 @@ import { UsuarioComponent } from './page/usuario/usuario.component';
 import { ListarComponent} from './disciplina/listar/listarDisciplinas.component';
 import { CriarComponent } from './disciplina/criar/criar.component';
 import { EditarComponent } from './disciplina/editar/editar.component';
-import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { CadastrarUsuarioComponent } from './page/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { RecuperarComponent } from './recuperar/recuperar.component';
@@ -41,7 +40,6 @@ const routes: Routes = [
   { path: 'disciplinas', component: ListarComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas/nova', component: CriarComponent, canActivate: [AuthGuard]},
   { path: 'disciplinas/editar/:id', component: EditarComponent, canActivate: [AuthGuard]},
-  { path: 'disciplinas/redirect', component: ListarRedirectComponent, canActivate: [AuthGuard]},
   { path: 'alunos/pedido', component: RegistrarPedidosComponent},
   { path: 'vincular', component: VincularProfDisciplinaComponent}
 ];

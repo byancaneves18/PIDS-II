@@ -50,7 +50,7 @@ export class ListarComponent implements OnInit {
       this.disciplinas = dados ;
       console.log('disciplinas =' + JSON.stringify(dados));
 
-
+      this.tela = [];
       for (let disciplina  of this.disciplinas) {
 
         let periodo: Periodo;
@@ -58,7 +58,6 @@ export class ListarComponent implements OnInit {
  
           periodo = dado2;
           console.log("periodo ="+JSON.stringify(periodo));
-
           this.tela.push({id_disciplina: disciplina.id_disciplina , nomeDisciplina : disciplina.nome, nomePeriodo: periodo.periodo_semestre});
 
         });
@@ -109,7 +108,8 @@ export class ListarComponent implements OnInit {
         accept: () => {
             console.log("accept");
           this.server.excluirDisciplinaById(id_disciplina).subscribe();
-          this.router.navigate(['/disciplinas/redirect']);
+          //this.router.navigate(['/disciplinas/redirect']);
+          this.ListarDisciplinas();
         }
     });
 }

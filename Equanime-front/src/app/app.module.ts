@@ -19,7 +19,6 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import { TableModule} from 'primeng/table';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { DisciplinaModule} from './disciplina/disciplina.module';
-import { ListarRedirectComponent } from './disciplina/listar-redirect/listar-redirect.component';
 import { MontarHorarioComponent } from './montar-horario/montar-horario.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
@@ -50,7 +49,6 @@ import { DialogComponent } from './page/usuario/dialog/dialog.component';
     LoginComponent,
     UsuarioComponent,
     CadastrarUsuarioComponent,
-    ListarRedirectComponent,
     MontarHorarioComponent,
     MontarPeriodoComponent,
     RecuperarComponent,

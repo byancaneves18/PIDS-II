@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Deseja excluir o usuario {{data.nome}} ?</h1>
+<div mat-dialog-actions>
+    <div class="row">
+        <div class="col-sm-12">
+            <button mat-button (click)="onNoClick()">Não</button>
+            <button class="btn btn-danger" (click)="deletar()" mat-button mat-dialog-close>Sim</button>
+        </div>
+    </div>
+</div>

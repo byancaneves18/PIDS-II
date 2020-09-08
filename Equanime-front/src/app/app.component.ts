@@ -24,7 +24,7 @@ export class AppComponent {
   Disciplinas()   { this.router.navigate(['/disciplinas']); }
   MontarHorario() { this.router.navigate(['/montar']);      }
   Usuarios()      { this.router.navigate(['/usuario']);     }
-
+  Vincular()      { this.router.navigate(['/vincular']);}
   RegistrarPedido() { this.router.navigate(['/alunos/pedido']);}
   home()  { this.router.navigate(['/home']); }
 

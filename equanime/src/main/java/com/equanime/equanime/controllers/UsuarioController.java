@@ -32,7 +32,7 @@ public class UsuarioController {
 	@RequestMapping(value="/usuario" ,method = RequestMethod.GET)
 	@ResponseBody
 	public String process() {
-		return "";
+		return "as";
 	}
 	
 	@RequestMapping(value="/usuario/salvar" ,method = RequestMethod.POST)
@@ -55,6 +55,7 @@ public class UsuarioController {
 	@RequestMapping(value="/usuario/deletar" ,method = RequestMethod.POST)
 	@ResponseBody
 	public String delete(@RequestBody Usuario user) {
+		System.out.println("entrou no deletar");
 		try {
 			repository.delete(user);
 		}catch (Exception e) {

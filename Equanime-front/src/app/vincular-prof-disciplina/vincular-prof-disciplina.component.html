@@ -1,0 +1,32 @@
+<div class="tela">
+    <section>
+
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+                <h2>Vincular Professor Disciplina</h2>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6 maxtam">
+                <mat-radio-group class="radio-group" [(ngModel)]="usuarioSelecionado">
+                    <mat-radio-button *ngFor="let usuario of usuarios" [value]="usuario" >
+                        {{usuario.nome}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="col-sm-6 maxtam" style="border-left: 1px solid;">                
+                    <div *ngFor="let disciplina of disciplinas">
+                        <mat-checkbox  (change)="selecionarDisciplina(disciplina, $event.checked)" (value)="disciplina.id">{{disciplina.nome}} - <strong>{{disciplina.professor}}</strong> </mat-checkbox>
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <br>
+    <mat-divider></mat-divider><br>
+
+    <div class="botoes">
+        <button mat-raised-button color="primary" (click)="vincular()">Vincular</button>
+    </div>
+    
+</div>

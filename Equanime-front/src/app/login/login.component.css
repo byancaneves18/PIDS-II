@@ -1,0 +1,18 @@
+.top-150 {
+    top: 150px;
+}
+
+.img-taman {
+    height: 100px;
+    width: 300px;
+}
+
+.card {
+    background-color: #DCDCDC;
+    text-align: center;
+    display: inline-block;
+}
+
+.example-full-width {
+    width: 100%;
+}

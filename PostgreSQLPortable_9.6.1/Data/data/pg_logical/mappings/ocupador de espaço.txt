@@ -1,0 +1,1 @@
+Este arquivo está aquipara o github não ignorar este diretório e bugar o banco

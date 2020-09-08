@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
+Built-By: bug
+Build-Jdk: 10.0.2
 Implementation-Title: equanime
 Implementation-Version: 0.0.1-SNAPSHOT
-Build-Jdk-Spec: 1.8
+Implementation-Vendor-Id: com.equanime
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/equanime
 Created-By: Maven Integration for Eclipse
 

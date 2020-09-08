@@ -8,6 +8,8 @@ public class EquanimeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EquanimeApplication.class, args);
+		
+		
 	}
 
 }

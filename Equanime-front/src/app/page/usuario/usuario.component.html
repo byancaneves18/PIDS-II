@@ -1,0 +1,55 @@
+<div style="text-align: center;" class="container" [ngClass]="openNovo ? 'display-none':null">
+    <br>
+    <h1>Lista de usuarios</h1>
+
+    <div style="text-align: right" >
+        <a  class="btn">
+        <span class="material-icons" (click)="novo()" style="color: rgb(243, 10, 10)">add</span>
+      </a>
+
+      <a href="/usuario" class="btn">
+        <span class="material-icons" style="color: rgb(17, 140, 255)">refresh</span>
+      </a>
+
+      <form method="post">
+        <input type="text" id="buscar" name="buscar" class="form-control" placeholder="Nome" [(ngModel)] = "buscar">
+
+        <span class="material-icons" style="color: rgb(30, 151, 6)" (click)= 'buscarUsuario(buscar)'>search</span>
+
+      </form>
+    </div>
+
+    <p-table [columns]="cols" [value]="usuario" [paginator]="true" [rows]="20">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th style="width: 150px;"> Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+                <td>
+                  <a class="btn">
+                    <span class="material-icons" style="color: #007BFF" (click)= 'carregarUsuario(rowData)' >edit</span>
+                  </a>
+
+                  <button class="btn" >
+                    
+                      <span class="material-icons"  style="color: #DC3545" (click)= 'openDialog(rowData)' >delete</span>
+                    
+                    <a href="usuario"></a>
+                  </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<app-cadastrar-usuario #novoModal [ngClass]="!openNovo ? 'display-none':null" (closeNovo)="closeNovo()" ></app-cadastrar-usuario>
+
+

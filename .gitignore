@@ -1,0 +1,8 @@
+/.metadata/
+/.recommenders/
+
+*.log
+
+PostgreSQLPortable_9.6.1/Data/log.txt
+
+equanime/target/classes/META-INF/maven/com.equanime/equanime/pom.properties

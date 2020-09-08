@@ -1,0 +1,65 @@
+<head></head>
+
+<body>
+  <div style="text-align: center">
+    <br>
+    <h1>{{titulo}}</h1>
+  </div>
+
+  <section>
+    <div class="container" [formGroup]="form">
+      <div>
+        <label for="nome">NOME</label>
+        <input class="form-control" formControlName="nome" type="text" placeholder="Nome">
+      </div>
+
+      <div>
+        <label for="email">E-MAIL</label>
+        <input class="form-control" formControlName="email" type="text" placeholder="E-mail">
+      </div>
+
+      <div>
+        <label for="senha">SENHA</label>
+        <input class="form-control" formControlName="senha" type="password" placeholder="Senha">
+      </div>
+
+      <div>
+        <label for="cpf">CPF</label>
+        <input class="form-control" formControlName="cpf" type="number" placeholder="CPF">
+      </div>
+
+      <div>
+        <label for="cpf">Carga Horária</label>
+        <input class="form-control" formControlName="cargaHoraria" type="number" placeholder="Carga Horária">
+      </div>
+
+      <div>
+        <label for="cpf">Telefone</label>
+        <input class="form-control" formControlName="telefone" type="number" placeholder="(X)XXXXX-XXXX">
+      </div>
+
+      <div>
+        <label for="cpf">Cidade</label>
+        <input class="form-control" formControlName="cidade" type="text" placeholder="Cidade">
+      </div>
+
+      <div>
+        <label for="papel">Papel</label>
+        <select type="papel" id="Papel" name="papel" formControlName="papel" class="form-control"
+          [(ngModel)]="usuario.papel" required>
+          <option value="1">Professor</option>
+          <option value="2">Representante Col.</option>
+          <option value="3">Coordenador</option>
+        </select>
+      </div>
+
+
+      <br>
+      <div style="text-align: center;">
+        <button (click)="cadastrarUsuario();" class="btn btn-success">Salvar</button>
+        <a style="margin: 0px 5px 0px 5px;"></a>
+        <a (click)="close()" class="btn btn-danger">Cancelar</a>
+      </div>
+    </div>
+  </section>
+</body>

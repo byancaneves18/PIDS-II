@@ -1,0 +1,28 @@
+<div class="container col-lg-3 top-150">
+    <mat-card class="card">
+        <img src="../../../assets/img/LogoEquânime.png" class="img-taman">
+        <strong>Bem vindos ao Equânime</strong>
+        <br>
+        <span style="color: red" *ngIf=!acesso>Senha incorreta</span>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>CPF</mat-label>
+            <input [(ngModel)]="usuario.cpf" id="usuario" type="number" class = "validate" matInput placeholder="Ex. 98765432178">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Senha</mat-label>
+            <input [(ngModel)]="usuario.senha" id="usuario" type="password" class = "validate" matInput>
+        </mat-form-field>
+        <div>
+            <button class="btn btn-success example-full-width" type="submit" name="action" (click)="fazerLogin()">Entrar
+            </button>
+        </div>
+        <br>
+        <div>
+            <button class="btn btn-danger example-full-width" type="submit" name="action" (click)="recuperar()">Esqueci minha senha</button>
+        </div>
+
+
+    </mat-card>
+
+</div>

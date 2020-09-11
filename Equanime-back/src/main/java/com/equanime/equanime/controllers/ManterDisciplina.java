@@ -1,6 +1,8 @@
 package com.equanime.equanime.controllers;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.ValidationException;
@@ -8,9 +10,11 @@ import javax.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.equanime.equanime.models.Grade;
 import com.equanime.equanime.models.ModeloDisciplina;
 import com.equanime.equanime.models.ModeloPeriodo;
 import com.equanime.equanime.repository.DisciplinaRepository;
+import com.equanime.equanime.repository.GradeRepository;
 import com.equanime.equanime.repository.PeriodoRepository;
 
 
@@ -21,6 +25,8 @@ public class ManterDisciplina {
 	private DisciplinaRepository repository;
 	@Autowired
 	private PeriodoRepository repositoryPeriodo;
+	@Autowired
+	private GradeRepository repositoryGrade;
 	
 	public ManterDisciplina() {
 		
@@ -76,6 +82,19 @@ public class ManterDisciplina {
 	}
 	
 	public void excluir(String id_disciplina) throws SQLException  {
+		
+		List<Grade> grades = new ArrayList<>();
+		
+		grades = (List<Grade>) repositoryGrade.findAll();
+		
+		for (Grade grade : grades) {
+			
+			if(grade.getDiciplina()==Long.parseLong(id_disciplina)) {
+				
+				repositoryGrade.delete(grade);
+			}
+			
+		}
 		
 		Long id = Long.parseLong(id_disciplina);	
 		repository.deleteById(id);

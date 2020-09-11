@@ -2,8 +2,9 @@
 <div mat-dialog-content>
   <!--p>What's your favorite animal?</p-->
   <mat-form-field>
-    <mat-label>Insira seu pedido aqui</mat-label>
-    <input matInput [(ngModel)]="pedido">
+    <mat-label *ngIf="Pedido.valid||!Pedido.touched">Insira seu pedido aqui</mat-label>
+    <mat-label *ngIf="!Pedido.valid&&Pedido.touched" style="color:red">Insira um pedido válido</mat-label>
+    <input matInput [(ngModel)]="pedido" required  #Pedido="ngModel">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

@@ -4,6 +4,7 @@ import { DisciplinasServerComunicationService } from '../../services/disciplinas
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarDisciplinas',
@@ -24,7 +25,8 @@ export class ListarComponent implements OnInit {
    firt = 0;
    rows = 10;
 
-  constructor(private server: DisciplinasServerComunicationService, private confirmationService: ConfirmationService, private router: Router) {
+  constructor(private server: DisciplinasServerComunicationService, private confirmationService: ConfirmationService, private router: Router,
+    private snackBar: MatSnackBar) {
 
 
 
@@ -102,14 +104,14 @@ export class ListarComponent implements OnInit {
 
   confirm(nome: string, id_disciplina: number) {
     this.confirmationService.confirm({
-        message: 'Tem certeza que deseja excluir ' + nome + ' ?',
+        message: 'Tem certeza que deseja excluir ' + nome + ' ? Todas as aulas com essa disciplina também serão excluídas!',
         acceptLabel: 'Sim',
         rejectLabel: 'Cancelar',
         accept: () => {
             console.log("accept");
-          this.server.excluirDisciplinaById(id_disciplina).subscribe();
+          this.server.excluirDisciplinaById(id_disciplina).subscribe(success=>{console.log('sucesso');this.ListarDisciplinas()},error => this.snackBar.open('Erro ao excluir disciplina :c', 'Ok',{duration: 10000,}));
           //this.router.navigate(['/disciplinas/redirect']);
-          this.ListarDisciplinas();
+         // this.ListarDisciplinas();
         }
     });
 }

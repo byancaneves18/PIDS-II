@@ -150,6 +150,8 @@ export class MontarHorarioComponent implements OnInit{
 
     this.backMontarHorario.getPedidosAluno().subscribe(dados=>{
       this.pedidosAluno = dados;
+      console.log(dados);
+
     });
 
   }
@@ -182,6 +184,7 @@ export class MontarHorarioComponent implements OnInit{
     this.alertas = null;
     this.backMontarHorario.getAlertas().subscribe(dados=>{
       this.alertas = dados;
+      console.log(dados);
     });
 
     console.log("get alertas");

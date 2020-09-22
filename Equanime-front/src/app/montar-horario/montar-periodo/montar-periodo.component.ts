@@ -30,6 +30,7 @@ export class MontarPeriodoComponent implements OnInit {
   slotsLoaded : boolean = false; //variável que indica se os slots estão atualizados com o banco de dados
   periodo_selecionado:number = 1; // indica o periodo selecionado o periodo periodo id = 1 é carregado como padrão
 
+  
 
 
   //=====================================================INICIALIZAÇÃO======================================================================
@@ -50,7 +51,7 @@ export class MontarPeriodoComponent implements OnInit {
     this.loadSlots(1); //carregando periodo id = 1 como padrão
     this.getDiasDaSemana();
 
-    if (this.eventEmitterService.subsVarMudarPeriodo==undefined) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'mudarPeriodo'
+    if (/*this.eventEmitterService.subsVarMudarPeriodo==undefined*/true) {    //inscrição ao EventEmitter necessária na classe onde se deseja chamar um método atravez de um evento, nesse caso para o metodo 'mudarPeriodo'
       this.eventEmitterService.subsVarMudarPeriodo = this.eventEmitterService.    
       mudarPeriodoEmitter.subscribe((id_periodo:number) => {    
         this.mudarPeriodo(id_periodo);    

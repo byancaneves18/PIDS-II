@@ -14,7 +14,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
   URL_API = 'http://localhost:8080/';
-
+  public id: number;
  // private login = JSON.parse(localStorage.getItem('usuarioEstaAutenticado')||'false')
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
@@ -42,7 +42,10 @@ export class AuthService {
     if(acesso){
       this.usuarioAutenticado = true;
       this.mostrarMenuEmitter.emit(true);
-    
+
+          this.id=this.getUserLogado();
+          console.log("ID logado"+this.id);
+          
       localStorage.setItem('currentUser', JSON.stringify(usuario));
 
       this.router.navigate(['/home']);
@@ -67,6 +70,13 @@ export class AuthService {
       this.usuarioAutenticado = false;
       this.mostrarMenuEmitter.emit(false);
     }*/
+  }
+  setUserLogado(id: number){
+    localStorage.setItem('idUserLogado', JSON.stringify(id));
+  }
+  getUserLogado(){
+
+    return JSON.parse(localStorage.getItem('idUserLogado'));
   }
 
   usuarioEstaAutenticado(){

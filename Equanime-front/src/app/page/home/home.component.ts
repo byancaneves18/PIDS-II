@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   panelOpenState : boolean;
-
-  constructor() { }
+  public id:number;
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   //  this.panelOpenState = false;
+   this.id=this.authService.getUserLogado();
+   console.log(this.id);
   }
+
+
+  pegar(){
+    this.id=this.authService.getUserLogado();
+  }
+  
 }

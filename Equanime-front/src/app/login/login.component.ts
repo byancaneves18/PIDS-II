@@ -27,19 +27,17 @@ export class LoginComponent implements OnInit {
   }
 
 
+
+  
  fazerLogin(){
     console.log(this.usuario);
     this.authService.testarLogin(this.usuario).subscribe(acesso=>{
         this.acesso=acesso;
+        this.authService.setUserLogado(acesso);
        this.authService.getfazerLogin(acesso, this.usuario);
     })
     
   }
-
-
-
-
-
 
 /*
   fazerLogin(){

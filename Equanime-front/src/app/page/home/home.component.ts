@@ -19,8 +19,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  pegar(){
+  pegarUsuario(){
     this.id=this.authService.getUserLogado();
   }
+
   
 }

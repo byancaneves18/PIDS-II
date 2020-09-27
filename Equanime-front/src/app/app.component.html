@@ -1,34 +1,41 @@
-<body >
+<body>
     <mat-toolbar style="background-color: #343a40;" class="example-toolbar">
-        <div class="row" style="width: 100%;" >
+        <div class="row" style="width: 100%;">
             <div class="col-sm-6" *ngIf="mostrarMenu">
                 <button style="border: 0px; padding: 0px; height: 24px;" mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon style="background-color: #343a40; color: white;">menu</mat-icon>
                 </button>
                 <img src="../../../assets/img/LogoEquânime.png" style="width: 100px; height: 30px;">
-                
+
             </div>
 
-        </div > 
+        </div>
         <div class="col-sm-6" *ngIf="mostrarMenu">
             <button style="border: 0px; padding: 0px; height: 24px; right: 20px;" mat-icon-button (click)="home()">
                 <mat-icon style="background-color: #343a40; color: white;">home</mat-icon>
             </button>
-            <button style="border: 0px; padding: 0px; height: 24px; right: 20px;" mat-icon-button (click)="logout()">
-                <mat-icon style="background-color: #343a40; color: white;">exit_to_app</mat-icon>
-            </button>
-
-
+            <a href="http://localhost:4200/login">
+                <button style="border: 0px; padding: 0px; height: 24px; right: 20px;" mat-icon-button
+                    (click)="logout()">
+                    <mat-icon style="background-color: #343a40; color: white;">exit_to_app</mat-icon>
+                </button>
+            </a>
+            <a style="color: white;">Bem Vindo {{use.nome}} {{use.papel}}</a>
         </div>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-container">
         <mat-sidenav #sidenav mode="side" (click)="sidenav.toggle()" style="width: 200px; background-color: #343a40;">
-            <a (click)="MontarHorario()" class="btn" style="text-align: left;width: 100%;color: white;">Montar Horario</a>
-            <a (click)="Disciplinas()"  class="btn" style="text-align: left;width: 100%;color: white;">Disciplina</a>
-            <a (click)="Usuarios()" class="btn" style="text-align: left;width: 100%;color: white;">Usuário</a>
-            <a (click)="RegistrarPedido()" class="btn" style="text-align: left;width: 100%;color: white;">Registrar Pedido</a>
-            <a (click)="Vincular()" class="btn" style="text-align: left;width: 100%;color: white;">Designar Prof à Disciplina</a>
+            <a (click)="MontarHorario()" *ngIf="use.papel==1" class="btn"
+                style="text-align: left;width: 100%;color: white;">Montar Horario</a>
+            <a (click)="Disciplinas()" *ngIf="use.papel==1" class="btn"
+                style="text-align: left;width: 100%;color: white;">Disciplina</a>
+            <a (click)="Usuarios()" *ngIf="use.papel==1" class="btn"
+                style="text-align: left;width: 100%;color: white;">Usuário</a>
+            <a (click)="RegistrarPedido()" *ngIf="use.papel==3" class="btn"
+                style="text-align: left;width: 100%;color: white;">Registrar Pedido</a>
+            <a (click)="Vincular()" *ngIf="use.papel==1" class="btn"
+                style="text-align: left;width: 100%;color: white;">Designar Prof à Disciplina</a>
         </mat-sidenav>
 
         <mat-sidenav-content>

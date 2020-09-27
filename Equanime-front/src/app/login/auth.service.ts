@@ -54,22 +54,6 @@ export class AuthService {
       this.usuarioAutenticado = false;
       this.mostrarMenuEmitter.emit(false);
     }
-
-
-
-/*
-    if(usuario.cpf == "123" && usuario.senha == "123"){
-
-      this.usuarioAutenticado = true;
-      this.mostrarMenuEmitter.emit(true);
-    
-      localStorage.setItem('currentUser', JSON.stringify(usuario));
-
-      this.router.navigate(['/home']);
-    }else{
-      this.usuarioAutenticado = false;
-      this.mostrarMenuEmitter.emit(false);
-    }*/
   }
   setUserLogado(id: number){
     localStorage.setItem('idUserLogado', JSON.stringify(id));
@@ -92,7 +76,8 @@ export class AuthService {
     
     this.usuarioAutenticado = false;
     this.mostrarMenuEmitter.emit(false);
-    this.router.navigate(['/login']);
+   // this.router.navigate(['/login']);
+    
 }
 
 setUserName(username:string){

@@ -25,10 +25,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
    
   }
-
-
-
-  
  fazerLogin(){
     console.log(this.usuario);
     this.authService.testarLogin(this.usuario).subscribe(acesso=>{
